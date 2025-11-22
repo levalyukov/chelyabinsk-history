@@ -1,0 +1,42 @@
+footer {
+  margin: 50px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 6px;
+
+  .info {
+    .media {
+      display: flex;
+      gap: 6px;
+      a {
+        font-size: 28px;
+      }
+
+      a:hover#vk       {color: #0077FF}
+      a:hover#telegram {color: #24A1DE}
+      a:hover#github   {color: #000000}
+    }
+  }
+
+  .category {
+    h2 {
+      font-size: 20px;
+      padding: 10px 0;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      margin-left: 10px;
+      li {
+        list-style: none;
+        margin: 5px 0;
+        a {
+          text-decoration: none;
+        } a:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
