@@ -7,6 +7,7 @@ header {
   padding: 6px 12px;
   background-color: var(--navmenu-background);
   backdrop-filter: blur(2px);
+  z-index: 5;
 
   a.logotype {
     z-index: 2;
@@ -119,10 +120,10 @@ header {
 }
 
 .mobile-background {
-  position: absolute;
+  position: fixed;
   width: 100vw;
   height: 100vh;
-  z-index: 1;
+  z-index: 6;
   backdrop-filter: blur(2px);
   background-color: rgb(0,0,0,.1);
   opacity: 1;
@@ -169,7 +170,7 @@ header {
 } .mobile-background#invisible {
   visibility: hidden;
   opacity: 0;
-  .mobile-navmenu {transform: translateX(100%); display: none;}
+  .mobile-navmenu {display: none;}
 }
 
 @media (max-width: 1000px) {
