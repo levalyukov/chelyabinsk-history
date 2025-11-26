@@ -1,0 +1,65 @@
+section#tours {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .main-container {
+    margin-top: 8%;
+    width: 1000px;
+    h1#title {
+      font-size: 30px;
+    } p#subtitle {
+      padding: 15px 0;
+      margin-bottom: 25px;
+    }
+
+    .container-tours {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 6px;
+      article {
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        background-color: #ffffff;
+        border-radius: 10px;
+
+        img {
+          width: 100%;
+          border-top-left-radius: 10px;
+          border-top-right-radius: 10px;
+        } .info {
+          padding: 15px;
+          h2 {
+            font-size: 26px;
+          } p {
+            padding: 12px 0;
+            font-size: 16px;
+          }
+
+          .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 12px;
+            button {
+              width: 100%;
+              border: 1px solid black;
+              outline: 0;
+              border-radius: 10px;
+              cursor: pointer;
+              padding: 12px 12px;
+              font-size: 14px;
+              color: #fff;
+              background-color: black;
+            } button.ghost {
+              background-color: transparent;
+              color: black;
+            } button.ghost:hover {
+              background-color: black;
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}

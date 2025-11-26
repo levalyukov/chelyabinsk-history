@@ -7,7 +7,7 @@ function Footer() {
   const media = {
     1:{id: "telegram",  icon: faTelegram,  href: ""},
     2:{id: "vk",        icon: faVk,        href: ""},
-    3:{id: "github",    icon: faGithub,    href: ""}
+    3:{id: "github",    icon: faGithub,    href: "https://github.com/levalyukov/chelyabinsk-history"}
   };
 
   const footer = {
@@ -19,22 +19,6 @@ function Footer() {
         3:{subtitle: "Ссылка №1", href: ""}
       },
     },
-    2: {
-      title: "Заголовок",
-      links: {
-        1:{subtitle: "Ссылка №1", href: ""},
-        2:{subtitle: "Ссылка №1", href: ""},
-        3:{subtitle: "Ссылка №1", href: ""}
-      },
-    },
-    3: {
-      title: "Заголовок",
-      links: {
-        1:{subtitle: "Ссылка №1", href: ""},
-        2:{subtitle: "Ссылка №1", href: ""},
-        3:{subtitle: "Ссылка №1", href: ""}
-      },
-    }
   };
 
   return (
