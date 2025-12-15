@@ -1,4 +1,4 @@
-section#intro {
+section.intro {
   height: 100vh;
   display: flex;
   align-items: center;
@@ -33,11 +33,11 @@ section#intro {
       }
     } h1 {
       font-size: 3.25em;
-      color: #FFF;
+      color: #fff;
       text-align: center;
     } p {
       font-size: 1.25em;
-      color: #FFF;
+      color: #fff;
       width: 475px;
       padding: 1.25em 0;
       text-align: center;
@@ -45,14 +45,26 @@ section#intro {
   }
 }
 
-section#intro::before {
+section.intro::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 0;
+  animation-name: intro-background;
+  animation-duration: 1.25s;
   background: rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(2.5px);
-  z-index: 0;
+}
+
+@keyframes intro-background {
+  0% {
+    background: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0px);
+  } 100% {
+    background: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(2.5px);
+  }
 }

@@ -1,16 +1,32 @@
 :root {
   --background: #FFF;
-  /* -- navmenu -- */
-  --navmenu-background: rgba(250, 250, 250, 0.75);
-  --navmenu-text: #090909;
-  --navmenu-text-hover: #000;
-  --navmenu-button: #f0f9f9;
-  --navmenu-border: #616161;
+  --backgroubd-alt: #F5F5F7;
+  --primary-color: #ff4e72;
+  --primary-color-light: #ff88a0;
+  --primary-color-dark: #e33659;
+  
+  /* -- Typegraphy -- */
+  --size-title: 14px;
+  --size-subtitle: 14px;
+  --color-title: #121420;
+  --color-subtitle: #797c83;
+
+  /* -- empty image */
+  --image-empty-line-1:#e0e0e0;
+  --image-empty-line-2:#ffffff;
 }
 
 :root[theme='dark'] {
-  --background: #111;
-  --navmenu-background: #f19066;
+  --background: #222831;
+  --background-alt: #393E46;
+
+  /* -- Typegraphy -- */
+  --color-title: #f7f8fe;
+  --color-subtitle: #d2d5e4;
+
+  /* -- empty image */
+  --image-empty-line-1:#393E46;
+  --image-empty-line-2:#606670;
 }
 
 * {
@@ -19,8 +35,13 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  
+  /* Font */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 
   Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.5;
+  hyphens: auto;
+  font-variant: normal;
 } body {
   background-color: var(--background);
 }
@@ -30,4 +51,49 @@ main.app {
   justify-content: center;
   align-items: center;
   .container { width: 1000px; }
+}
+
+#anim-element {
+  transition: 1s;
+  transform: translateY(25px);
+  opacity: 0;
+} #anim-element.anim-visible {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+p#anim-element.anim-left {
+  transition: 1.25s;
+  transform: translateX(-25px);
+  opacity: 0;
+} p#anim-element.anim-left.anim-visible {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+p#anim-element.anim-right {
+  transition: 1.25s;
+  transform: translateX(25px);
+  opacity: 0;
+} p#anim-element.anim-right.anim-visible {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+img#anim-element.img-right {
+  transition: .5s;
+  transform: translateX(100px) translateY(50px) translateZ(-50px);
+  opacity: 0;
+} img#anim-element.img-right.anim-visible {
+  transform: translateZ(0px);
+  opacity: 1;
+}
+
+img#anim-element.img-left {
+  transition: .5s;
+  transform: translateX(-100px) translateY(0) translateZ(-50px);
+  opacity: 0;
+} img#anim-element.img-left.anim-visible {
+  transform: translateZ(0px);
+  opacity: 1;
 }

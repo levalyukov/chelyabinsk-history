@@ -1,26 +1,16 @@
 import "../styles/App.css";
 
-import Header   from "./Header";
+import Header from "./Header";
 import Intro  from "./landing/Intro";
 import About  from "./landing/About";
 import Tour   from "./landing/Tour";
 import Start  from "./landing/Start";
-/* main app */
-import Tours    from "./app/Tours";
-/* -------- */
-import Footer   from "./Footer";
+import Footer from "./Footer";
 
 import { useEffect, useState } from "react";
 
-
 function App() {
-  const [language, changeLanguage] = useState<string>("ru");
   const [theme, changeTheme] = useState<boolean>(false);
-  const [page, changePage] = useState<"landing" | "all-tours">("landing");
-
-  function setPage(page:"landing"|"all-tours"): void {
-    changePage(page);
-  };
 
   function setTheme(): void {
     changeTheme(!theme);
@@ -45,25 +35,27 @@ function App() {
       setLanguage(String(localStorage.getItem("lang")));
       document.documentElement.lang = String(localStorage.getItem("lang"));
     };
+
+    const elements = document.querySelectorAll('#anim-element');
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('anim-visible');
+          observer.unobserve(entry.target);
+        };
+      });
+    }, { threshold: 0.1 });
+    elements.forEach(el => observer.observe(el));
   });
 
   return (
     <main id="app">
       <Header theme={setTheme} lang={setLanguage}/>
-      {page === "landing" && (
-        <>
-          <Intro/>
-          <About/>
-          <Tour/>
-          <Start onChangePage={changePage}/>
-        </>
-      )}
-      {page === "all-tours" && <Tours/>}
-      <main className="app">
-        <div className="container">
-          <Footer/>
-        </div>
-      </main>
+      <Intro/>
+      <About/>
+      <Tour/>
+      <Start/>
+      <Footer/>
     </main>
   );
 };

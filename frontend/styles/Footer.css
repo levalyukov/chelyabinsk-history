@@ -1,40 +1,85 @@
-footer {
-  margin: 50px 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 6px;
+:root {
+  --footer-background: #f6faff;
+  --footer-media-background: #e6ecf2;
+  --footer-media-background-hover: #f1f6fb;
+  --footer-media-color: #4a535e;
+}
 
-  .info {
-    .media {
-      display: flex;
-      gap: 6px;
-      a {
-        font-size: 28px;
+:root[theme="dark"] {
+  --footer-background: #151a20;
+  --footer-media-background: #393E46;
+  --footer-media-background-hover: #f1f6fb;
+  --footer-media-color: #c7d0db;
+}
+
+
+.footer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--footer-background);
+  footer {
+    width: 1000px;
+    margin: 50px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 6px;
+
+    .info {
+      p {
+        color: var(--color-subtitle);
       }
+      .media {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-top: 20px;
 
-      a:hover#vk       {color: #0077FF}
-      a:hover#telegram {color: #24A1DE}
-      a:hover#github   {color: #000000}
-    }
-  }
-
-  .category {
-    h2 {
-      font-size: 20px;
-      padding: 10px 0;
-    }
-
-    .content {
-      display: flex;
-      flex-direction: column;
-      margin-left: 10px;
-      li {
-        list-style: none;
-        margin: 5px 0;
         a {
-          text-decoration: none;
+          font-size: 20px;
+          border: 1px solid transparent;
+          background-color: var(--footer-media-background);
+          color: var(--footer-media-color);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 35px;
+          height: 35px;
+          border-radius: 10px;
         } a:hover {
-          text-decoration: underline;
+          border-color: var(--footer-media-background);
+          background-color: var(--footer-media-background-hover);
+        }
+
+        a:hover#vk        {color: #0077FF}
+        a:hover#telegram  {color: #24A1DE}
+        a:hover#github    {color: #000000}
+        a:hover#ok        {color: #EE8208}
+        a:hover#tiktok    {color: #000000}
+        a:hover#youtube   {color: #FF0000}
+      }
+    }
+
+    .category {
+      h2 {
+        font-size: 22px;
+        padding: 0 0 4px 0;
+        color: var(--color-title);
+      }
+      
+      .content {
+        display: flex;
+        flex-direction: column;
+        li {
+          list-style: none;
+          margin: 4px 0;
+          a {
+            transition: 0s;
+            color: var(--color-subtitle);
+            text-decoration: none;
+          } a:hover {
+            color: var(--primary-color);
+          }
         }
       }
     }

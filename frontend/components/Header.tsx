@@ -4,6 +4,12 @@ import logotype from "../images/logo.svg";
 import ru from "../images/flags/RU.svg";
 import us from "../images/flags/US.svg";
 import ch from "../images/flags/CN.svg";
+import ua from "../images/flags/UA.svg";
+import by from "../images/flags/by.svg";
+import ko from "../images/flags/KR.svg";
+import al from "../images/flags/AL.svg";
+import jp from "../images/flags/JP.svg";
+import id from "../images/flags/IN.svg";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faCircleHalfStroke, faGlobe, faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -21,29 +27,25 @@ function Header({theme, lang}: {theme: () => void, lang: (lang:string) => void})
 
   const languages = {
     0: {language: "Русский", key: "ru", flag: ru},
-    1: {language: "中文", key: "zh", flag: ch},
-    2: {language: "English", key: "us", flag: us},
+    1: {language: "Беларускі", key: "us", flag: by},
+    2: {language: "Український", key: "us", flag: ua},
+    3: {language: "English", key: "us", flag: us},
+    4: {language: "中文", key: "zh", flag: ch},
+    5: {language: "한국어", key: "us", flag: ko},
+    6: {language: "日本語", key: "us", flag: jp},
+    7: {language: "Shqiptare", key: "us", flag: al},
+    8: {language: "हिन्दी", key: "us", flag: id},
   };
   
   return (
     <>
-      <div className="mobile-background" id={(mobileVisible) ? "visible" : "invisible"}>
+      <div className="mobile-navmenu-container">
         <div className="mobile-navmenu">
-          <nav className="mobile-header">
-            <span className="logotype"><img src={logotype} alt="logotype.svg" /></span>
-            <button className="mobile-close" onClick={() => setMobileVisible(!mobileVisible)}>
-              <span><FontAwesomeIcon icon={faXmark}/></span>
-            </button>
-          </nav>
-          <div className="mobile-navmenu-content">
-            {Object.entries(navmenu).map(([key, index]) => (
-              <a key={key} href={"#"+index.href} onClick={() => setMobileVisible(!mobileVisible)}>{index.title}</a>
-            ))}
-          </div>
+          {/*  */}
         </div>
       </div>
 
-      <header>
+      <header id="navmenu">
         <a className="logotype" href="#app"><span><img src={logotype} alt="logotype.svg" /></span></a>
         <nav className="navmenu">
           {Object.entries(navmenu).map(([key, index]) => (
@@ -62,7 +64,6 @@ function Header({theme, lang}: {theme: () => void, lang: (lang:string) => void})
               ))}
             </div>
           </div>
-          <button className="mobile-open" onClick={() => setMobileVisible(true)}><span><FontAwesomeIcon icon={faBars}/></span></button>
         </nav>
       </header>
     </>
