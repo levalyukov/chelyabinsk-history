@@ -7,7 +7,7 @@ function Footer() {
   const media = {
     0: {id: "vk", icon: faVk, href: ""},
     1: {id: "telegram", icon: faTelegram, href: ""},
-    2: {id: "github", icon: faGithub, href: ""},
+    2: {id: "github", icon: faGithub, href: "github.com/levalyukov/chelyabinsk-history"},
     3: {id: "youtube", icon: faYoutube, href: ""},
     4: {id: "tiktok", icon: faTiktok, href: ""},
     5: {id: "ok", icon: faOdnoklassniki, href: ""},
@@ -40,7 +40,7 @@ function Footer() {
           <p>© {new Date().getFullYear()} Авторы</p>
           <ul className="media">
             {Object.entries(media).map(([key,index]) => (
-              <a key={key} href={index.href} id={index.id} target="_blank"><FontAwesomeIcon icon={index.icon}/></a>
+              <a key={key} href={"https://"+index.href} id={index.id} target="_blank"><FontAwesomeIcon icon={index.icon}/></a>
             ))}
           </ul>
         </div>

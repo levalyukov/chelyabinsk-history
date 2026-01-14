@@ -81,7 +81,7 @@ p#anim-element.anim-right {
 }
 
 img#anim-element.img-right {
-  transition: .5s;
+  transition: .75s;
   transform: translateX(100px) translateY(50px) translateZ(-50px);
   opacity: 0;
 } img#anim-element.img-right.anim-visible {
@@ -90,7 +90,7 @@ img#anim-element.img-right {
 }
 
 img#anim-element.img-left {
-  transition: .5s;
+  transition: .75s;
   transform: translateX(-100px) translateY(0) translateZ(-50px);
   opacity: 0;
 } img#anim-element.img-left.anim-visible {
