@@ -1,4 +1,4 @@
-import "../../styles/landing/About.css";
+import "../styles/landing/About.css";
 
 function About() {
   return (

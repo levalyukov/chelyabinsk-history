@@ -1,4 +1,4 @@
-import "../../styles/landing/Start.css"
+import "../styles/landing/Start.css"
 
 function Start() {
   return (
@@ -88,7 +88,7 @@ function Start() {
           </article>
         </div>
       </div>
-      <button>Начать приключение</button>
+      <a href="app/">Начать приключение</a>
     </section>
   );
 };

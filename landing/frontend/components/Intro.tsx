@@ -1,9 +1,9 @@
-import "../../styles/landing/Intro.css";
+import "../styles/landing/Intro.css";
 
-import small_logotype from "../../images/small-logo.svg";
+import small_logotype from "../images/small-logo.svg";
 
-import backgroundLight from "../../images/wallpapers/chelyabinsk-0.png";
-import backgroundDark from "../../images/wallpapers/chelyabinsk-1.png";
+import backgroundLight from "../images/wallpapers/chelyabinsk-0.png";
+import backgroundDark from "../images/wallpapers/chelyabinsk-1.png";
 
 function Intro() {
   return (

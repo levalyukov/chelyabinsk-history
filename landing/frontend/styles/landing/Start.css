@@ -22,7 +22,7 @@ section#start {
   } p {
     color: var(--color-subtitle);
     padding: .75em 0 0 0;
-  } button {
+  } a {
     outline: 0;
     border: 0;
     margin: 0.25em 0;
@@ -34,10 +34,11 @@ section#start {
     color: var(--primary-color);
     background-color: transparent;
     border: 2px solid var(--primary-color);
-  } button:hover {
+    text-decoration: none;
+  } a:hover {
     color: #FFF;
     background-color: var(--primary-color);
-  } button:active {
+  } a:active {
     transform: translateZ(-10px);
     background-color: var(--primary-color-dark);
     border-color: var(--primary-color-dark);
@@ -95,9 +96,6 @@ section#start {
 }
 
 @keyframes slider {
-  0% {
-    transform: translateX(0);
-  } 100% {
-    transform: translateX(-100%);
-  }
+  0% {transform: translateX(0);} 
+  100% {transform: translateX(-100%);}
 }

@@ -45,8 +45,8 @@ header#navmenu {
   background-color: var(--navmenu-background);
   z-index: 5;
   border-radius: 50px;
-  margin: 10px 25px;
-  width: calc(100% - 50px);
+  margin: 10px 10px;
+  width: calc(100% - 20px);
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
   a.logotype {
@@ -168,66 +168,12 @@ header#navmenu {
   }
 }
 
-.navmenu-mobile-background {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  z-index: 6;
-  backdrop-filter: blur(2px);
-  background-color: rgb(0,0,0,.1);
-  opacity: 1;
-  .navmenu-mobile {
-    float: right;
-    width: 45%;
-    height: 100vh;
-    background-color: #fff;
-    padding: 10px 12px;
-    nav.navmenu-mobile-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 25px;
-      button.navmenu-mobile-close {
-        outline: none;
-        border: 0;
-        border-radius: 10px;
-        padding: 12px;
-        cursor: pointer;
-      } span.logotype {
-        width: 35px;
-        height: 35px;
-        margin-left: 12px;
-        img {width: 100%;}
-      }
-    }
-
-    .mobile-navmenu-content {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      a {
-        width: 100%;
-        padding: 18px 18px;
-        border-radius: 10px;
-        text-decoration: none;
-        font-size: 18px;
-      } a:hover {
-        background-color: antiquewhite;
-      }
-    }
-  }
-} .navmenu-mobile-background#invisible {
-  visibility: hidden;
-  opacity: 0;
-  .mobile-navmenu {display: none;}
-}
-
-@media (max-width: 1000px) {
+@media (max-width: 675px) {
   header#navmenu {
     nav.navmenu {display: none;}
     nav.commands {
       button.mobile-open {display: flex;}
       /* button.dropdown-button, button.theme {display: none;} */
     }
-  }
+  } .mobile-navmenu-container {display: block;}
 }

@@ -1,4 +1,4 @@
-import "../../styles/landing/Tour.css"
+import "../styles/landing/Tour.css"
 
 function Tour() {
   return (

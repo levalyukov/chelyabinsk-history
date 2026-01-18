@@ -1,15 +1,15 @@
 import "../styles/App.css";
 
 import Header from "./Header";
-import Intro  from "./landing/Intro";
-import About  from "./landing/About";
-import Tour   from "./landing/Tour";
-import Start  from "./landing/Start";
+import Intro  from "./Intro";
+import About  from "./About";
+import Tour   from "./Tour";
+import Start  from "./Start";
 import Footer from "./Footer";
 
 import { useEffect, useState } from "react";
 
-function App() {
+export default function Landing() {
   const [theme, changeTheme] = useState<boolean>(false);
 
   function setTheme(): void {
@@ -59,5 +59,3 @@ function App() {
     </main>
   );
 };
-
-export default App;

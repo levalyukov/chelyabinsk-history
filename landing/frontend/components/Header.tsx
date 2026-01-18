@@ -12,12 +12,12 @@ import jp from "../images/flags/JP.svg";
 import id from "../images/flags/IN.svg";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faCircleHalfStroke, faGlobe, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faCircleHalfStroke, faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 function Header({theme, lang}: {theme: () => void, lang: (lang:string) => void}) {
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
-  const [mobileVisible, setMobileVisible] = useState<boolean>(false);
+  const [mobileMenu, setMobileMenu] = useState<boolean>(false);
 
   const navmenu = {
     0: {title: "О проекте", href: "about"},
@@ -41,7 +41,7 @@ function Header({theme, lang}: {theme: () => void, lang: (lang:string) => void})
     <>
       <div className="mobile-navmenu-container">
         <div className="mobile-navmenu">
-          {/*  */}
+          
         </div>
       </div>
 
@@ -64,6 +64,7 @@ function Header({theme, lang}: {theme: () => void, lang: (lang:string) => void})
               ))}
             </div>
           </div>
+          <button className="mobile-menu"><span><FontAwesomeIcon icon={faBars}/></span></button>
         </nav>
       </header>
     </>
