@@ -1,6 +1,6 @@
 import "../styles/landing/Intro.css";
 
-import small_logotype from "../images/small-logo.svg";
+import small_logotype from "../images/logo.svg";
 
 import backgroundLight from "../images/wallpapers/chelyabinsk-0.png";
 import backgroundDark from "../images/wallpapers/chelyabinsk-1.png";

@@ -1,5 +1,6 @@
 import "../styles/Header.css";
-import logotype from "../images/logo.svg";
+
+import logotype from "../images/small-logo.svg";
 
 import ru from "../images/flags/RU.svg";
 
