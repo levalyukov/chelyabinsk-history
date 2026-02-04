@@ -34,7 +34,7 @@ section#tour {
       );
       border: 1px solid var(--image-empty-line-1);
       border-radius: 25px;
-      height: 100%;
+      height: 500px;
       width: 100%;
     }
   }

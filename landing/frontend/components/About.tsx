@@ -7,11 +7,16 @@ function About() {
         <div className="info">
           <h1 id="anim-element">Идея проекта</h1>
           <p id="anim-element" className="anim-left">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
-            
-            <br /><br />Natus cupiditate nobis necessitatibus? Eius magni cum molestias suscipit deserunt commodi similique assumenda, odio iusto facilis nulla nemo iure nobis doloremque eum.
-            Debitis quasi aspernatur quidem ea consequuntur consectetur dolorum, voluptatem, modi necessitatibus, dolor obcaecati. Commodi error exercitationem harum aliquid sequi eius nihil incidunt rerum sint magni reprehenderit vel numquam, ea odit.
-            Architecto incidunt minus ea ab consequuntur rem quibusdam, voluptas assumenda atque eos aspernatur tempora repudiandae corrupti aliquam maxime esse provident a similique unde accusamus? Sint quos eveniet excepturi eos eligendi.
+            Каждый город — это собрание историй, рассказанных камнем, краской и памятью. 
+            <br /><br />
+            Наш проект — это приглашение услышать Челябинск. 
+            Пройти не просто улицами, а сквозь время: от отголосков прошлого в 
+            старинных зданиях до живого пульса в стрит-арте и современных сценах. 
+            Это бесплатный ключ к культурному коду города для каждого — и для того, 
+            кто живёт здесь годами, и для того, кто впервые увидел его горизонт. 
+            <br /><br />
+            К 2027 году мы хотим, чтобы статус Челябинска как культурной столицы России
+            был не просто словами, а пережитым опытом тысяч людей.
           </p>
         </div>
         <img src="" alt="" id="anim-element" className="img-right"/>
