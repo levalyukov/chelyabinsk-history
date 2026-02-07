@@ -1,0 +1,103 @@
+section#about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .container {
+    height: 100%;
+    width: 1300px;
+    padding: 100px 25px;
+    display: grid;
+    gap: 50px;
+    display: flex;
+    justify-content: space-between;
+    .info {
+      perspective: 100px;
+      h1 {
+        color: var(--color-title);
+        font-size: 3em;
+      }
+      p {
+        color: var(--color-subtitle);
+        text-align: justify;
+        padding: 1.25em 0;
+      }
+    } 
+    
+    img {
+      background-image: repeating-linear-gradient(
+        45deg,
+        var(--image-empty-line-1),
+        var(--image-empty-line-1) 10px,
+        var(--image-empty-line-2) 11px,      
+        var(--image-empty-line-2) 20px
+      );
+      border: 1px solid var(--image-empty-line-1);
+      border-radius: 25px;
+      height: 500px;
+      width: 50%;
+      object-fit: cover;
+    }
+  }
+}
+
+@media (max-width: 850px) {
+  section#about {
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .info {
+        h1 {font-size: 46px;} 
+        p {font-size: 16px;}
+      }
+
+      img {
+        background-image: repeating-linear-gradient(
+          45deg,
+          var(--image-empty-line-1),
+          var(--image-empty-line-1) 10px,
+          var(--image-empty-line-2) 11px,      
+          var(--image-empty-line-2) 20px
+        );
+        
+        border: 1px solid var(--image-empty-line-1);
+        border-radius: 25px;
+        width: 100%;
+        height: 300px;
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  section#about {
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .info {
+        h1 {
+          text-align: center;
+          font-size: 34px;
+        } p {font-size: 15px;}
+      }
+
+      img {
+        background-image: repeating-linear-gradient(
+          45deg,
+          var(--image-empty-line-1),
+          var(--image-empty-line-1) 10px,
+          var(--image-empty-line-2) 11px,      
+          var(--image-empty-line-2) 20px
+        );
+        
+        border: 1px solid var(--image-empty-line-1);
+        border-radius: 25px;
+        width: 100%;
+        height: 300px;
+      }
+    }
+  }
+}

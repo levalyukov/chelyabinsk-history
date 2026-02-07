@@ -1,5 +1,4 @@
 section#start {
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,7 +16,7 @@ section#start {
 
   h1 {
     color: var(--color-title);
-    font-size: 3.25em;
+    font-size: 3em;
     text-align: center;
   } p {
     color: var(--color-subtitle);
@@ -35,6 +34,7 @@ section#start {
     background-color: transparent;
     border: 2px solid var(--primary-color);
     text-decoration: none;
+    font-weight: bold;
   } a:hover {
     color: #FFF;
     background-color: var(--primary-color);
@@ -57,7 +57,9 @@ section#start {
       animation-iteration-count: infinite;
       animation-play-state: running;
       perspective: 50px;
-    } article {
+    } 
+    
+    article {
       display: flex;
       width: 350px;
       height: 350px;
@@ -89,7 +91,11 @@ section#start {
         z-index: 10;
         align-self: flex-end;
         position: absolute; 
-        h1 {color: #FFF;} p {color: #f7faff;}
+        h1 {
+          color: #FFF;
+        } p {
+          color: #f7faff;
+        }
       }
     }
   }
@@ -98,4 +104,45 @@ section#start {
 @keyframes slider {
   0% {transform: translateX(0);} 
   100% {transform: translateX(-100%);}
+}
+
+@media (max-width: 825px) {
+  section#start {
+    .places-container {
+      article {
+        height: 300px;
+        width: 300px;
+        img {
+          height: 300px;
+          width: 300px;
+        }
+        .info {
+          h2 {font-size: 20px;}
+          p {font-size: 16px;} 
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  section#start {
+    h1  {font-size: 34px;} 
+    p   {font-size: 15px;}
+    .places-container {
+      article {
+        height: 200px;
+        width: 250px;
+        img {
+          height: 200px;
+          width: 250px;
+        }
+        .info {
+          h2 {font-size: 18px;} 
+          p {display: none;} 
+        }
+        
+      }
+    }
+  }
 }

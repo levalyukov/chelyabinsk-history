@@ -3,6 +3,13 @@ import "../styles/Header.css";
 import logotype from "../images/small-logo.svg";
 
 import ru from "../images/flags/RU.svg";
+import zh from "../images/flags/CN.svg";
+import ko from "../images/flags/KR.svg";
+import jp from "../images/flags/JP.svg";
+import hi from "../images/flags/IN.svg";
+import de from "../images/flags/DE.svg";
+import pt from "../images/flags/PT.svg";
+import en from "../images/flags/US.svg";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faCircleHalfStroke, faGlobe, faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -13,30 +20,48 @@ function Header({theme, lang}: {theme: () => void, lang: (lang:string) => void})
   const [mobileMenu, setMobileMenu] = useState<boolean>(false);
 
   const navmenu = {
-    0: {title: "Безопасность", href: ""},
-    1: {title: "Предложить репортаж", href: ""},
-    2: {title: "Контакты", href: ""},
+    0: {title: "Кнопка #1", href: ""},
+    1: {title: "Кнопка #2", href: ""},
+    2: {title: "Кнопка #3", href: ""},
+    3: {title: "Кнопка #4", href: ""},
+    4: {title: "Кнопка #5", href: ""}
   };
 
   const languages = {
-    0: {language: "Русский", key: "ru", flag: ru}
+    0: {language: "Русский", key: "ru", flag: ru},
+    1: {language: "English", key: "en", flag: en},
+    2: {language: "हिन्दी", key: "ru", flag: hi},
+    3: {language: "Deutsch", key: "ru", flag: de},
+    4: {language: "Português", key: "ru", flag: pt},
+    5: {language: "中文", key: "zh", flag: zh},
+    6: {language: "한국어", key: "ko", flag: ko},
+    7: {language: "日本語", key: "jp", flag: jp},
   };
   
   return (
     <>
       <div id="mobile-navmenu-container" className={!mobileMenu ? "invisible" : "visible"}>
         <div className="mobile-navmenu">
-          <nav>
-            <img src={logotype} alt="" />
+          
+          <nav className="mobile-header">
+            <img className="mobile-logotype" src={logotype} alt="" />
             <button onClick={() => setMobileMenu(!mobileMenu)}>
               <span><FontAwesomeIcon icon={faXmark}/></span>
             </button>
           </nav>
 
           <div className="mobile-namvenu-content">
-            {Object.entries(navmenu).map(([key, index]) => (
-                <a key={key} href={"#"+index.href}>{index.title}</a>
-            ))}
+            <nav className="mobile-navmenu-links">
+              <div className="mobile-navmenu-link">
+                {Object.entries(navmenu).map(([key, index]) => (
+                    <a key={key} href={"#"+index.href}>{index.title}</a>
+                ))}
+              </div>
+
+              <nav className="mobile-navmenu-footer">
+                <button>Открыть приложение</button>
+              </nav>
+            </nav>
           </div>
         </div>
       </div>

@@ -1,14 +1,15 @@
 import "../styles/Footer.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBluesky, faGithub, faTelegram, faVk } from "@fortawesome/free-brands-svg-icons";
+import { faBluesky, faGithub, faTelegram, faTiktok, faVk } from "@fortawesome/free-brands-svg-icons";
 
 function Footer() {
   const media = {
     0: {id: "vk", icon: faVk, href: ""},
     1: {id: "telegram", icon: faTelegram, href: ""},
-    2: {id: "bluesky", icon: faBluesky, href: ""},
-    3: {id: "github", icon: faGithub, href: ""},
+    2: {id: "github", icon: faGithub, href: ""},
+    3: {id: "bluesky", icon: faBluesky, href: ""},
+    4: {id: "tiktok", icon: faTiktok, href: ""}
   };
   
   const footer = {

@@ -1,4 +1,4 @@
-import "../styles/landing/Start.css"
+import "../styles/Start.css"
 
 function Start() {
   return (
