@@ -1,6 +1,7 @@
 import "../styles/Header.css";
 
-import logotype from "../images/small-logo.svg";
+import lightLogotype  from "../images/light-logo.svg";
+import darkLogotype   from "../images/dark-logo.svg";
 
 import ru from "../images/flags/RU.svg";
 import zh from "../images/flags/CN.svg";
@@ -15,7 +16,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faCircleHalfStroke, faGlobe, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
-function Header({theme, lang}: {theme: () => void, lang: (lang:string) => void}) {
+export default function Header({setTheme, getTheme, setLang}: {
+  setTheme: () => void, getTheme: () => boolean, setLang: (lang:string) => void}) {
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
   const [mobileMenu, setMobileMenu] = useState<boolean>(false);
 
@@ -37,14 +39,14 @@ function Header({theme, lang}: {theme: () => void, lang: (lang:string) => void})
     6: {language: "한국어", key: "ko", flag: ko},
     7: {language: "日本語", key: "jp", flag: jp},
   };
-  
+
   return (
     <>
       <div id="mobile-navmenu-container" className={!mobileMenu ? "invisible" : "visible"}>
         <div className="mobile-navmenu">
           
           <nav className="mobile-header">
-            <img className="mobile-logotype" src={logotype} alt="" />
+            <img className="mobile-logotype" src={!getTheme() ? darkLogotype : lightLogotype} alt="" />
             <button onClick={() => setMobileMenu(!mobileMenu)}>
               <span><FontAwesomeIcon icon={faXmark}/></span>
             </button>
@@ -52,6 +54,7 @@ function Header({theme, lang}: {theme: () => void, lang: (lang:string) => void})
 
           <div className="mobile-namvenu-content">
             <nav className="mobile-navmenu-links">
+
               <div className="mobile-navmenu-link">
                 {Object.entries(navmenu).map(([key, index]) => (
                     <a key={key} href={"#"+index.href}>{index.title}</a>
@@ -61,25 +64,31 @@ function Header({theme, lang}: {theme: () => void, lang: (lang:string) => void})
               <nav className="mobile-navmenu-footer">
                 <button>Открыть приложение</button>
               </nav>
+
             </nav>
           </div>
         </div>
       </div>
 
       <header id="navmenu">
-        <a className="logotype" href="#app"><span><img src={logotype} alt="logotype.svg" /></span></a>
+        <a className="logotype" href="#app"><span><img src={!getTheme() ? darkLogotype : lightLogotype} alt="logotype.svg" /></span></a>
         <nav className="navmenu">
           {Object.entries(navmenu).map(([key, index]) => (
               <a key={key} href={"#"+index.href}>{index.title}</a>
           ))}
         </nav>
         <nav className="commands">
-          <button className="theme" onClick={theme}><span><FontAwesomeIcon icon={faCircleHalfStroke}/></span></button>
+          <button className="theme" onClick={setTheme}>
+            <span><FontAwesomeIcon icon={faCircleHalfStroke}/></span>
+          </button>
+
           <div className="dropdown">
-            <button className="dropdown-button" onClick={() => setDropdownVisible(!dropdownVisible)}><span><FontAwesomeIcon icon={faGlobe}/></span></button>
+            <button className="dropdown-button" onClick={() => setDropdownVisible(!dropdownVisible)}>
+              <span><FontAwesomeIcon icon={faGlobe}/></span>
+            </button>
             <div className="dropdown-content" id={(dropdownVisible) ? "visible" : "invisible"}>
               {Object.entries(languages).map(([key, parameter]) => (
-                <button key={key} onClick={() => {lang(parameter.key); setDropdownVisible(false); document.location.reload();}}>
+                <button key={key} onClick={() => {setLang(parameter.key); setDropdownVisible(false); document.location.reload();}}>
                   <span><img src={parameter.flag} alt=""/></span> {parameter.language}
                 </button>
               ))}
@@ -93,5 +102,3 @@ function Header({theme, lang}: {theme: () => void, lang: (lang:string) => void})
     </>
   );
 };
-
-export default Header;

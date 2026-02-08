@@ -1,6 +1,6 @@
 import "../styles/Tour.css"
 
-function Tour() {
+export default function Tour() {
   return (
     <section id="tour">
       <div className="container">
@@ -19,5 +19,3 @@ function Tour() {
     </section>
   );
 };
-
-export default Tour;

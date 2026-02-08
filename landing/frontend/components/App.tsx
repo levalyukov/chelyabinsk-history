@@ -19,6 +19,10 @@ export default function Landing() {
     localStorage.setItem("theme", (!theme) ? "dark" : "light");
   };
 
+  function getTheme(): boolean {
+    return theme;
+  };
+
   function setLanguage(lang:string): void {
     document.documentElement.lang = lang;
     localStorage.setItem("lang", lang);
@@ -50,7 +54,7 @@ export default function Landing() {
 
   return (
     <main id="app">
-      <Header theme={setTheme} lang={setLanguage}/>
+      <Header setTheme={setTheme} getTheme={getTheme} setLang={setLanguage}/>
       <Intro/>
       <About/>
       <Tour/>

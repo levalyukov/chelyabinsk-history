@@ -3,7 +3,7 @@ import "../styles/Footer.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBluesky, faGithub, faTelegram, faTiktok, faVk } from "@fortawesome/free-brands-svg-icons";
 
-function Footer() {
+export default function Footer() {
   const media = {
     0: {id: "vk", icon: faVk, href: ""},
     1: {id: "telegram", icon: faTelegram, href: ""},
@@ -59,5 +59,3 @@ function Footer() {
     </div>
   );
 };
-
-export default Footer;

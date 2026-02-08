@@ -5,7 +5,7 @@ import small_logotype from "../images/logo.svg";
 import backgroundLight from "../images/wallpapers/chelyabinsk-0.png";
 import backgroundDark from "../images/wallpapers/chelyabinsk-1.png";
 
-function Intro() {
+export default function Intro() {
   return (
     <section className="intro">
       <img src={(String(localStorage.getItem("theme")) === "dark" ? backgroundDark : backgroundLight)} alt=""/>
@@ -17,5 +17,3 @@ function Intro() {
     </section>
   );
 };
-
-export default Intro;

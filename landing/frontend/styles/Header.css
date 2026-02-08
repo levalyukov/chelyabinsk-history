@@ -223,6 +223,7 @@ header#navmenu {
       border-radius: 15px;
       font-size: 16px;
       background-color: var(--navmenu-button-hover);
+      color: var(--navmenu-text-hover);
       span {
         display: flex;
         justify-content: center;
@@ -248,6 +249,8 @@ header#navmenu {
         width: 100%;
         align-items: end;
         justify-content: flex-end;
+        flex-direction: column;
+        gap: 6px;
 
         button {
           border: 0;
@@ -258,6 +261,11 @@ header#navmenu {
           padding: 15px 25px;
           background-color: var(--primary-color);
           color: #fff;
+          cursor: pointer;
+        } button:hover {
+          background-color: var(--primary-color-light);
+        } button:active {
+          background-color: var(--primary-color-dark);
         }
       }
 
@@ -265,8 +273,8 @@ header#navmenu {
         width: 100%;
         text-decoration: none;
         background-color: var(--navmenu-button-hover);
-        border-bottom: 1px solid #f7f8fe;
-        color: #1d2025;
+        border-bottom: 1px solid var(--navmenu-background);
+        color: var(--navmenu-text-hover);
         padding: 15px 25px;
         display: flex;
         justify-content: flex-start;
@@ -303,7 +311,13 @@ header#navmenu {
   } .mobile-navmenu-container {display: block;}
 }
 
-@media (max-width: 650px) {
+@media (max-width: 675px) {
+  #mobile-navmenu-container {
+    .mobile-navmenu {width: 60%;}
+  }
+}
+
+@media (max-width: 600px) {
   #mobile-navmenu-container {
     .mobile-navmenu {width: 75%;}
   }

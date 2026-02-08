@@ -1,6 +1,6 @@
 import "../styles/Start.css"
 
-function Start() {
+export default function Start() {
   return (
     <section id="start">
       <h1 id="anim-element">Погрузитесь в историю</h1>
@@ -92,5 +92,3 @@ function Start() {
     </section>
   );
 };
-
-export default Start;
