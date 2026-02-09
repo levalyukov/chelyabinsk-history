@@ -31,13 +31,8 @@ export default function Header({setTheme, getTheme, setLang}: {
 
   const languages = {
     0: {language: "Русский", key: "ru", flag: ru},
-    1: {language: "English", key: "en", flag: en},
-    2: {language: "हिन्दी", key: "ru", flag: hi},
-    3: {language: "Deutsch", key: "ru", flag: de},
-    4: {language: "Português", key: "ru", flag: pt},
-    5: {language: "中文", key: "zh", flag: zh},
-    6: {language: "한국어", key: "ko", flag: ko},
-    7: {language: "日本語", key: "jp", flag: jp},
+    1: {language: "中文", key: "zh", flag: zh},
+    2: {language: "English", key: "en", flag: en}
   };
 
   return (
