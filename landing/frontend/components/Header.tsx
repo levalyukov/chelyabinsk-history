@@ -5,11 +5,6 @@ import darkLogotype   from "../images/dark-logo.svg";
 
 import ru from "../images/flags/RU.svg";
 import zh from "../images/flags/CN.svg";
-import ko from "../images/flags/KR.svg";
-import jp from "../images/flags/JP.svg";
-import hi from "../images/flags/IN.svg";
-import de from "../images/flags/DE.svg";
-import pt from "../images/flags/PT.svg";
 import en from "../images/flags/US.svg";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
