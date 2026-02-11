@@ -32,7 +32,7 @@ export default function Footer() {
     <div className="footer-container">
       <footer>
         <div className="info">
-          <p>© {new Date().getFullYear()} {"<Авторы/>"}</p>
+          <p>© {new Date().getFullYear()} Экскурсия с Доставкой</p>
           <ul className="media">
             {Object.entries(media).map(([key,index]) => (
               <a key={key} href={"https://"+index.href} id={index.id} target="_blank">
