@@ -19,7 +19,7 @@ export default function About() {
             был не просто словами, а пережитым опытом тысяч людей.
           </p>
         </div>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/%D0%A4%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D1%8F_%D0%A7%D0%B5%D0%BB%D1%8F%D0%B1%D0%B8%D0%BD%D1%81%D0%BA%D0%B0_%D1%81_%D0%BE%D1%82%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%D0%BC_%282021%29.jpg" alt="" id="anim-element" className="img-right"/>
+        <img src="https://www.mk.ru/upload/entities/2019/07/05/10/photoreportsImages/detailPicture/a7/68/d7/e5/1027408_8408583.jpg" alt="" id="anim-element" className="img-right"/>
       </div>
     </section>
   );
