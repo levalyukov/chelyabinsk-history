@@ -5,7 +5,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 export default function Footer() {
   const media = {
-    0: {id: "github", icon: faGithub, href: "https://github.com/levalyukov/chelyabinsk-history"},
+    0: {id: "github", icon: faGithub, href: "github.com/levalyukov/chelyabinsk-history"},
   };
   
   const footer = {
@@ -46,7 +46,7 @@ export default function Footer() {
             <h2>{index.title}</h2>
             <div className="content">
               {Object.entries(index.links).map(([key,index]) => (
-                <li key={key}><a href={index.href}>{index.subtitle}</a></li>
+                <li key={key}><a href={"https://"+index.href}>{index.subtitle}</a></li>
               ))}
             </div>
           </div>
