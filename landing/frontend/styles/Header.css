@@ -324,7 +324,17 @@ header#navmenu {
 }
 
 @media (max-width: 499px) {
+  #mobile-navmenu-container.invisible {
+    /* backdrop-filter: blur(0); */
+    background-color: rgba(20, 18, 16, 0);
+    .mobile-navmenu {
+      transform: translateX(100%);
+      opacity: 1;
+    } visibility: hidden;
+  }
+
   #mobile-navmenu-container {
+    backdrop-filter: blur(0);
     .mobile-navmenu {
       width: 100%;
       border-radius: 0;
