@@ -68,7 +68,7 @@ export default function Header({setTheme, getTheme, setLang}: {
           ))}
         </nav>
         <nav className="commands">
-          <button className="theme" onClick={setTheme}>
+          <button data-testid="theme" className="theme" onClick={setTheme}>
             <span><FontAwesomeIcon icon={faCircleHalfStroke}/></span>
           </button>
 
