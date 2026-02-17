@@ -50,7 +50,16 @@ export default function Landing() {
       });
     }, { threshold: 0.1 });
     elements.forEach(el => observer.observe(el));
-  });
+
+    const browserTheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    let link: HTMLLinkElement = document.querySelector("link[rel*='icon']") || document.createElement("link");
+    if (link) {
+      link.type = 'image/svg+xml';
+      link.rel  = 'icon';
+      link.href = browserTheme ? "./logotype-light.svg" : "./logotype-dark.svg";
+      document.getElementsByTagName('head')[0].appendChild(link);
+    };
+  }, []);
 
   return (
     <main id="app">
