@@ -19,14 +19,14 @@
   align-items: center;
   background-color: var(--footer-background);
   footer {
-    width: 1000px;
+    width: 1300px;
     margin: 50px 0;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 6px;
 
     .info {
-      p {color: var(--color-subtitle);}
+      p { color: var(--color-subtitle); }
       .media {
         display: flex;
         flex-wrap: wrap;
@@ -60,8 +60,10 @@
     }
 
     .category {
+      text-transform: capitalize;
+
       h2 {
-        font-size: 16px;
+        font-size: 18px;
         padding: 0 0 4px 0;
         color: var(--color-title);
       }

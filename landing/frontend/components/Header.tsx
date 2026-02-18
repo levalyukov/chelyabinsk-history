@@ -17,11 +17,10 @@ export default function Header({setTheme, getTheme, setLang}: {
   const [mobileMenu, setMobileMenu] = useState<boolean>(false);
 
   const navmenu = {
-    0: {title: "Кнопка #1", href: ""},
-    1: {title: "Кнопка #2", href: ""},
-    2: {title: "Кнопка #3", href: ""},
-    3: {title: "Кнопка #4", href: ""},
-    4: {title: "Кнопка #5", href: ""}
+    0: {title: "Безопасность", href: ""},
+    1: {title: "Обратная связь", href: ""},
+    2: {title: "Блог", href: ""},
+    3: {title: "Контакты", href: ""}
   };
 
   const languages = {
@@ -36,7 +35,7 @@ export default function Header({setTheme, getTheme, setLang}: {
         <div className="mobile-navmenu">
           
           <nav className="mobile-header">
-            <img className="mobile-logotype" src={!getTheme() ? darkLogotype : lightLogotype} alt="" />
+            <img data-testid="logotype-mobile" className="mobile-logotype" src={!getTheme() ? darkLogotype : lightLogotype} alt="logotype.svg" />
             <button onClick={() => setMobileMenu(!mobileMenu)}>
               <span><FontAwesomeIcon icon={faXmark}/></span>
             </button>
@@ -45,7 +44,7 @@ export default function Header({setTheme, getTheme, setLang}: {
           <div className="mobile-namvenu-content">
             <nav className="mobile-navmenu-links">
 
-              <div className="mobile-navmenu-link">
+              <div className="mobile-navmenu-link" data-testid="mobile-navmenu">
                 {Object.entries(navmenu).map(([key, index]) => (
                     <a key={key} href={"#"+index.href}>{index.title}</a>
                 ))}
@@ -61,14 +60,17 @@ export default function Header({setTheme, getTheme, setLang}: {
       </div>
 
       <header id="navmenu">
-        <a className="logotype" href="#app"><span><img src={!getTheme() ? darkLogotype : lightLogotype} alt="logotype.svg" /></span></a>
-        <nav className="navmenu">
+        <a data-testid="logotype-pc" className="logotype" href="#app">
+          <span><img src={!getTheme() ? darkLogotype : lightLogotype} alt="logotype.svg" /></span>
+        </a>
+
+        <nav data-testid="pc-navmenu" className="navmenu">
           {Object.entries(navmenu).map(([key, index]) => (
               <a key={key} href={"#"+index.href}>{index.title}</a>
           ))}
         </nav>
         <nav className="commands">
-          <button data-testid="theme" className="theme" onClick={setTheme}>
+          <button className="theme" onClick={setTheme}>
             <span><FontAwesomeIcon icon={faCircleHalfStroke}/></span>
           </button>
 

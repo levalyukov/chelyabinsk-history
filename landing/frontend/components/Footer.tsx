@@ -5,7 +5,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 export default function Footer() {
   const media = {
-    0: {id: "github", icon: faGithub, href: "github.com/levalyukov/chelyabinsk-history"},
+    0: {id: "github", icon: faGithub, href: "github.com/levalyukov/chelyabinsk-history"}
   };
   
   const footer = {

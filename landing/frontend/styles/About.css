@@ -20,6 +20,7 @@ section#about {
         color: var(--color-subtitle);
         text-align: justify;
         padding: 1.25em 0;
+        font-size: 18px;
       }
     } 
     
