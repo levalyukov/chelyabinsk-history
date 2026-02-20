@@ -23,7 +23,7 @@ export default function Intro() {
 
         <span className="info-buttons">
           <a href=""><span><FontAwesomeIcon icon={faDownload}/></span> Установить для Windows</a>
-          <a href="">Открыть в браузере</a>
+          <a href="" className="active">Открыть в браузере</a>
         </span>
       </div>
     </section>

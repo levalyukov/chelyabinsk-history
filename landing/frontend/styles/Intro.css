@@ -67,6 +67,9 @@ section.intro {
         transform: translateZ(-10px);
         background-color: var(--primary-color-dark);
         border-color: var(--primary-color-dark);
+      } a.active {
+        color: #FFF;
+        background-color: var(--primary-color);
       }
     }
 
