@@ -17,7 +17,7 @@ export default function Header({setTheme, getTheme, setLang}: {
   const [mobileMenu, setMobileMenu] = useState<boolean>(false);
 
   const navmenu = {
-    0: {title: "Безопасность", href: ""},
+    0: {title: "Памятка туриста", href: ""},
     1: {title: "Обратная связь", href: ""},
     2: {title: "Блог", href: ""},
     3: {title: "Контакты", href: ""}

@@ -16,13 +16,13 @@ describe("Navigation Menu", () => {
     );
 
     const pcContainer = screen.getByTestId("pc-navmenu"); 
-    expect(within(pcContainer).getByText(/безопасность/i)).toBeInTheDocument();
+    expect(within(pcContainer).getByText(/памятка туриста/i)).toBeInTheDocument();
     expect(within(pcContainer).getByText(/обратная связь/i)).toBeInTheDocument();
     expect(within(pcContainer).getByText(/блог/i)).toBeInTheDocument();
     expect(within(pcContainer).getByText(/контакты/i)).toBeInTheDocument();
 
     const mobileContainer = screen.getByTestId("mobile-navmenu"); 
-    expect(within(mobileContainer).getByText(/безопасность/i)).toBeInTheDocument();
+    expect(within(mobileContainer).getByText(/памятка туриста/i)).toBeInTheDocument();
     expect(within(mobileContainer).getByText(/обратная связь/i)).toBeInTheDocument();
     expect(within(mobileContainer).getByText(/блог/i)).toBeInTheDocument();
     expect(within(mobileContainer).getByText(/контакты/i)).toBeInTheDocument();
