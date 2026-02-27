@@ -49,28 +49,24 @@ section#start {
     margin: .75cm 0;
     overflow-x: hidden;
     width: 100%;
+
     .places {
       display: flex;
-      gap: 16px;
-      animation: slider;
-      animation-duration: 60s;
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
-      animation-play-state: running;
-      perspective: 50px;
+      gap: 25px;
+      padding: 0 100px;
     } 
     
     article {
       cursor: pointer;
       display: flex;
-      width: 350px;
-      height: 350px;
+      width: 400px;
+      height: 450px;
       flex-shrink: 0;
       position: relative;
+
       img {
-        border-radius: 15px;
-        width: 350px;
-        height: 350px;
+        width: 400px;
+        height: 450px;
         object-fit: cover;
         position: absolute;
         background-image: repeating-linear-gradient(
@@ -79,16 +75,18 @@ section#start {
           var(--image-empty-line-1) 10px,
           var(--image-empty-line-2) 11px,      
           var(--image-empty-line-2) 20px
-        ); border: 1px solid var(--image-empty-line-1);
-      } .info {
-        bottom: 10px;
-        left: 10px;
-        width: calc(100% - 20px);
+        );
+      } 
+      
+      
+      .info {
+        bottom: 0px;
+        left: 0px;
+        width: 100%;
         background-color: rgba(51, 61, 71, 0.4);
         backdrop-filter: blur(3.75px);
         z-index: 1;
         color: #FFF;
-        border-radius: 15px;
         padding: 10px;
         z-index: 10;
         align-self: flex-end;
