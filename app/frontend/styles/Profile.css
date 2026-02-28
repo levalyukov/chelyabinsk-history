@@ -1,31 +1,137 @@
 section.profile {
   display: flex;
   flex-direction: column;
+  background-color: #EB775E;
+  height: 100vh;
+  gap: 25px;
+
   .profile-card {
-    display: flex;
-    align-items: center;
-    padding: 100px 50px 0 50px;
-    gap: 30px;
-
-    img {
-      height: 150px;
-      width: 150px;
-      border-radius: 100%;
-      object-fit: cover;
-    }
-
-    .profile-card-info {
+    
+    .profile-main {
       display: flex;
-      flex-direction: column;
-      
-      h1 {
-        font-size: 28px;
-        font-weight: 600;
-        
+      padding: 100px 35px 0 35px;
+      gap: 15px;
+
+      img {
+        height: 100px;
+        width: 100px;
+        border-radius: 100%;
+        object-fit: cover;
+        background-color: #D9D9D9;
       }
 
-      p {
+      .profile-card-info {
+        display: flex;
+        flex-direction: column;
+        margin-top: 7px;
+        gap: 3px;
+        h1 {
+          font-size: 24px;
+          font-weight: bold;
+          color: white;
+          font-family: "Montserrat", sans-serif;
+        }
 
+        p {
+          color: white;
+          font-size: 16px;
+          font-family: "Montserrat", sans-serif;
+        }
+      }
+    }
+
+    .profile-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 25px 35px;
+      gap: 25px;
+
+      .profile-statistic {
+        display: flex;
+        align-items: stretch;
+        width: 100%;
+        gap: 25%;
+        padding: 0 10px;
+        
+        h1 {
+          font-size: 24px;
+          color: white;
+          font-weight: bold;
+          text-align: center;
+        }
+
+        p {
+          opacity: .75;
+          color: white;
+          font-size: 20px;
+          text-align: center;
+        }
+      }
+
+      .profile-panel {
+        button {
+          background-color: transparent;
+          border: 2px solid white;
+          border-radius: 10px;
+          padding: 15px 20px;
+
+          color: white;
+          text-transform: uppercase;
+          font-family: "Montserrat", sans-serif;
+          font-weight: bold;
+
+          transition: .1s;
+        } button:hover {
+          color: #EB775E;
+          background-color: white;
+        }
+      }
+      
+    }
+  }
+
+  .profile-feed {
+    background-color: white;
+    height: 100vh;
+    border-radius: 35px 35px 0 0;
+
+    h1 {
+      padding: 25px 50px;
+      color: #2C2B2B;
+    }
+
+    .place-container {
+      padding: 10px 50px;
+      article {
+        display: flex;
+        gap: 20px;
+
+        img {
+          width: 150px;
+          height: 95px;
+          border-radius: 15px;
+          object-fit: cover;
+        }
+
+        .place-card {
+          display: flex;
+          flex-direction: column;
+
+          span.place-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            font-size: 16px;
+            font-weight: bold;
+            .place-star {
+              color: #EB775E;
+            }
+          }
+
+        }
+      
       }
     }
   }
