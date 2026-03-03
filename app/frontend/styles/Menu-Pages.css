@@ -1,0 +1,123 @@
+/*  -- PROFILE -- */
+section.pc-page {
+  height: 100vh;
+
+  .place-container {
+    display: flex;
+    flex-direction: column;
+    article {
+      padding: 25px;
+      cursor: pointer;
+
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      border-bottom: 1px solid #E5E7EB;
+
+      button {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+
+        border: 0;
+        outline: none;
+        color: #EB775E;
+        font-size: 20px;
+        background-color: transparent;
+      } button:hover {
+        background-color: #f7f7f8;
+        border-radius: 10px;
+      }
+
+      .place-info {
+        display: flex;
+        gap: 16px;
+
+        img {
+          width: 96px;
+          height: 96px;
+          border-radius: 15px;
+          object-fit: cover;
+        }
+
+        .place-content {
+          h2 {
+            color: #1F2937;
+          }
+
+          p {
+            padding-top: 5px;
+            color: #6B7280;
+          }
+        }
+
+      }
+    }
+
+    article:last-child {border: 0;}
+    article:first-child:last-child {border: 0;}
+  }
+
+  .profile {
+    padding: 25px 25px 50px 25px;
+    max-height: 100%;
+    background-color: #EB775E;
+    /* border-radius: 0 0 50px 50px; */
+    .profile-user {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      width: 100%;
+      gap: 20px;
+
+      button {
+        width: 30px;
+        height: 30px;
+        
+        border: 0;
+        border-radius: 12px;
+        background-color: #F3F4F6;
+        
+        font-size: 16px;
+        color: #4B5563;
+        cursor: pointer;
+        transition: .25s;
+      } button:hover {
+        background-color: white;
+      }
+
+      .profile-user-card {
+        display: flex;
+        gap: 20px;
+
+        img {
+          width: 125px;
+          height: 125px;
+          object-fit: cover;
+          border-radius: 100%;
+        }
+
+        .profile-user-info {
+          gap: 6px;
+          display: flex;
+          flex-direction: column;
+          h1 {
+            font-size: 26px;
+            color: white;
+          } p {
+            font-size: 18px;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+
+  .favorite {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+}

@@ -9,6 +9,7 @@ import { Map as Leaflet } from 'leaflet';
 import MarkerIcon from "../images/marker.svg"
 
 export default function Map({setMap}: {setMap:(map:Leaflet | null) => void}) {
+  const mapBounds:any = [[55.316877, 61.184491],[55.028634,61.661413]];
   const retina = (window.devicePixelRatio === 1) ? false : true;
   const icon = new L.Icon({
     iconUrl: MarkerIcon,
@@ -28,10 +29,10 @@ export default function Map({setMap}: {setMap:(map:Leaflet | null) => void}) {
   function MapBoundsComponent() {
     const map = useMap();
     const [bounds, setBounds] = useState(map.getBounds());
+
     useMapEvents({
       moveend: () => {
         const currentBounds = map.getBounds();
-        console.log(bounds);
         setBounds(currentBounds);
       },
     });
@@ -39,13 +40,28 @@ export default function Map({setMap}: {setMap:(map:Leaflet | null) => void}) {
     return null;
   };
 
+  function FixBounds({bounds}: {bounds:any}) {
+    return null;
+  }
+
   return (
     <section className='map'>
       <div className="leaflet-container">
-        <MapContainer center={[55.160, 61.401]} zoomSnap={.5} zoom={13} scrollWheelZoom={true} attributionControl={false}>
+        <MapContainer 
+          center={[55.160, 61.401]} 
+          zoomSnap={.5} 
+          zoom={13}
+          // minZoom={11}
+          // maxZoom={18} 
+          scrollWheelZoom={true} 
+          attributionControl={false}
+          // maxBounds={mapBounds}
+          // maxBoundsViscosity={1.0}
+        >
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" detectRetina={retina} />
           <MapBoundsComponent/>
           <MapComponent setMap={setMap}/>
+          <FixBounds bounds={mapBounds}/>
 
           <Marker position={[55.160, 61.401]} icon={icon}>
             <Popup>
@@ -58,18 +74,6 @@ export default function Map({setMap}: {setMap:(map:Leaflet | null) => void}) {
                 </span>
               </div>
 
-            </Popup>
-          </Marker>
-
-          <Marker position={[55.165097, 61.364797]} icon={icon}>
-            <Popup>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta ut fuga, fugiat, beatae doloremque necessitatibus non minus deleniti assumenda labore quaerat in perferendis nisi iusto sit! Ipsam odit numquam animi?
-            </Popup>
-          </Marker>
-
-          <Marker position={[55.1564750, 61.3700180]} icon={icon}>
-            <Popup>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta ut fuga, fugiat, beatae doloremque necessitatibus non minus deleniti assumenda labore quaerat in perferendis nisi iusto sit! Ipsam odit numquam animi?
             </Popup>
           </Marker>
 

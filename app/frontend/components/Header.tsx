@@ -1,13 +1,18 @@
 import "../styles/Header.css"
+import "../styles/Menu-Pages.css"
+import Settings from "./Settings"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCompass as compassSolid,   faUser as userSolid,   faHeart as heartSolid } from "@fortawesome/free-solid-svg-icons";
+import { faCompass as compassSolid,   faUser as userSolid,   faHeart as heartSolid, faPlus, faMinus, faClose, faBars, faCog } from "@fortawesome/free-solid-svg-icons";
 import { faCompass as compassRegular, faUser as userRegular, faHeart as heartRegular } from "@fortawesome/free-regular-svg-icons";
 import { Map } from 'leaflet'; 
 import { useState } from "react";
 
 export default function Header({map, setPage, getPage}: 
   {setPage: (page:"map" | "favorite" | "profile") => void, getPage:string, map:Map | null}) {
+
+  const [menuVisible, setMenuVisible] = useState<boolean>(true);
+  const [settingsVisible, setSettingsVisible] = useState<boolean>(false);
 
   interface PlaceData {
     [index:number]: {
@@ -49,6 +54,12 @@ export default function Header({map, setPage, getPage}:
     };
   };
 
+  function mapZoom(zooming:boolean):void {
+    if (map) {
+      (zooming) ? map.zoomIn() : map.zoomOut();
+    };
+  };
+
   const [place, setPlaces] = useState<PlaceData>(places);
   function toggleLike(key:string, event: React.MouseEvent):void {
     event.stopPropagation();
@@ -68,35 +79,90 @@ export default function Header({map, setPage, getPage}:
 
   return (
     <>
-      <header className="pc">
-        <div className="header">
-          <h1>Точки Интереса</h1>
 
-          <div className="navmenu-container">
-            <button onClick={() => setPage("map")} className={getPage === "map" ? "active" : ""}>Все</button>
-            <button onClick={() => setPage("favorite")} className={getPage === "favorite" ? "active" : ""}>Избранные</button>
-            <button onClick={() => setPage("profile")} className={getPage === "profile" ? "active" : ""}>Профиль</button>
+      <Settings setState={setSettingsVisible} getState={settingsVisible}/>
+
+      <nav className="pc-container">
+
+        <button onClick={() => setMenuVisible(true)} className={!menuVisible ? "visible" : "invisible"} id="ui-open-menu">
+          <FontAwesomeIcon icon={faBars}/>
+        </button>
+
+        <header id="pc" className={menuVisible ? "" : "invisible"}>
+          <div className="header">
+            <span className="header-content">
+              <h1>
+                {getPage === "map" && "Точки интереса"}
+                {getPage === "favorite" && "Избранные"}
+                {getPage === "profile" && "Профиль"}
+              </h1>
+          
+              <button onClick={() => setMenuVisible(false)}>
+                <FontAwesomeIcon icon={faClose}/>
+              </button>
+            </span>
+
+            <div className="navmenu-container">
+              <button onClick={() => setPage("map")} className={getPage === "map" ? "active" : ""}>Все</button>
+              <button onClick={() => setPage("favorite")} className={getPage === "favorite" ? "active" : ""}>Избранные</button>
+              <button onClick={() => setPage("profile")} className={getPage === "profile" ? "active" : ""}>Профиль</button>
+            </div>
           </div>
-        </div>
 
-        <div className="place-container">
-          {Object.entries(place).map(([key,item]) => (
-            <article key={key} onClick={() => changeMapPosition(item.coords[0], item.coords[1])}>
-              <div className="place-info">
-                <img src={item.image} alt="" />
-                <div className="place-content">
-                  <h2>{item.title}</h2>
-                  <p>{item.description}</p>
+          <section className="pc-page">
+
+            {getPage === "map" && (
+            <div className="place-container">
+              {Object.entries(place).map(([key,item]) => (
+                <article key={key} onClick={() => changeMapPosition(item.coords[0], item.coords[1])}>
+                  <div className="place-info">
+                    <img src={item.image} alt="" />
+                    <div className="place-content">
+                      <h2>{item.title}</h2>
+                      <p>{item.description}</p>
+                    </div>
+                  </div>
+
+                  <button onClick={(event) => toggleLike(key,event)}>
+                    <FontAwesomeIcon icon={item.liked ? heartSolid : heartRegular}/>
+                  </button> 
+                </article>
+              ))}
+            </div>
+            )}
+
+            {getPage === "favorite" && (
+            <div className="favorite">
+              <p>Нету избранных мест</p>
+            </div>
+            )}
+
+            {getPage === "profile" && (
+            <div className="profile">
+              <div className="profile-user">
+                <div className="profile-user-card">
+                  <img src="https://i.pinimg.com/1200x/41/e9/20/41e92004ca4c93d08b8dc33583cb9751.jpg" alt="pfp.jpg" />
+                  <div className="profile-user-info">
+                    <h1>Username</h1>
+                    <p>???</p>
+                  </div>
                 </div>
-              </div>
 
-              <button onClick={(event) => toggleLike(key,event)}>
-                <FontAwesomeIcon icon={item.liked ? heartSolid : heartRegular}/>
-              </button> 
-            </article>
-          ))}
+                <button onClick={() => setSettingsVisible(true)}>
+                  <FontAwesomeIcon icon={faCog}/>
+                </button>
+              </div>
+            </div>
+            )}
+
+          </section>
+        </header>
+
+        <div className="map-control">
+          <button onClick={() => mapZoom(true)}><FontAwesomeIcon icon={faPlus}/></button>
+          <button onClick={() => mapZoom(false)}><FontAwesomeIcon icon={faMinus}/></button>
         </div>
-      </header>
+      </nav>
 
       <div className="mobile-canvas">
         <header className="mobile">

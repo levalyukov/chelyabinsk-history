@@ -14,7 +14,59 @@
   width: 0;
 }
 
-header.pc {
+button#ui-open-menu.invisible {
+  visibility: hidden;
+  opacity: 0;
+}
+
+button#ui-open-menu {
+  visibility:visible;
+  z-index: 1000;
+  position: fixed;
+  margin: 15px;
+
+  width: 50px;
+  height: 50px;
+  border-radius: 13px;
+  border: 0;
+  background-color: #f4f7fa;
+  box-shadow: rgba(149, 157, 165, .5) 0px 8px 24px;
+
+  opacity: 1;
+  font-size: 18px;
+  color: #4B5563;
+  cursor: pointer;
+  transition: .25s;
+}
+
+button#ui-open-menu:hover {
+  background-color: white;
+}
+
+
+
+header#pc.invisible {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(-50px);
+  
+  .header {
+    span.header-content {
+      button {
+        transition: none;
+      }
+    }
+
+    .navmenu-container {
+      button {
+        transition: none;
+      }
+    }
+
+  }
+}
+
+header#pc {
   position: fixed;
   height: calc(100vh - 30px);
   width: 525px;
@@ -25,18 +77,41 @@ header.pc {
   box-shadow: rgba(149, 157, 165, .5) 0px 8px 24px;
   overflow-y: scroll;
   overflow-x: hidden;
+  transition: .25s;
 
   .header {
-    padding: 25px;
+    padding: 15px 25px 15px 25px;
     border-bottom: 1px solid #E5E7EB;
 
-    h1 {
-      font-weight: 600;
-      color: #1F2937;
-      font-family: "Inter", sans-serif;
-      padding-top: 10px;
-      padding-bottom: 25px;
-      text-transform: capitalize;
+    span.header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 25px;
+      padding-bottom: 50px;
+
+      h1 {
+        font-weight: 600;
+        color: #1F2937;
+        font-family: "Inter", sans-serif;
+        text-transform: capitalize;
+        font-size: 28px;
+      }
+
+      button {
+        width: 35px;
+        height: 35px;
+        border: 0;
+        border-radius: 10px;
+        background-color: #F3F4F6;
+
+        font-size: 16px;
+        color: #1F2937;
+        cursor: pointer;
+        transition: .25s;
+      }
+
+      button:hover {background-color: #e1e4e9;}
     }
 
     .navmenu-container {
@@ -49,14 +124,14 @@ header.pc {
 
       button {
         font-family: "Inter", sans-serif;
-        padding: 14px 0;
+        padding: 13px 0;
         border-radius: 50px;
         outline: none;
         border: 0;
         background-color: transparent;
         color: #4B5563;
 
-        font-size: 18px;
+        font-size: 16px;
         cursor: pointer;
         width: 100%;
         transition: .25s;
@@ -72,62 +147,6 @@ header.pc {
       }
     }
 
-  }
-
-  .place-container {
-    display: flex;
-    flex-direction: column;
-    article {
-      padding: 25px;
-      cursor: pointer;
-
-      display: flex;
-      align-items: start;
-      justify-content: space-between;
-      border-bottom: 1px solid #E5E7EB;
-
-      button {
-        width: 35px;
-        height: 35px;
-        cursor: pointer;
-
-        border: 0;
-        outline: none;
-        color: #EB775E;
-        font-size: 20px;
-        background-color: transparent;
-      } button:hover {
-        background-color: #f7f7f8;
-        border-radius: 10px;
-      }
-
-      .place-info {
-        display: flex;
-        gap: 16px;
-
-        img {
-          width: 96px;
-          height: 96px;
-          border-radius: 15px;
-          object-fit: cover;
-        }
-
-        .place-content {
-          h2 {
-            color: #1F2937;
-          }
-
-          p {
-            padding-top: 5px;
-            color: #6B7280;
-          }
-        }
-
-      }
-    }
-
-    article:last-child {border: 0;}
-    article:first-child:last-child {border: 0;}
   }
 }
 
@@ -180,11 +199,40 @@ header.pc {
   }
 }
 
+.map-control {
+  right: 0;
+  z-index: 1000;
+  padding: 15px;
+  position: absolute;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  button {
+    width: 50px;
+    height: 50px;
+    color: #4B5563;
+    border-radius: 13px;
+    border: 0;
+    background-color: #f4f7fa;
+    box-shadow: rgba(149, 157, 165, .5) 0px 8px 24px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: .25s;
+  }
+
+  button:hover {
+    background-color: white;
+  }
+
+}
+
 
 /* MacBook Air 13 */
 @media (max-width: 1500px) {
   
-  header.pc {
+  header#pc {
     width: 425px;
     .header {
       h1 {
@@ -192,11 +240,9 @@ header.pc {
       }
 
       .navmenu-container {
-        button {
-          font-size: 14px;
-          padding: 12px;
-        }
+        button {font-size: 14px;}
       }
+
     }
 
     .place-container {
@@ -226,7 +272,20 @@ header.pc {
 }
 
 @media (max-width: 1000px) {
-  header.pc {visibility: hidden;}
+  button#ui-open-menu {
+    visibility: hidden;
+  }
+  header#pc {
+    visibility: hidden;
+    .header {
+      .navmenu-container {
+        button {
+          transition: none;
+        }
+      }
+    }
+  }
+  
   .mobile-canvas {header.mobile {visibility: visible;}}
 }
 
