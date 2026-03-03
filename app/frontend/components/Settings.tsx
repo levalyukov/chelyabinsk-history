@@ -2,7 +2,7 @@ import "../styles/Settings.css"
 
 import type { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose, faFileLines, faGear, faUserPen, faShieldHalved, faFontAwesome, faBolt, faCab, faPen } from "@fortawesome/free-solid-svg-icons";
+import { faClose, faFileLines, faGear, faUserPen, faShieldHalved, faFontAwesome, faBolt, faPen } from "@fortawesome/free-solid-svg-icons";
 import { faOpenstreetmap, faPagelines, faReact } from "@fortawesome/free-brands-svg-icons";
 import { useState } from "react";
 
