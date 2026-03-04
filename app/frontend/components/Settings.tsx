@@ -150,7 +150,11 @@ function PrivacyPolicySection() {
     <div className="privacy-policy-section">
       <h3>Политика Конфиденциальности</h3>
       <p>
-        мы будем продавать ваши данные за 5 рублей и шаурму из гордона.
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos perspiciatis quisquam maxime eius debitis iusto dicta harum reprehenderit voluptate repellat. Rerum omnis soluta aliquam iste. Dolor veniam blanditiis a rerum.
+        Architecto, ipsam ullam rerum vitae numquam, illo dolorem deserunt amet unde tempora distinctio. Doloremque nesciunt laborum illum porro fugit est qui necessitatibus praesentium aliquid, iste neque repellat sequi eaque architecto.
+        Blanditiis veniam ut commodi aliquid dolores porro reiciendis, quaerat perferendis quis ratione, aspernatur dolorum ea. Inventore, quo quia! Mollitia tenetur minima consequuntur iure velit voluptas quam officiis corporis exercitationem sit!
+        Minus dignissimos, voluptatem numquam autem laudantium sequi sapiente modi, consequatur nam enim totam officiis. Fugit omnis sed repudiandae quis dolorum praesentium nisi, natus recusandae est explicabo velit voluptatum obcaecati id.
+        Voluptatum aspernatur nemo tempore in culpa ut eius temporibus repellat ea? Magnam, sed. Pariatur aliquam magnam est ipsum. Similique sint aliquam amet? Quos, sequi tenetur? Aperiam debitis tempora expedita inventore!
       </p>
     </div>
   );

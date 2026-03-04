@@ -8,21 +8,24 @@ import { faCompass as compassRegular, faUser as userRegular, faHeart as heartReg
 import { Map } from 'leaflet'; 
 import { useState } from "react";
 
+import Profile from "./Profile"
+import Favorite from "./Favorite"
+
+interface PlaceData {
+  [index:number]: {
+    image:string,
+    title:string,
+    description:string
+    coords: number[],
+    liked:boolean
+  };
+};
+
 export default function Header({map, setPage, getPage}: 
   {setPage: (page:"map" | "favorite" | "profile") => void, getPage:string, map:Map | null}) {
 
   const [menuVisible, setMenuVisible] = useState<boolean>(true);
   const [settingsVisible, setSettingsVisible] = useState<boolean>(false);
-
-  interface PlaceData {
-    [index:number]: {
-      image:string,
-      title:string,
-      description:string
-      coords: number[],
-      liked:boolean
-    };
-  };
 
   const places:PlaceData = {
     0: {
@@ -48,42 +51,17 @@ export default function Header({map, setPage, getPage}:
     }
   };
 
-  function changeMapPosition(lat:number, lng:number):void {
-    if (map) {
-      map.flyTo([lat,lng], 17);
-    };
-  };
-
   function mapZoom(zooming:boolean):void {
     if (map) {
       (zooming) ? map.zoomIn() : map.zoomOut();
-    };
-  };
-
-  const [place, setPlaces] = useState<PlaceData>(places);
-  function toggleLike(key:string, event: React.MouseEvent):void {
-    event.stopPropagation();
-    const index = Number(key);
-    setPlaces((element) => {
-      if (!element[index]) return element;
-
-      return {
-        ...element,
-        [index]: {
-          ...element[index],
-          liked: !element[index].liked
-        }
-      };
-    });
+    } else console.error("Map is null:",map);
   };
 
   return (
     <>
-
       <Settings setState={setSettingsVisible} getState={settingsVisible}/>
 
       <nav className="pc-container">
-
         <button onClick={() => setMenuVisible(true)} className={!menuVisible ? "visible" : "invisible"} id="ui-open-menu">
           <FontAwesomeIcon icon={faBars}/>
         </button>
@@ -110,51 +88,9 @@ export default function Header({map, setPage, getPage}:
           </div>
 
           <section className="pc-page">
-
-            {getPage === "map" && (
-            <div className="place-container">
-              {Object.entries(place).map(([key,item]) => (
-                <article key={key} onClick={() => changeMapPosition(item.coords[0], item.coords[1])}>
-                  <div className="place-info">
-                    <img src={item.image} alt="" />
-                    <div className="place-content">
-                      <h2>{item.title}</h2>
-                      <p>{item.description}</p>
-                    </div>
-                  </div>
-
-                  <button onClick={(event) => toggleLike(key,event)}>
-                    <FontAwesomeIcon icon={item.liked ? heartSolid : heartRegular}/>
-                  </button> 
-                </article>
-              ))}
-            </div>
-            )}
-
-            {getPage === "favorite" && (
-            <div className="favorite">
-              <p>Нету избранных мест</p>
-            </div>
-            )}
-
-            {getPage === "profile" && (
-            <div className="profile">
-              <div className="profile-user">
-                <div className="profile-user-card">
-                  <img src="https://i.pinimg.com/1200x/41/e9/20/41e92004ca4c93d08b8dc33583cb9751.jpg" alt="pfp.jpg" />
-                  <div className="profile-user-info">
-                    <h1>Username</h1>
-                    <p>???</p>
-                  </div>
-                </div>
-
-                <button onClick={() => setSettingsVisible(true)}>
-                  <FontAwesomeIcon icon={faCog}/>
-                </button>
-              </div>
-            </div>
-            )}
-
+            {getPage === "map" && <PlacesPage places={places} map={map}/>}
+            {getPage === "favorite" && <Favorite/>}
+            {getPage === "profile" && <Profile setSettings={setSettingsVisible}/>}
           </section>
         </header>
 
@@ -186,5 +122,48 @@ export default function Header({map, setPage, getPage}:
         </header>
       </div>
     </>
+  );
+};
+
+function PlacesPage({places, map}: {places:PlaceData, map:Map | null}) {
+  const [place, setPlaces] = useState<PlaceData>(places);
+
+  function setMapPosition(lat:number, lng:number):void {
+    if (map) map.flyTo([lat,lng], 17);
+  };
+
+  function setToggleLike(key:string, event: React.MouseEvent):void {
+    event.stopPropagation();
+    const index = Number(key);
+    setPlaces((element) => {
+      if (!element[index]) return element;
+
+      return {
+        ...element,
+        [index]: {
+          ...element[index],
+          liked: !element[index].liked
+        }
+      };
+    });
+  };
+  
+  return (
+    <div className="place-container">
+      {Object.entries(place).map(([key,item]) => (
+        <article key={key} onClick={() => setMapPosition(item.coords[0], item.coords[1])}>
+          <div className="place-info">
+            <img src={item.image} alt="" />
+            <div className="place-content">
+              <h2>{item.title}</h2>
+              <p>{item.description}</p>
+            </div>
+          </div>
+          <button onClick={(event) => setToggleLike(key,event)}>
+            <FontAwesomeIcon icon={item.liked ? heartSolid : heartRegular}/>
+          </button> 
+        </article>
+      ))}
+    </div>
   );
 };

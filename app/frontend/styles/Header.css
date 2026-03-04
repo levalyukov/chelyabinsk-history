@@ -75,11 +75,11 @@ header#pc {
   border-radius: 35px;
   margin: 15px;
   box-shadow: rgba(149, 157, 165, .5) 0px 8px 24px;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow: hidden;
   transition: .25s;
 
   .header {
+    /* position: relative; */
     padding: 15px 25px 15px 25px;
     border-bottom: 1px solid #E5E7EB;
 
@@ -162,8 +162,8 @@ header#pc {
     position: fixed;
     bottom: 15px;
 
-    background-color: var(--header-bg);
     border-radius: 25px;
+    background-color: var(--header-bg);
     box-shadow: rgba(149, 157, 165, .5) 0px 8px 24px;
     
     nav.links-container {
@@ -178,12 +178,12 @@ header#pc {
         flex-direction: column;
         gap: 4px;
 
-        min-height: 50px;
+        border: 0;
         width: 150px;
+        outline: none;
+        min-height: 50px;
         padding: 10px 15px;
         border-radius: 20px;
-        border: 0;
-        outline: none;
         background-color: transparent;
         color: var(--button);
 
@@ -237,17 +237,14 @@ header#pc {
     .header {
       h1 {
         font-size: 24px;
-      }
-
-      .navmenu-container {
+      } .navmenu-container {
         button {font-size: 14px;}
       }
-
     }
 
     .place-container {
+      overflow-x: hidden;
       article {
-        
         button {
           width: 30px;
           height: 30px;
@@ -257,18 +254,14 @@ header#pc {
         .place-info {
           h2 {
             font-size: 18px;
-          }
-
-          p {
+          } p {
             font-size: 14px;
           }
         }
 
       }
     }
-
   }
-
 }
 
 @media (max-width: 1000px) {

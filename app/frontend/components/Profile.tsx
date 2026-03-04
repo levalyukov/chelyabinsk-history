@@ -3,7 +3,7 @@ import "../styles/Profile.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
-export default function Profile() {
+export default function Profile({setSettings}: {setSettings: (state:boolean) => void}) {
   return (
     <section className="profile">
       <div className="profile-card">
@@ -28,7 +28,7 @@ export default function Profile() {
             </span>
           </div>
 
-          <div className="profile-panel">
+          <div className="profile-panel" onClick={() => setSettings(true)}>
             <button>Редактировать</button>
           </div>
         </div>
