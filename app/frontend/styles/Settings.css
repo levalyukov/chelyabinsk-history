@@ -332,7 +332,7 @@ select, ::picker(select) {
   margin: 10px 0;
   padding: 10px;
   background-color: #fff;
-  box-shadow: rgba(149, 157, 165, 0.25) 0px 8px 24px;
+  box-shadow: rgba(149, 157, 165, 0.25) 0px 0px 25px;
 }
 
 ::checkmark {

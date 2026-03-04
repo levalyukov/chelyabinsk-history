@@ -1,7 +1,7 @@
 import "../styles/App.css"
 
 import { Map as Leaflet } from 'leaflet'; 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Header   from "./Header"
 import Profile  from "./Profile"
@@ -11,8 +11,15 @@ import Map      from "./Map"
 export default function App() {
   const [map, setMap] = useState<Leaflet | null>(null);
   const [menuState, setMenuState] = useState<"map" | "favorite" | "profile">("map");
+  const [width, setWidth] = useState(window.innerWidth);
 
-  if (window.innerWidth <= 1000) {
+  useEffect(() => {
+    window.addEventListener(
+      "resize", () => setWidth(window.innerWidth)
+    );
+  }, []);
+
+  if (width <= 1000) {
     return (
       <>
         <Header map={map} setPage={setMenuState} getPage={menuState}/>

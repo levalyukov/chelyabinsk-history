@@ -83,6 +83,7 @@ section.pc-page {
         cursor: pointer;
         transition: .25s;
       } button:hover {
+        color: #1F2937;
         background-color: white;
       }
 

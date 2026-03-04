@@ -87,9 +87,9 @@ function AppSection() {
         <span className="app-option">
           <p>Тема: </p> 
           <select name="app-theme">
+            <option value="">Системная</option>
             <option value="">Темная</option>
             <option value="">Светлая</option>
-            <option value="">Системная</option>
           </select>
         </span>
 
@@ -111,6 +111,11 @@ function ProfileSection() {
     <div className="profile-section">
       <h3>Профиль</h3>
       <div className="profile-content">
+        <span>
+          <p>Фотография профиля</p>
+          <p><button id="change-label">Обновить</button></p>
+        </span>
+
         <span>
           <p>Имя пользователя</p>
           <p>Username <button id="change"><span><FontAwesomeIcon icon={faPen}/></span></button></p>
