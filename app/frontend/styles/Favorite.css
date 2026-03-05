@@ -1,35 +1,11 @@
-section.favorite {
-  display: flex;
-  flex-direction: column;
-  padding: 75px 25px;
-  gap: 25px;
-  
-  overflow-y: scroll;
-  overflow-x: hidden;
-  height: 100vh;
-
-  article {
-    border-radius: 10px;
-    
-    display: flex;
-
-    img {
-      width: 50%;
-      height: 100%;
-    }
-
-    .card-favorite-info {
-      padding: 15px;
-      h1 {
-        font-size: 24px;
-      }
-    }
-  }
-}
-
 section.favorite#empty {
   display: flex;
   justify-content: center;
   align-items: center;
   height: calc(100vh - 100px);
+
+  p {
+    color: #4B5563;
+    font-size: 18px;
+  }
 }

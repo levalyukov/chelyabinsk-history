@@ -79,7 +79,6 @@ header#pc {
   transition: .25s;
 
   .header {
-    /* position: relative; */
     padding: 15px 25px 15px 25px;
     border-bottom: 1px solid #E5E7EB;
 
@@ -151,6 +150,16 @@ header#pc {
 }
 
 
+section.pc-page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: calc(100vh - (194px + 50px - 30px));
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position: relative;
+}
+
 .mobile-canvas {
   display: flex;
   justify-content: center;
@@ -186,6 +195,7 @@ header#pc {
         border-radius: 20px;
         background-color: transparent;
         color: var(--button);
+        cursor: pointer;
 
         span {font-size: 25px;}
         p {font-size: 18px;}
@@ -268,9 +278,17 @@ header#pc {
   button#ui-open-menu {
     visibility: hidden;
   }
+  
   header#pc {
     visibility: hidden;
+    transition: none;
     .header {
+      span.header-content {
+        button {
+          transition: none;
+        }
+      }
+
       .navmenu-container {
         button {
           transition: none;
