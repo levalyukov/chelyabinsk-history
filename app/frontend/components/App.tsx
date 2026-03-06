@@ -1,6 +1,5 @@
 import "../styles/App.css"
 
-import { Map as Leaflet } from 'leaflet'; 
 import { useEffect, useState } from "react";
 
 import Header   from "./Header"
@@ -11,7 +10,7 @@ import Profile  from "./Profile"
 
 export default function App() {
   const [theme, setAppTheme] = useState<boolean>(false);
-  const [map, setMap] = useState<Leaflet | null>(null);
+  const [map, setMap] = useState<null>(null);
   const [menuState, setMenuState] = useState<"map" | "favorite" | "profile">("map");
   const [width, setWidth] = useState(window.innerWidth);
   const [settingsVisible, setSettingsVisible] = useState<boolean>(false);

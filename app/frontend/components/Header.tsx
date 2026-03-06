@@ -5,7 +5,6 @@ import type { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCompass as compassSolid,   faUser as userSolid,   faHeart as heartSolid, faPlus, faMinus, faClose, faBars } from "@fortawesome/free-solid-svg-icons";
 import { faCompass as compassRegular, faUser as userRegular, faHeart as heartRegular } from "@fortawesome/free-regular-svg-icons";
-import { Map } from 'leaflet'; 
 import { useState } from "react";
 
 import Reports  from "./Reports"
@@ -15,7 +14,7 @@ import Profile  from "./Profile"
 export default function Header({map, setPage, getPage, control, 
   settingsVisible, setSettingsVisible, setAppTheme, getAppTheme, updateAppTheme}: {
   setPage: (page:"map"|"favorite"|"profile") => void, 
-  getPage:string, map:Map|null, 
+  getPage:string, map:null|null, 
   control:boolean, settingsVisible:boolean, 
   getAppTheme:boolean
   setSettingsVisible: (state:boolean) => void,
@@ -52,7 +51,7 @@ export default function Header({map, setPage, getPage, control,
 
   function mapZoom(zooming:boolean):void {
     if (map) {
-      (zooming) ? map.zoomIn() : map.zoomOut();
+      // (zooming) ? map.zoomIn() : map.zoomOut();
     } else console.error("Map is null:",map);
   };
 

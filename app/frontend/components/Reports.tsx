@@ -3,7 +3,6 @@ import "../styles/Reports.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as heartSolid } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as heartRegular } from "@fortawesome/free-regular-svg-icons";
-import { Map } from 'leaflet'; 
 import { useState } from "react";
 
 export interface PlaceData {
@@ -16,7 +15,7 @@ export interface PlaceData {
   };
 };
 
-export default function Reports({map}: {map:Map | null}) {
+export default function Reports({map}: {map:null | null}) {
   const places:PlaceData = {
     0: {
       image: "https://towntravel.ru/wp-content/uploads/2014/07/7880-%D0%A3%D0%BB%D0%B8%D1%86%D0%B0-%D0%9A%D0%B8%D1%80%D0%BE%D0%B2%D0%B0.-%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F%D0%BC-%D0%A7%D0%B5%D0%BB%D1%8F%D0%B1%D0%B8%D0%BD%D1%81%D0%BA%D0%B0-1024x682.jpg",
@@ -46,7 +45,7 @@ export default function Reports({map}: {map:Map | null}) {
   const [place, setPlaces] = useState<PlaceData>(places);
 
   function setMapPosition(lat:number, lng:number):void {
-    if (map) map.flyTo([lat,lng], 17);
+    // if (map) map.flyTo([lat,lng], 17);
   };
 
   function setToggleLike(key:string, event: React.MouseEvent):void {

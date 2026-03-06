@@ -43,5 +43,4 @@
   Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.leaflet-control-attribution {display: none;}
-.leaflet-control-zoom {display: none;}
+.maplibregl-ctrl-bottom-right {display: none;}
