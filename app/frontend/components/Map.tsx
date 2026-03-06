@@ -1,10 +1,9 @@
 import { MapContainer, Marker, TileLayer, useMap, useMapEvents, Popup} from 'react-leaflet'
+import { Map as Leaflet } from 'leaflet'; 
 import * as L from 'leaflet';
 import { useState, useEffect} from "react";
 import 'leaflet/dist/leaflet.css';
 import "../styles/Map.css"
-
-import { Map as Leaflet } from 'leaflet'; 
 
 import MarkerIcon from "../images/marker.svg"
 
@@ -13,9 +12,9 @@ export default function Map({setMap}: {setMap:(map:Leaflet | null) => void}) {
   const retina = (window.devicePixelRatio === 1) ? false : true;
   const icon = new L.Icon({
     iconUrl: MarkerIcon,
-    iconSize: [64, 64],
-    iconAnchor: [16, 32],
-    popupAnchor: [16, -32],
+    iconSize: [48, 48],
+    iconAnchor: [16, 48],
+    popupAnchor: [8, -48],
   });
 
   function MapComponent({setMap}:{setMap:(map:Leaflet | null) => void}) {
@@ -35,14 +34,9 @@ export default function Map({setMap}: {setMap:(map:Leaflet | null) => void}) {
         const currentBounds = map.getBounds();
         setBounds(currentBounds);
       },
-    });
-
-    return null;
+    }); return null;
   };
 
-  function FixBounds({bounds}: {bounds:any}) {
-    return null;
-  }
 
   return (
     <section className='map'>
@@ -61,7 +55,6 @@ export default function Map({setMap}: {setMap:(map:Leaflet | null) => void}) {
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" detectRetina={retina} />
           <MapBoundsComponent/>
           <MapComponent setMap={setMap}/>
-          <FixBounds bounds={mapBounds}/>
 
           <Marker position={[55.160, 61.401]} icon={icon}>
             <Popup>
