@@ -1,32 +1,48 @@
-:root {
-  --profile-bg: white;
-}
-
-:root[theme="dark"] {
-
-}
-
 section#user-profile {
   display: flex;
   flex-direction: column;
-  background-color: var(--primary-color);
+  padding: 0 25px;
   height: 100vh;
+
   .profile {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
     padding: 25px 0;
     gap: 12px;
-    img {
-      width: 140px;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 100px;
-    } h1 {
-      font-size: 28px;
-      font-weight: bold;
-      color: #1F2937;
+
+    button.profile-app-settings {
+      border: 0;
+      width: 35px;
+      height: 35px;
+      outline: none;
+      cursor: pointer;
+      border-radius: 10px;
+
+      font-size: 18px;
+      color: var(--text);
+      background-color: var(--button);
+      transition: .25s;
+    } button.profile-app-settings:hover {
+      color: var(--title);
+      background-color: var(--button-hover);
+    }
+
+    .profile-main {
+      gap: 25px;
+      display: flex;
+      img.profile-photo {
+        width: 140px;
+        height: 140px;
+        object-fit: cover;
+        border-radius: 100px;
+      } h1 {
+        font-size: 28px;
+        font-weight: bold;
+        color: var(--title);
+      } p {
+        color: var(--text);
+      }
     }
   }
 }

@@ -5,7 +5,7 @@ section.favorite#empty {
   height: calc(100vh - 100px);
 
   p {
-    color: #4B5563;
+    color: var(--text);
     font-size: 18px;
   }
 }

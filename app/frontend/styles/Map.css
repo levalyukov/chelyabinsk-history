@@ -1,14 +1,3 @@
-:root {
-  --map-bg: #E5E7EB;
-  --popup-bg: white;
-  --popup-text: black;
-  --popup-close-button: #EB775E;
-}
-
-:root[theme="dark"] {
-
-}
-
 section.map {
   .leaflet-container {
     width: 100vw;
@@ -33,7 +22,7 @@ section.map {
     .leaflet-popup-content-wrapper {
       box-shadow: none;
       background-color: var(--popup-bg);
-      color: var(--popup-text);
+      color: var(--text);
       border-radius: 15px;
       min-width: 600px;
 
@@ -53,7 +42,7 @@ section.map {
     .leaflet-popup-tip-container {
       box-shadow: none;
       .leaflet-popup-tip {
-        background-color: var(--popup-bg);
+        background-color: var(--bg);
         box-shadow: none;
       }
     }
@@ -63,12 +52,12 @@ section.map {
       width: 30px;
       font-size: 20px;
       margin: 5px 10px;
-      color: var(--popup-close-button);
+      color: var(--primary);
       border-radius: 10px;
       transition: .1s;
     } .leaflet-popup-close-button:hover {
-      background-color: #EB775E;
-      color: white;
+      background-color: var(--primary);
+      /* color: white; */ 
     }
   }
 }

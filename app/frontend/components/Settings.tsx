@@ -6,10 +6,15 @@ import { faClose, faFileLines, faGear, faUserPen, faShieldHalved, faFontAwesome,
 import { faOpenstreetmap, faPagelines, faReact } from "@fortawesome/free-brands-svg-icons";
 import { useState } from "react";
 
-export default function Settings({setState, getState}: 
-  {setState: (state:boolean) => void, getState:boolean}) {
+export default function Settings({setState, getState, getAppTheme, setAppTheme, updateAppTheme}: 
+  {
+    setState: (state:boolean) => void, 
+    setAppTheme: (state:boolean) => void, 
+    updateAppTheme: () => void,
+    getState:boolean, getAppTheme:boolean,
+  }) {
 
-  const [settingPage, setSettingsPage] = useState<"app"|"profile"|"privacy-policy"|"licenses">("app");
+  const [settingPage, setSettingsPage] = useState<"app"|"profile"|"privacy-policy"|"licenses">("profile");
 
   interface SettingsSection {
     [item:number]: {
@@ -21,15 +26,15 @@ export default function Settings({setState, getState}:
   
   const navmenu:SettingsSection = {
     0: {
-      title: "Приложение",
-      icon: faGear,
-      page: "app"
-    },
-
-    1: {
       title: "Профиль",
       icon: faUserPen,
       page: "profile"
+    },
+    
+    1: {
+      title: "Приложение",
+      icon: faGear,
+      page: "app"
     },
 
     2: {
@@ -68,39 +73,12 @@ export default function Settings({setState, getState}:
           </nav>
 
           <section className="modal-page">
-            {settingPage === "app" &&  <AppSection/>}
+            {settingPage === "app" &&  <AppSection setTheme={setAppTheme} getTheme={getAppTheme} updateTheme={updateAppTheme}/>}
             {settingPage === "profile" && <ProfileSection/>}
             {settingPage === "privacy-policy" && <PrivacyPolicySection/>}
             {settingPage === "licenses" && <LicensesSection/>}
           </section>
         </div>
-      </div>
-    </div>
-  );
-};
-
-function AppSection() {
-  return (
-    <div className="app-section">
-      <h3>Настройки приложения</h3>
-      <div className="app-settings">
-        <span className="app-option">
-          <p>Тема: </p> 
-          <select name="app-theme">
-            <option value="">Системная</option>
-            <option value="">Темная</option>
-            <option value="">Светлая</option>
-          </select>
-        </span>
-
-        <span className="app-option">
-          <p>Язык: </p> 
-          <select name="app-language">
-            <option value="">Русский</option>
-            <option value="">中文</option>
-            <option value="">English</option>
-          </select>
-        </span>
       </div>
     </div>
   );
@@ -139,6 +117,40 @@ function ProfileSection() {
         <span>
           <p>Удалить профиль</p>
           <p><button id="user-delete">Удалить</button></p>
+        </span>
+      </div>
+    </div>
+  );
+};
+
+function AppSection({setTheme, getTheme, updateTheme}: {
+  setTheme: (state:boolean) => void, getTheme:boolean, updateTheme: () => void}) {
+  return (
+    <div className="app-section">
+      <h3>Настройки приложения</h3>
+      <div className="app-settings">
+        <span className="app-option">
+          <p>Тема: </p> 
+          <select value={getTheme ? "dark" : "light"} 
+          name="app-theme" onChange={
+            (e) => {
+              console.log(e.target.value)
+              setTheme(e.target.value === "dark"); 
+              updateTheme();
+            }
+          }>
+            <option value="dark">Темная</option>
+            <option value="light">Светлая</option>
+          </select>
+        </span>
+
+        <span className="app-option">
+          <p>Язык: </p> 
+          <select name="app-language">
+            <option value="">Русский</option>
+            <option value="">中文</option>
+            <option value="">English</option>
+          </select>
         </span>
       </div>
     </div>

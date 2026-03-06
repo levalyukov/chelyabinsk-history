@@ -1,3 +1,40 @@
+:root {
+  --primary:#EB775E;
+
+  --bg:     #FFFFFF;
+  --map-bg: #E5E7EB;
+  --title:  #1F2937;
+  --text:   #4B5563;
+
+  --button:       #F3F4F6;
+  --button-hover: #e1e4e9;
+  --shadow: rgba(149, 157, 165, .5) 0px 8px 24px;
+
+  /* Default colors */
+  --red:    #FF5A5A;
+  --green:  #78F58F;
+  --blue:   #57AEFF;
+  --yellow: #FFA657;
+}
+
+:root[theme="dark"] {
+  --primary:#EB775E;
+
+  --bg:     #35363C;
+  --map-bg: #46464C;
+  --title:  #FFFFFF;
+  --text:   #d6d6dc;
+
+  --button:       #303030;
+  --button-hover: #46464C;
+
+  /* Default colors */
+  --red:    #FF5A5A;
+  --green:  #78F58F;
+  --blue:   #57AEFF;
+  --yellow: #FFA657;
+}
+
 * {
   margin: 0;
   padding: 0;
