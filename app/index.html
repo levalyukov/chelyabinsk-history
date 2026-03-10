@@ -20,7 +20,7 @@
       }
 
       :root[theme="dark"] {
-        --preloader-bg: #4B5563;
+        --preloader-bg: #35363C;
       }
 
       #preloader {
@@ -109,8 +109,7 @@
       } else localStorage.setItem("theme", "light");
 
       window.onload = function () {
-        const preloader = document.getElementById("preloader");
-        preloader.classList.add("invisible");
+        document.getElementById("preloader").classList.add("invisible");
       };
     </script>
   </body>
