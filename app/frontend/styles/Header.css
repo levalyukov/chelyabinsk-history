@@ -28,7 +28,7 @@ button#ui-open-menu {
   border-radius: 13px;
   border: 0;
   background-color: var(--button);
-  box-shadow: rgba(149, 157, 165, .5) 0px 8px 24px;
+  box-shadow: var(--shadow);
 
   opacity: 1;
   font-size: 18px;
@@ -42,8 +42,8 @@ button#ui-open-menu:hover {
 }
 
 header#pc.invisible {
-  visibility: hidden;
   opacity: 0;
+  visibility: hidden;
   transform: translateX(-50px);
   
   .header {
@@ -66,13 +66,14 @@ header#pc {
   position: fixed;
   height: calc(100vh - 30px);
   width: 525px;
-  background-color: var(--bg);
   z-index: 1000;
   border-radius: 35px;
   margin: 15px;
-  box-shadow: rgba(149, 157, 165, .5) 0px 8px 24px;
   overflow: hidden;
   transition: .25s;
+  
+  box-shadow: var(--shadow);
+  background-color: var(--bg);
 
   .header {
     padding: 15px 25px 15px 25px;
@@ -118,7 +119,7 @@ header#pc {
 
       button {
         width: 100%;
-        height: 45px;
+        height: 50px;
         border-radius: 50px;
         outline: none;
         border: 0;
@@ -144,64 +145,148 @@ header#pc {
   }
 }
 
-.mobile-canvas {
+
+.mobile {
+  width: 100%;
   display: flex;
   justify-content: center;
-  width: 100%;
-  header.mobile {
-    visibility: hidden;
-    z-index: 1000;
-    min-height: 50px;
-    position: fixed;
-    bottom: 15px;
 
+  #places-menu {
+    z-index: 10;
+    width: 470px;
+    bottom: 75px;
+    height: 0;
+    padding: 0 20px 50px 20px;
+    position: fixed;
+    color: var(--text);
+    background-color: var(--bg);
+    border-radius: 25px 25px 0 0;
+    visibility: hidden !important;
+    display: none;
+    transition: .5s;
+
+    .places-menu-content {
+      height: 100%;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      padding-bottom: 50px;
+
+      h1 {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        color: var(--title);
+        padding-bottom: 5px;
+      }
+    }
+
+    .places-menu-header {
+      display: flex;
+      margin-bottom: 10px;
+      button {
+        margin: 0;
+        border: 0;
+        padding: 0;
+        width: 100%;
+        height: 30px;
+        outline: none;
+        font-size: 26px;
+        cursor: pointer;
+        color: var(--text);
+        background-color: transparent;
+      }
+    }
+  }
+
+  #places-menu.visible {
+    bottom: 100px;
+    visibility: visible !important;
+    height: calc(100vh - 200px);
+  }
+
+  header.mobile-menu {
+    width: 470px;
+    bottom: 15px;
+    position: fixed;
+    min-height: 50px;
+    visibility: hidden;
+
+    z-index: 10;
     border-radius: 25px;
     background-color: var(--bg);
-    box-shadow: rgba(149, 157, 165, .5) 0px 8px 24px;
-    
-    nav.links-container {
+    box-shadow: var(--shadow);
+
+    .places-button {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      align-items: center;
-      padding: 5px 25px;
+      justify-content: center;
+      display: none;
+      height: 25px;
 
       button {
+        margin: 0;
+        border: 0;
+        padding: 0;
+        outline: none;
+        cursor: pointer;
+        font-size: 26px;
+        color: var(--text);
+        background-color: transparent;
+      }
+    }
+    
+    nav.actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 10px;
+
+      button {
+        gap: 6px;
         display: flex;
         flex-direction: column;
-        gap: 4px;
 
         border: 0;
         width: 150px;
         outline: none;
         min-height: 50px;
-        padding: 10px 15px;
-        border-radius: 20px;
+        padding: 10px 0;
         background-color: transparent;
         color: var(--text);
         cursor: pointer;
+        border-radius: 15px;
 
         span {font-size: 25px;}
-        p {font-size: 18px;}
+        p {
+          font-size: 20px;
+          text-align: center;
+        }
       }
 
       button.active {
-        font-weight: 500;
         color:var(--title);
+        background-color: var(--button);
       }
     }
   }
 }
+#map-control.invisible {
+  opacity: 0;
+  visibility: hidden;
+}
 
-.map-control {
+#map-control {
   right: 0;
+  opacity: 1;
   z-index: 1000;
   padding: 15px;
   position: absolute;
+  visibility: visible;
+  transition: .15s;
 
+  gap: 8px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
 
   button {
     width: 50px;
@@ -216,43 +301,20 @@ header#pc {
     transition: .25s;
   }
 
-  button:hover {
-    background-color: var(--button-hover);
-  }
-
+  button:hover {background-color: var(--button-hover);}
+  button.user-location {color: var(--primary);}
 }
 
 
 /* MacBook Air 13 */
 @media (max-width: 1500px) {
-  
   header#pc {
     width: 425px;
     .header {
-      h1 {
+      span.header-content h1 {
         font-size: 24px;
       } .navmenu-container {
         button {font-size: 14px;}
-      }
-    }
-
-    .place-container {
-      overflow-x: hidden;
-      article {
-        button {
-          width: 30px;
-          height: 30px;
-          font-size: 18px;
-        }
-
-        .place-info {
-          h2 {
-            font-size: 18px;
-          } p {
-            font-size: 14px;
-          }
-        }
-
       }
     }
   }
@@ -281,43 +343,89 @@ header#pc {
     }
   }
   
-  .mobile-canvas {header.mobile {visibility: visible;}}
+  .mobile {
+    #places-menu {
+      display: block;
+      visibility: visible;
+    }
+
+    header.mobile-menu {
+      visibility: visible;
+      .places-button {
+        display: flex;
+      }
+    }
+  }
 }
 
+
 @media (max-width: 650px) {
-  .mobile-canvas {
-    header.mobile {
+  .mobile {
+    #places-menu {
+      width: calc(100% - 30px);
+    }
+
+    header.mobile-menu {
       width: calc(100% - 30px);
     }
   }
 }
 
 @media (max-width: 500px) {
-  .mobile-canvas {
-    header.mobile {
-      nav.links-container {
-        padding: 5px 10px;
-        button {
-          width: 125px;
-          span {font-size: 20px;}
-          p {font-size: 14px;}
-        }
+  .mobile {
+    header.mobile-menu {
+      button {
+        width: 125px;
+        span {font-size: 20px;}
+        p {font-size: 14px;}
+      }
+    }
+  }
+}
+
+@media (max-width: 475px) {
+  .mobile {
+    header.mobile-menu nav.actions {
+      button {
+        span {font-size: 18px;}
+        p {font-size: 16px;}
+      }
+      nav.actions {
+        justify-content: space-between;
+      }
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .mobile {
+    header.mobile-menu nav.actions {
+      button {
+        span {font-size: 18px;}
+        p {font-size: 14px;}
       }
     }
   }
 }
 
 @media (max-width: 400px) {
-  .mobile-canvas {
-    header.mobile {
-      nav.links-container {
-        padding: 5px 10px;
-        button {
-          width: 100px;
-          span {font-size: 18px;}
-          p {font-size: 12px;}
-        }
-      }
+  #map-control {
+    button {
+      width: 45px;
+      height: 45px;
+      font-size: 18px;
+      border-radius: 10px;
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  #map-control {
+    button {
+      width: 40px;
+      height: 40px;
+      font-size: 16px;
+      border-radius: 10px;
     }
   }
 }

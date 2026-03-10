@@ -1,58 +1,49 @@
 import "../styles/Header.css"
-import Settings from "./Settings"
-
-import type { IconDefinition } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCompass as compassSolid,   faUser as userSolid,   faHeart as heartSolid, faPlus, faMinus, faClose, faBars } from "@fortawesome/free-solid-svg-icons";
-import { faCompass as compassRegular, faUser as userRegular, faHeart as heartRegular } from "@fortawesome/free-regular-svg-icons";
-import { useState } from "react";
 
 import Reports  from "./Reports"
 import Favorite from "./Favorite"
 import Profile  from "./Profile"
+import Settings from "./Settings"
 
-export default function Header({map, setPage, getPage, control, 
-  settingsVisible, setSettingsVisible, setAppTheme, getAppTheme, updateAppTheme}: {
-  setPage: (page:"map"|"favorite"|"profile") => void, 
-  getPage:string, map:null|null, 
-  control:boolean, settingsVisible:boolean, 
-  getAppTheme:boolean
-  setSettingsVisible: (state:boolean) => void,
-  setAppTheme: (state:boolean) => void, 
-  updateAppTheme: () => void
+import {Map as AppMain} from 'maplibre-gl';
+import type { IconDefinition } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCompass as compassSolid,   faHeart as heartSolid, faPlus, faMinus, faClose, faBars, faCog } from "@fortawesome/free-solid-svg-icons";
+import { faCompass as compassRegular, faHeart as heartRegular } from "@fortawesome/free-regular-svg-icons";
+import { useState } from "react";
+
+export default function Header({
+  map, setPage, getPage, settingsVisible, 
+  setSettingsVisible, setAppTheme, getAppTheme, 
+  updateAppTheme, screenWidth
+}: {
+  setPage: (page:"map" | "favorite" | "profile") => void, 
+  getPage:string, map:AppMain |null, 
+  settingsVisible:boolean, getAppTheme:boolean, 
+  screenWidth:number, setSettingsVisible: (state:boolean) => void,
+  setAppTheme: (state:boolean) => void, updateAppTheme: () => void
 }) {
   const [menuVisible, setMenuVisible] = useState<boolean>(true);
+  const [placesVisible, setPlacesMenu] = useState<boolean>(false);
+  const reportPage = <Reports map={map} setMobileMenu={setPlacesMenu} screenWidth={screenWidth}/>
 
   interface Menu {
     [index:number]: {
       title:string,
       icon:[IconDefinition, IconDefinition],
-      page:"map"|"favorite"|"profile"
+      page:"map" | "favorite" | "profile"
     }
   };
 
   const navmenu:Menu = {
-    0: {
-      title: "Исследовать",
-      icon: [compassSolid, compassRegular],
-      page: "map"
-    },
-    1: {
-      title: "Избранные",
-      icon: [heartSolid, heartRegular],
-      page: "favorite"
-    },
-    2: {
-      title: "Профиль",
-      icon: [userSolid, userRegular],
-      page: "profile"
-    }
+    0: {title: "Исследовать", icon: [compassSolid, compassRegular], page: "map"},
+    1: {title: "Избранное", icon: [heartSolid, heartRegular], page: "favorite"}
   };
 
   function mapZoom(zooming:boolean):void {
     if (map) {
-      // (zooming) ? map.zoomIn() : map.zoomOut();
-    } else console.error("Map is null:",map);
+      (zooming) ? map.zoomIn() : map.zoomOut();
+    } else console.error("Map is null:", map);
   };
 
   return (
@@ -60,8 +51,7 @@ export default function Header({map, setPage, getPage, control,
       <Settings 
         setState={setSettingsVisible} getState={settingsVisible}
         setAppTheme={setAppTheme} getAppTheme={getAppTheme} 
-        updateAppTheme={updateAppTheme}
-      />
+        updateAppTheme={updateAppTheme}/>
 
       <nav className="pc-container">
         <button onClick={() => setMenuVisible(true)} 
@@ -69,12 +59,12 @@ export default function Header({map, setPage, getPage, control,
           <FontAwesomeIcon icon={faBars}/>
         </button>
 
-        <header id="pc" className={menuVisible ? "" : "invisible"}>
+        <header data-testid="pc-navmenu" id="pc" className={menuVisible ? "" : "invisible"}>
           <div className="header">
             <span className="header-content">
               <h1>
                 {getPage === "map" && "Точки интереса"}
-                {getPage === "favorite" && "Избранные"}
+                {getPage === "favorite" && "Избранное"}
                 {getPage === "profile" && "Профиль"}
               </h1>
           
@@ -94,25 +84,54 @@ export default function Header({map, setPage, getPage, control,
           </div>
 
           <section className="pc-page">
-            {getPage === "map" && <Reports map={map}/>}
+            {getPage === "map" && reportPage}
             {getPage === "favorite" && <Favorite/>}
             {getPage === "profile" && <Profile setSettings={setSettingsVisible}/>}
           </section>
         </header>
 
-        {control && (
-          <div className="map-control">
+        {((getPage === "map" && screenWidth <= 1000 )||(screenWidth >= 1000)) && (
+          <div id="map-control" className={placesVisible ? "invisible" : ""}>
+            <button onClick={() => setSettingsVisible(true)}><FontAwesomeIcon icon={faCog}/></button>
             <button onClick={() => mapZoom(true)}><FontAwesomeIcon icon={faPlus}/></button>
             <button onClick={() => mapZoom(false)}><FontAwesomeIcon icon={faMinus}/></button>
           </div>
         )}
       </nav>
 
-      <div className="mobile-canvas">
-        <header className="mobile">
-          <nav className="links-container">
+      {/* ------ Mobile Menu ------ */}
+
+      <div className="mobile">
+        {(getPage == "map" && screenWidth <= 1000) && (
+        <div id="places-menu" className={placesVisible ? "visible" : "invisible"}>
+          <nav className="places-menu-header">
+            <button onClick={() => setPlacesMenu(false)} style={!placesVisible 
+              ? {visibility: "hidden"} : {visibility: "visible"}}>
+              <FontAwesomeIcon icon={faMinus}/>
+            </button>
+          </nav>
+
+          <div className="places-menu-content">
+            <h1>Точки интереса</h1>
+            {reportPage}
+          </div>
+        </div>
+        )}
+
+        <header className="mobile-menu">
+          {getPage == "map" && (
+            <nav className="places-button">
+              <button onClick={() => setPlacesMenu(true)}
+              style={placesVisible ? {visibility: "hidden"} : {visibility: "visible"}}>
+                <FontAwesomeIcon icon={faMinus}/>
+              </button>
+            </nav>
+          )}
+
+          <nav className="actions">
             {Object.entries(navmenu).map(([key,index]) => (
-              <button onClick={() => setPage(index.page)} className={getPage === index.page ? "active" : ""}>
+              <button key={key} onClick={() => setPage(index.page)} 
+              className={getPage === index.page ? "active" : ""}>
                 <span><FontAwesomeIcon icon={getPage === index.page ? index.icon[0] : index.icon[1]}/></span>
                 <p>{index.title}</p>
               </button>

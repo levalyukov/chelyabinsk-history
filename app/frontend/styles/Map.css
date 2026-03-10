@@ -1,63 +1,7 @@
-section.map {
-  .leaflet-container {
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--map-bg); 
-
-    .popup-content {
-      display: flex;
-      gap: 25px;
-
-      img {
-        width: calc(50% - 30px);
-        border-radius: 10px;
-        object-fit: cover;
-      }
-
-      .popup-marker-content {
-
-      }
-    }
-
-    .leaflet-popup-content-wrapper {
-      box-shadow: none;
-      background-color: var(--popup-bg);
-      color: var(--text);
-      border-radius: 15px;
-      min-width: 600px;
-
-      .leaflet-popup-content {
-        margin: 25px 15px;
-        font-size: 18px;
-        width: calc(100% - 30px) !important;
-      }
-    }
-
-    .leaflet-tile-pane img {
-      image-rendering: crisp-edges;
-      image-rendering: -webkit-optimize-contrast;
-      max-width: none !important;
-    }
-    
-    .leaflet-popup-tip-container {
-      box-shadow: none;
-      .leaflet-popup-tip {
-        background-color: var(--bg);
-        box-shadow: none;
-      }
-    }
-
-    .leaflet-popup-close-button {
-      height: 30px;
-      width: 30px;
-      font-size: 20px;
-      margin: 5px 10px;
-      color: var(--primary);
-      border-radius: 10px;
-      transition: .1s;
-    } .leaflet-popup-close-button:hover {
-      background-color: var(--primary);
-      /* color: white; */ 
-    }
-  }
+.marker {
+  width: 23px;
+  height: 30px;
+  cursor: pointer;
+  background-size: cover;
+  background-image: url("data:image/svg+xml,%3csvg%20width='23'%20height='30'%20viewBox='0%200%2023%2030'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M12.6387%2029.25C15.6445%2025.4883%2022.5%2016.3711%2022.5%2011.25C22.5%205.03906%2017.4609%200%2011.25%200C5.03906%200%200%205.03906%200%2011.25C0%2016.3711%206.85547%2025.4883%209.86133%2029.25C10.582%2030.1465%2011.918%2030.1465%2012.6387%2029.25ZM11.25%207.5C12.2446%207.5%2013.1984%207.89509%2013.9017%208.59835C14.6049%209.30161%2015%2010.2554%2015%2011.25C15%2012.2446%2014.6049%2013.1984%2013.9017%2013.9017C13.1984%2014.6049%2012.2446%2015%2011.25%2015C10.2554%2015%209.30161%2014.6049%208.59835%2013.9017C7.89509%2013.1984%207.5%2012.2446%207.5%2011.25C7.5%2010.2554%207.89509%209.30161%208.59835%208.59835C9.30161%207.89509%2010.2554%207.5%2011.25%207.5Z'%20fill='%23EB775E'/%3e%3c/svg%3e");
 }

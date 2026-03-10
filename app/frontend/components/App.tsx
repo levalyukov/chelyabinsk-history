@@ -1,16 +1,16 @@
 import "../styles/App.css"
 
+import {Map as AppMain} from 'maplibre-gl';
 import { useEffect, useState } from "react";
 
 import Header   from "./Header"
 import Map      from "./Map"
-import Reports  from "./Reports"
 import Favorite from "./Favorite"
 import Profile  from "./Profile"
 
 export default function App() {
   const [theme, setAppTheme] = useState<boolean>(false);
-  const [map, setMap] = useState<null>(null);
+  const [map, setMap] = useState<AppMain | null>(null);
   const [menuState, setMenuState] = useState<"map" | "favorite" | "profile">("map");
   const [width, setWidth] = useState(window.innerWidth);
   const [settingsVisible, setSettingsVisible] = useState<boolean>(false);
@@ -41,13 +41,11 @@ export default function App() {
       <>
         <Header 
           map={map} setPage={setMenuState} 
-          getPage={menuState} control={false}
-          settingsVisible={settingsVisible}
+          getPage={menuState} settingsVisible={settingsVisible}
           setSettingsVisible={setSettingsVisible}
           getAppTheme={theme} setAppTheme={setAppTheme}  
-          updateAppTheme={updateAppTheme}
-        />
-        {menuState === "map" && <Map setMap={setMap}/>}
+          updateAppTheme={updateAppTheme} screenWidth={width}/>
+        {menuState === "map" && <Map setMap={setMap} theme={theme}/>}
         {menuState === "favorite" && <Favorite/>}
         {menuState === "profile" && <Profile setSettings={setSettingsVisible}/>}
       </>
@@ -57,13 +55,11 @@ export default function App() {
       <>
         <Header 
           map={map} setPage={setMenuState} 
-          getPage={menuState} control={true}
-          settingsVisible={settingsVisible}
+          getPage={menuState} settingsVisible={settingsVisible}
           setSettingsVisible={setSettingsVisible}
           getAppTheme={theme} setAppTheme={setAppTheme}  
-          updateAppTheme={updateAppTheme}
-        />
-        <Map setMap={setMap}/>
+          updateAppTheme={updateAppTheme} screenWidth={width}/>
+        <Map setMap={setMap} theme={theme}/>
       </>
     );
   };

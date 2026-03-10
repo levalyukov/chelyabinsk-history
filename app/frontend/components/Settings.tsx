@@ -2,9 +2,34 @@ import "../styles/Settings.css"
 
 import type { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose, faFileLines, faGear, faUserPen, faShieldHalved, faFontAwesome, faBolt, faPen } from "@fortawesome/free-solid-svg-icons";
-import { faOpenstreetmap, faPagelines, faReact } from "@fortawesome/free-brands-svg-icons";
+import { faClose, faFileLines, faGear, /* faUserPen, */ faShieldHalved, faFontAwesome, faBolt, faPen, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { faGithub, faReact } from "@fortawesome/free-brands-svg-icons";
 import { useState } from "react";
+
+interface SettingsSection {
+  [item:number]: {
+    title:string,
+    icon:IconDefinition,
+    page:"app"|"profile"|"privacy-policy"|"licenses"
+  };
+};
+
+interface SocialMedia {
+  [item:number]: {
+    name:string;
+    href:string;
+    icon:IconDefinition;
+  };
+};
+
+interface Licence {
+  [item:number]: {
+    title:string,
+    license:string,
+    icon:IconDefinition,
+    href:string
+  };
+};
 
 export default function Settings({setState, getState, getAppTheme, setAppTheme, updateAppTheme}: 
   {
@@ -14,22 +39,13 @@ export default function Settings({setState, getState, getAppTheme, setAppTheme, 
     getState:boolean, getAppTheme:boolean,
   }) {
 
-  const [settingPage, setSettingsPage] = useState<"app"|"profile"|"privacy-policy"|"licenses">("profile");
-
-  interface SettingsSection {
-    [item:number]: {
-      title:string,
-      icon:IconDefinition,
-      page:"app"|"profile"|"privacy-policy"|"licenses"
-    };
-  };
-  
+  const [settingPage, setSettingsPage] = useState<"app"|"profile"|"privacy-policy"|"licenses">("app");
   const navmenu:SettingsSection = {
-    0: {
-      title: "Профиль",
-      icon: faUserPen,
-      page: "profile"
-    },
+    // 0: {
+    //   title: "Профиль",
+    //   icon: faUserPen,
+    //   page: "profile"
+    // },
     
     1: {
       title: "Приложение",
@@ -54,7 +70,7 @@ export default function Settings({setState, getState, getAppTheme, setAppTheme, 
     <div id="modal-background" className={getState ? "visible" : "invisible"}>
       <div className="modal">
         <div className="modal-header">
-          <button onClick={() => setState(false)}>
+          <button onClick={() => {setState(false); setSettingsPage("app")}}>
             <FontAwesomeIcon icon={faClose}/>
           </button>
         </div>
@@ -106,7 +122,7 @@ function ProfileSection() {
 
         <span>
           <p>Пароль</p>
-          <p><button id="change-label">Сменить</button></p>
+          <p><button id="change-label">Изменить</button></p>
         </span>
 
         <span>
@@ -125,6 +141,15 @@ function ProfileSection() {
 
 function AppSection({setTheme, getTheme, updateTheme}: {
   setTheme: (state:boolean) => void, getTheme:boolean, updateTheme: () => void}) {
+  const social:SocialMedia = {
+    0: {
+      name: "github",
+      href: "github.com/levalyukov/chelyabinsk-history",
+      icon: faGithub
+    }
+  };
+
+
   return (
     <div className="app-section">
       <h3>Настройки приложения</h3>
@@ -152,6 +177,16 @@ function AppSection({setTheme, getTheme, updateTheme}: {
             <option value="">English</option>
           </select>
         </span>
+
+        <span className="authors">
+          <nav className="social-media">
+            {Object.entries(social).map(([key,index]) => (
+              <button key={key} onClick={() => window.open("https://"+index.href, "_blank")}><FontAwesomeIcon icon={index.icon}/></button>
+            ))}
+          </nav>
+
+          <p id="author">&copy; {new Date().getFullYear()} Экскурсия с Доставкой</p>
+        </span>
       </div>
     </div>
   );
@@ -166,6 +201,30 @@ function PrivacyPolicySection() {
         Architecto, ipsam ullam rerum vitae numquam, illo dolorem deserunt amet unde tempora distinctio. Doloremque nesciunt laborum illum porro fugit est qui necessitatibus praesentium aliquid, iste neque repellat sequi eaque architecto.
         Blanditiis veniam ut commodi aliquid dolores porro reiciendis, quaerat perferendis quis ratione, aspernatur dolorum ea. Inventore, quo quia! Mollitia tenetur minima consequuntur iure velit voluptas quam officiis corporis exercitationem sit!
         Minus dignissimos, voluptatem numquam autem laudantium sequi sapiente modi, consequatur nam enim totam officiis. Fugit omnis sed repudiandae quis dolorum praesentium nisi, natus recusandae est explicabo velit voluptatum obcaecati id.
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos perspiciatis quisquam maxime eius debitis iusto dicta harum reprehenderit voluptate repellat. Rerum omnis soluta aliquam iste. Dolor veniam blanditiis a rerum.
+        Architecto, ipsam ullam rerum vitae numquam, illo dolorem deserunt amet unde tempora distinctio. Doloremque nesciunt laborum illum porro fugit est qui necessitatibus praesentium aliquid, iste neque repellat sequi eaque architecto.
+        Blanditiis veniam ut commodi aliquid dolores porro reiciendis, quaerat perferendis quis ratione, aspernatur dolorum ea. Inventore, quo quia! Mollitia tenetur minima consequuntur iure velit voluptas quam officiis corporis exercitationem sit!
+        Minus dignissimos, voluptatem numquam autem laudantium sequi sapiente modi, consequatur nam enim totam officiis. Fugit omnis sed repudiandae quis dolorum praesentium nisi, natus recusandae est explicabo velit voluptatum obcaecati id.
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos perspiciatis quisquam maxime eius debitis iusto dicta harum reprehenderit voluptate repellat. Rerum omnis soluta aliquam iste. Dolor veniam blanditiis a rerum.
+        Architecto, ipsam ullam rerum vitae numquam, illo dolorem deserunt amet unde tempora distinctio. Doloremque nesciunt laborum illum porro fugit est qui necessitatibus praesentium aliquid, iste neque repellat sequi eaque architecto.
+        Blanditiis veniam ut commodi aliquid dolores porro reiciendis, quaerat perferendis quis ratione, aspernatur dolorum ea. Inventore, quo quia! Mollitia tenetur minima consequuntur iure velit voluptas quam officiis corporis exercitationem sit!
+        Minus dignissimos, voluptatem numquam autem laudantium sequi sapiente modi, consequatur nam enim totam officiis. Fugit omnis sed repudiandae quis dolorum praesentium nisi, natus recusandae est explicabo velit voluptatum obcaecati id.
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos perspiciatis quisquam maxime eius debitis iusto dicta harum reprehenderit voluptate repellat. Rerum omnis soluta aliquam iste. Dolor veniam blanditiis a rerum.
+        Architecto, ipsam ullam rerum vitae numquam, illo dolorem deserunt amet unde tempora distinctio. Doloremque nesciunt laborum illum porro fugit est qui necessitatibus praesentium aliquid, iste neque repellat sequi eaque architecto.
+        Blanditiis veniam ut commodi aliquid dolores porro reiciendis, quaerat perferendis quis ratione, aspernatur dolorum ea. Inventore, quo quia! Mollitia tenetur minima consequuntur iure velit voluptas quam officiis corporis exercitationem sit!
+        Minus dignissimos, voluptatem numquam autem laudantium sequi sapiente modi, consequatur nam enim totam officiis. Fugit omnis sed repudiandae quis dolorum praesentium nisi, natus recusandae est explicabo velit voluptatum obcaecati id.
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos perspiciatis quisquam maxime eius debitis iusto dicta harum reprehenderit voluptate repellat. Rerum omnis soluta aliquam iste. Dolor veniam blanditiis a rerum.
+        Architecto, ipsam ullam rerum vitae numquam, illo dolorem deserunt amet unde tempora distinctio. Doloremque nesciunt laborum illum porro fugit est qui necessitatibus praesentium aliquid, iste neque repellat sequi eaque architecto.
+        Blanditiis veniam ut commodi aliquid dolores porro reiciendis, quaerat perferendis quis ratione, aspernatur dolorum ea. Inventore, quo quia! Mollitia tenetur minima consequuntur iure velit voluptas quam officiis corporis exercitationem sit!
+        Minus dignissimos, voluptatem numquam autem laudantium sequi sapiente modi, consequatur nam enim totam officiis. Fugit omnis sed repudiandae quis dolorum praesentium nisi, natus recusandae est explicabo velit voluptatum obcaecati id.
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos perspiciatis quisquam maxime eius debitis iusto dicta harum reprehenderit voluptate repellat. Rerum omnis soluta aliquam iste. Dolor veniam blanditiis a rerum.
+        Architecto, ipsam ullam rerum vitae numquam, illo dolorem deserunt amet unde tempora distinctio. Doloremque nesciunt laborum illum porro fugit est qui necessitatibus praesentium aliquid, iste neque repellat sequi eaque architecto.
+        Blanditiis veniam ut commodi aliquid dolores porro reiciendis, quaerat perferendis quis ratione, aspernatur dolorum ea. Inventore, quo quia! Mollitia tenetur minima consequuntur iure velit voluptas quam officiis corporis exercitationem sit!
+        Minus dignissimos, voluptatem numquam autem laudantium sequi sapiente modi, consequatur nam enim totam officiis. Fugit omnis sed repudiandae quis dolorum praesentium nisi, natus recusandae est explicabo velit voluptatum obcaecati id.
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos perspiciatis quisquam maxime eius debitis iusto dicta harum reprehenderit voluptate repellat. Rerum omnis soluta aliquam iste. Dolor veniam blanditiis a rerum.
+        Architecto, ipsam ullam rerum vitae numquam, illo dolorem deserunt amet unde tempora distinctio. Doloremque nesciunt laborum illum porro fugit est qui necessitatibus praesentium aliquid, iste neque repellat sequi eaque architecto.
+        Blanditiis veniam ut commodi aliquid dolores porro reiciendis, quaerat perferendis quis ratione, aspernatur dolorum ea. Inventore, quo quia! Mollitia tenetur minima consequuntur iure velit voluptas quam officiis corporis exercitationem sit!
+        Minus dignissimos, voluptatem numquam autem laudantium sequi sapiente modi, consequatur nam enim totam officiis. Fugit omnis sed repudiandae quis dolorum praesentium nisi, natus recusandae est explicabo velit voluptatum obcaecati id.
         Voluptatum aspernatur nemo tempore in culpa ut eius temporibus repellat ea? Magnam, sed. Pariatur aliquam magnam est ipsum. Similique sint aliquam amet? Quos, sequi tenetur? Aperiam debitis tempora expedita inventore!
       </p>
     </div>
@@ -173,15 +232,6 @@ function PrivacyPolicySection() {
 };
 
 function LicensesSection() {
-  interface Licence {
-    [item:number]: {
-      title:string,
-      license:string,
-      icon:IconDefinition,
-      href:string
-    };
-  };
-
   const licenses:Licence = {
     0: {
       title:    "React",
@@ -205,17 +255,10 @@ function LicensesSection() {
     },
 
     3: {
-      title:    "OpenStreetMap",
-      license:  "ODbL",
-      icon:     faOpenstreetmap,
-      href:     "openstreetmap.org"
-    },
-
-    4: {
-      title:    "Leaflet",
-      license:  "BSD-2-Clause",
-      icon:     faPagelines,
-      href:     "github.com/leaflet"
+      title:    "MapLibre",
+      license:  "BSD 3-Clause",
+      icon:     faLocationDot,
+      href:     "github.com/maplibre"
     }
   };
 
