@@ -1,6 +1,6 @@
 import "../styles/App.css"
 
-import {Map as AppMain} from 'maplibre-gl';
+import { Map as AppMain } from 'maplibre-gl';
 import { useEffect, useState } from "react";
 
 import Header   from "./Header"
@@ -16,7 +16,6 @@ export default function App() {
   const [settingsVisible, setSettingsVisible] = useState<boolean>(false);
 
   function updateAppTheme():void {
-    console.log("Updated!");
     if (localStorage.getItem("theme")) {
       document.documentElement.setAttribute("theme", !theme ? "dark" : "light");
       localStorage.setItem("theme", !theme ? "dark" : "light");
@@ -34,7 +33,7 @@ export default function App() {
       document.documentElement.setAttribute("theme", 
         localStorage.getItem("theme") === "dark" ? "dark" : "light");
     } else localStorage.setItem("theme", "light");
-  }, []);
+  }, [theme]);
 
   if (width <= 1000) {
     return (

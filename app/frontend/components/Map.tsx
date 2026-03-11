@@ -12,16 +12,17 @@ import { faClose } from '@fortawesome/free-solid-svg-icons';
 
 export interface Place {
   [item:number]: {
-    title:string,         // Название места, ограничен 32 символами.
-    description:string,   // Описание места, ограничено 128 символами
-    image:string,         // Ссылка на картинку
-    coords?:number[][],    // Долгота и широта   (опционально)
-    address?:string,       // Адрес места        (опционально)
-    schedule?:string       // Расписание         (опционально)
+    title:string,           // Название места, ограничен 32 символами.
+    description:string,     // Описание места, ограничено 128 символами
+    image:string,           // Ссылка на картинку
+    coords?:number[][],     // Долгота и широта   (опционально)
+    address?:string,        // Адрес места        (опционально)
+    schedule?:string        // Расписание         (опционально)
   };
 };
 
-export default function Map({theme, setMap}: {setMap:(map:AppMain | null) => void, theme:boolean}) {
+export default function Map({theme, setMap}: 
+  {setMap:(map:AppMain | null) => void, theme:boolean}) {
   const mapContainer = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!mapContainer.current) return;
@@ -51,6 +52,12 @@ export default function Map({theme, setMap}: {setMap:(map:AppMain | null) => voi
 
     setMap(map);
     initMarkers({map});
+
+    map.addControl(new maplibregl.NavigationControl({
+      showCompass: true,
+      showZoom: false,
+      visualizePitch: true
+    }), "top-right");
 
     return () => map.remove();
   }, [theme]);

@@ -10,6 +10,7 @@
   --button:       #F3F4F6;
   --button-hover: #e1e4e9;
   --shadow: rgba(0, 0, 0, .1) 0px 10px 24px;
+  --map-arrow: url("../images//map-arrow.svg");
 
   /* Default colors */
   --red:    #FF5A5A;
@@ -29,6 +30,7 @@
 
   --button:       #44444b;
   --button-hover: #58585e;
+  --map-arrow: url("../images/map-arrow-dark.svg");
 
   /* Default colors */
   --red:    #FF5A5A;

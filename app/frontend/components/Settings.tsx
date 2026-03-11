@@ -1,10 +1,10 @@
 import "../styles/Settings.css"
 
+import { useState } from "react";
 import type { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faFileLines, faGear, /* faUserPen, */ faShieldHalved, faFontAwesome, faBolt, faPen, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faReact } from "@fortawesome/free-brands-svg-icons";
-import { useState } from "react";
 
 interface SettingsSection {
   [item:number]: {
@@ -173,8 +173,6 @@ function AppSection({setTheme, getTheme, updateTheme}: {
           <p>Язык: </p> 
           <select name="app-language">
             <option value="">Русский</option>
-            <option value="">中文</option>
-            <option value="">English</option>
           </select>
         </span>
 
