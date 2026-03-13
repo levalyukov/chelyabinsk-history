@@ -1,27 +1,32 @@
 import "../styles/MapPopup.css"
 
+import type { PlaceContent } from "./PlacesStore";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlay, faClock, faLocationArrow, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
-export default function MapPopup() {
+export default function MapPopup({place}: {place:PlaceContent}) {
+  const TITLE_MAX:number = 26;
+  const DESCRIPTION_MAX:number = 128;
+  const PLACE_INFO:number = 64;
+  
   return (
     <div className="map-popup">
-      <img className="map-popup-image" src="https://chelyabinsk-love.ru/wp-content/uploads/2022/04/KMO_160860_00027_1_t218_182800.jpeg" alt="place-image.jpg" />
+      <img className="map-popup-image" src={place.popup.image} alt="place-image.jpg" />
       <span className="map-popup-text">
-        <h1>Пешеходная улица «Кировка»</h1>
-        <p>Кировка — пешеходная часть улицы Кирова в Челябинске, ставшая одной из главных достопримечательностей города.</p>
+        <h1>{((place.popup.title).length > TITLE_MAX) ? (place.popup.title).slice(0,TITLE_MAX) : place.popup.title}</h1>
+        <p>{((place.popup.description).length > DESCRIPTION_MAX) ? 
+        (place.popup.description).slice(0,DESCRIPTION_MAX) : place.popup.description}</p>
         <nav className="map-popup-info">
-          <p><span><FontAwesomeIcon icon={faLocationDot}/></span> Центральный район, Улица Кирова</p>
-          <p><span><FontAwesomeIcon icon={faClock}/></span> Круглосуточно</p>
-          <p><span><FontAwesomeIcon icon={faLocationArrow}/></span> 61.40065, 55.163917</p>
+          <p><span><FontAwesomeIcon icon={faLocationDot}/></span> {((place.popup.address).length > PLACE_INFO) 
+          ? (place.popup.address).slice(0,PLACE_INFO) : place.popup.address}</p>
+          <p><span><FontAwesomeIcon icon={faClock}/></span> {((place.popup.schedule).length > PLACE_INFO) 
+          ? (place.popup.schedule).slice(0,PLACE_INFO) : place.popup.schedule}</p>
+          <p><span><FontAwesomeIcon icon={faLocationArrow}/></span> {place.coords[1]} {place.coords[0]}</p>
         </nav>
         
         <nav className="map-popup-actions">
-          <button onClick={() => window.open("https://youtu.be/dQw4w9WgXcQ?si=Ctod-2EQX03FQiaN", "_blank")}>
-            Подробнее
-          </button>
-          <button className="map-popup-actions-report" onClick={
-            () => window.open("https://youtu.be/dQw4w9WgXcQ?si=Ctod-2EQX03FQiaN", "_blank")}>
+          <button onClick={() => console.log("")}>Подробнее</button>
+          <button className="map-popup-actions-report" onClick={() => console.log("")}>
             Смотреть репортаж <span><FontAwesomeIcon icon={faCirclePlay}/></span>
           </button>
         </nav>

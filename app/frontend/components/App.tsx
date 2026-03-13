@@ -1,6 +1,7 @@
 import "../styles/App.css"
 
-import { Map as AppMain } from 'maplibre-gl';
+import { AppProvider } from "./PlacesContext";
+import { Map as AppMain } from "maplibre-gl";
 import { useEffect, useState } from "react";
 
 import Header   from "./Header"
@@ -24,8 +25,7 @@ export default function App() {
 
   useEffect(() => {
     window.addEventListener("resize", 
-      () => setWidth(window.innerWidth)
-    );
+      () => setWidth(window.innerWidth));
 
     // Theme
     if (localStorage.getItem("theme")) {
@@ -37,21 +37,21 @@ export default function App() {
 
   if (width <= 1000) {
     return (
-      <>
+      <AppProvider>
         <Header 
           map={map} setPage={setMenuState} 
           getPage={menuState} settingsVisible={settingsVisible}
           setSettingsVisible={setSettingsVisible}
           getAppTheme={theme} setAppTheme={setAppTheme}  
           updateAppTheme={updateAppTheme} screenWidth={width}/>
-        {menuState === "map" && <Map setMap={setMap} theme={theme}/>}
         {menuState === "favorite" && <Favorite/>}
         {menuState === "profile" && <Profile setSettings={setSettingsVisible}/>}
-      </>
+        {menuState === "map" && <Map setMap={setMap} theme={theme}/>}
+      </AppProvider>
     );
   } else {
     return (
-      <>
+      <AppProvider>
         <Header 
           map={map} setPage={setMenuState} 
           getPage={menuState} settingsVisible={settingsVisible}
@@ -59,7 +59,7 @@ export default function App() {
           getAppTheme={theme} setAppTheme={setAppTheme}  
           updateAppTheme={updateAppTheme} screenWidth={width}/>
         <Map setMap={setMap} theme={theme}/>
-      </>
+      </AppProvider>
     );
   };
 };

@@ -1,35 +1,29 @@
-import maplibregl from 'maplibre-gl';
-import {Map as AppMain} from 'maplibre-gl';
-import { useEffect, useRef} from "react";
-import { createRoot } from 'react-dom/client';
-
-import "maplibre-gl/dist/maplibre-gl.css";
 import "../styles/Map.css"
+import "maplibre-gl/dist/maplibre-gl.css";
 
-import MapPopup from './MapPopup';
+import MapPopup from "./MapPopup";
+import maplibregl from "maplibre-gl";
+import { AppContext } from "./PlacesContext";
+import { Map as AppMain } from "maplibre-gl";
+import { useContext, useEffect, useRef} from "react";
+import { createRoot } from "react-dom/client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose } from '@fortawesome/free-solid-svg-icons';
-
-export interface Place {
-  [item:number]: {
-    title:string,           // Название места, ограничен 32 символами.
-    description:string,     // Описание места, ограничено 128 символами
-    image:string,           // Ссылка на картинку
-    coords?:number[][],     // Долгота и широта   (опционально)
-    address?:string,        // Адрес места        (опционально)
-    schedule?:string        // Расписание         (опционально)
-  };
-};
+import { faClose } from "@fortawesome/free-solid-svg-icons";
+import type { Places } from "./PlacesStore";
 
 export default function Map({theme, setMap}: 
   {setMap:(map:AppMain | null) => void, theme:boolean}) {
   const mapContainer = useRef<HTMLDivElement>(null);
+  const context = useContext(AppContext);
+  if (!context) return null;
+  const { appPlaces } = context;
+
   useEffect(() => {
     if (!mapContainer.current) return;
     
     let mapTheme = theme 
-    ? 'https://tiles.versatiles.org/assets/styles/eclipse/style.json' 
-    : 'https://tiles.versatiles.org/assets/styles/colorful/style.json';
+    ? "https://tiles.versatiles.org/assets/styles/eclipse/style.json" 
+    : "https://tiles.versatiles.org/assets/styles/colorful/style.json";
 
     const map:AppMain | null = new maplibregl.Map({
       container: mapContainer.current,
@@ -38,10 +32,7 @@ export default function Map({theme, setMap}:
       maxZoom: 18,
       minZoom: 10,
       zoom: 11,
-      maxBounds: [
-        [61.1340, 55.0116],
-        [61.6443, 55.3217]
-      ],
+      maxBounds: [[61.1340, 55.0116],[61.6443, 55.3217]],
 
       dragPan: true,
       boxZoom: false,
@@ -51,7 +42,7 @@ export default function Map({theme, setMap}:
     });
 
     setMap(map);
-    initMarkers({map});
+    initMarkersPlaces({map, appPlaces});
 
     map.addControl(new maplibregl.NavigationControl({
       showCompass: true,
@@ -63,36 +54,40 @@ export default function Map({theme, setMap}:
   }, [theme]);
 
   return (
-    <section className='map'>
-      <div ref={mapContainer} style={{width: '100%', height: '100vh'}}/>
+    <section id="map-container">
+      <div className="map" ref={mapContainer}/>
     </section>
   );  
 };
 
-function initMarkers({map}:{map:maplibregl.Map | null}):void {
+function initMarkersPlaces({map, appPlaces}: {map: maplibregl.Map | null, appPlaces:Places}):void {
   if (map) {
-    const markerEl = document.createElement('div');
-    markerEl.className = 'marker';
+    if (appPlaces) {
+      for (let i = Number(Object.keys(appPlaces)[0]); i <= Object.keys(appPlaces).length; i++) {
+        if (appPlaces[i]) {
+          const markerEl = document.createElement("div");
+          const popupNode = document.createElement("div");
+          const popupRender = createRoot(popupNode);
+          const popup = new maplibregl.Popup({ offset: 20 }).setDOMContent(popupNode);
 
-    const popupNode = document.createElement('div');
-    const popupRender = createRoot(popupNode);
-    const popup = new maplibregl.Popup({ offset: 20 }).setDOMContent(popupNode);
+          markerEl.className = "marker";
+          popupRender.render(<MapPopup place={appPlaces[i]}/>);
+          popup.on("open", () => {
+            const closeBtn = popup.getElement().querySelector(".maplibregl-popup-close-button");
+            if (closeBtn) {
+              closeBtn.innerHTML = ""; 
+              const root = createRoot(closeBtn);
+              root.render(<FontAwesomeIcon icon={faClose} />);
+              popup.on("close", () => root.unmount());
+            };
+          });
 
-    popupRender.render(<MapPopup/>);
-    popup.on('open', () => {
-      const closeBtn = popup.getElement().querySelector('.maplibregl-popup-close-button');
-      if (closeBtn) {
-        closeBtn.innerHTML = ''; 
-        const root = createRoot(closeBtn);
-        root.render(<FontAwesomeIcon icon={faClose} />);
-
-        popup.on('close', () => root.unmount());
+          new maplibregl.Marker({ element: markerEl })
+          .setLngLat([appPlaces[i].coords[1], appPlaces[i].coords[0]])
+          .setPopup(popup)
+          .addTo(map);
+        };
       };
-    });
-
-    new maplibregl.Marker({ element: markerEl })
-      .setLngLat([61.40065, 55.163917])
-      .setPopup(popup)
-      .addTo(map);
+    };
   };
 };

@@ -5,12 +5,19 @@ import Favorite from "./Favorite"
 import Profile  from "./Profile"
 import Settings from "./Settings"
 
-import {Map as AppMain} from 'maplibre-gl';
-import type { IconDefinition } from "@fortawesome/free-solid-svg-icons";
+import { Map as AppMain } from "maplibre-gl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCompass as compassSolid,   faHeart as heartSolid, faPlus, faMinus, faClose, faBars, faCog } from "@fortawesome/free-solid-svg-icons";
+import { type IconDefinition, faCompass as compassSolid,   faHeart as heartSolid, faPlus, faMinus, faClose, faBars, faCog } from "@fortawesome/free-solid-svg-icons";
 import { faCompass as compassRegular, faHeart as heartRegular } from "@fortawesome/free-regular-svg-icons";
 import { useState } from "react";
+
+interface Menu {
+  [index:number]: {
+    title:string,
+    icon:[IconDefinition, IconDefinition],
+    page:"map" | "favorite" | "profile"
+  }
+};
 
 export default function Header({
   map, setPage, getPage, settingsVisible, 
@@ -18,7 +25,7 @@ export default function Header({
   updateAppTheme, screenWidth
 }: {
   setPage: (page:"map" | "favorite" | "profile") => void, 
-  getPage:string, map:AppMain |null, 
+  getPage:string, map:AppMain | null, 
   settingsVisible:boolean, getAppTheme:boolean, 
   screenWidth:number, setSettingsVisible: (state:boolean) => void,
   setAppTheme: (state:boolean) => void, updateAppTheme: () => void
@@ -27,23 +34,13 @@ export default function Header({
   const [placesVisible, setPlacesMenu] = useState<boolean>(false);
   const reportPage = <Reports map={map} setMobileMenu={setPlacesMenu} screenWidth={screenWidth}/>
 
-  interface Menu {
-    [index:number]: {
-      title:string,
-      icon:[IconDefinition, IconDefinition],
-      page:"map" | "favorite" | "profile"
-    }
-  };
-
   const navmenu:Menu = {
     0: {title: "Исследовать", icon: [compassSolid, compassRegular], page: "map"},
     1: {title: "Избранное", icon: [heartSolid, heartRegular], page: "favorite"}
   };
 
   function mapZoom(zooming:boolean):void {
-    if (map) {
-      (zooming) ? map.zoomIn() : map.zoomOut();
-    } else console.error("Map is null:", map);
+    if (map) (zooming) ? map.zoomIn() : map.zoomOut();
   };
 
   return (

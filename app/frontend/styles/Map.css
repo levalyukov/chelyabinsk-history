@@ -1,3 +1,10 @@
+section#map-container {
+  .map {
+    width: 100%;
+    height: 100vh;
+  }
+}
+
 .marker {
   width: 23px;
   height: 30px;
@@ -38,7 +45,7 @@
     background-image: var(--map-arrow) !important;
   }
 
-  button.maplibregl-ctrl-compass {
+  .maplibregl-ctrl-compass {
     border: 0;
     width: 50px;
     height: 50px;
@@ -47,8 +54,8 @@
     background-color: var(--button);
     border-radius: 25px !important;
     box-shadow: none;
-  } button.maplibregl-ctrl-compass:hover {
-    background-color: var(--button-hover);
+  } .maplibregl-ctrl-compass:hover {
+    background-color: var(--button-hover) !important;
   }
 }
 

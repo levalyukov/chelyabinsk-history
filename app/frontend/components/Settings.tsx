@@ -1,10 +1,9 @@
 import "../styles/Settings.css"
 
 import { useState } from "react";
-import type { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose, faFileLines, faGear, /* faUserPen, */ faShieldHalved, faFontAwesome, faBolt, faPen, faLocationDot } from "@fortawesome/free-solid-svg-icons";
-import { faGithub, faReact } from "@fortawesome/free-brands-svg-icons";
+import { type IconDefinition, faClose, faFileLines, faGear, /* faUserPen, */ faShieldHalved, faFontAwesome, faPen, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 
 interface SettingsSection {
   [item:number]: {
@@ -232,27 +231,13 @@ function PrivacyPolicySection() {
 function LicensesSection() {
   const licenses:Licence = {
     0: {
-      title:    "React",
-      license:  "MIT",
-      icon:     faReact,
-      href:     "react.dev"
-    },
-
-    1: {
-      title:    "Vite",
-      license:  "MIT",
-      icon:     faBolt,
-      href:     "vite.dev"
-    },
-
-    2: {
       title:    "FontAwesome",
       license:  "CC BY 4.0",
       icon:     faFontAwesome,
       href:     "fontawesome.com"
     },
 
-    3: {
+    1: {
       title:    "MapLibre",
       license:  "BSD 3-Clause",
       icon:     faLocationDot,

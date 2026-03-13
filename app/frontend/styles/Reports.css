@@ -1,3 +1,23 @@
+.place-container#empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 12px;
+
+  span {
+    opacity: .5;
+    font-size: 48px;
+    color: var(--title);
+  }
+
+  p {
+    font-size: 18px;
+    color: var(--text);
+    font-weight: normal;
+  }
+}
+
 .place-container {
   display: flex;
   flex-direction: column;
@@ -44,11 +64,14 @@
 
       .place-content {
         h2 {
+          font-size: 24px;
+          font-weight: bold;
           color: var(--title);
         }
         p {
           padding-top: 5px;
           color: var(--text);
+          font-weight: normal;
         }
       }
     }
