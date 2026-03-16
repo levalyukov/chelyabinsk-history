@@ -1,6 +1,6 @@
 import "../styles/MapPopup.css"
 
-import type { PlaceContent } from "./PlacesStore";
+import { type PlaceContent } from "./PlacesStore";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlay, faClock, faLocationArrow, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
@@ -25,7 +25,6 @@ export default function MapPopup({place}: {place:PlaceContent}) {
         </nav>
         
         <nav className="map-popup-actions">
-          <button onClick={() => console.log("")}>Подробнее</button>
           <button className="map-popup-actions-report" onClick={() => console.log("")}>
             Смотреть репортаж <span><FontAwesomeIcon icon={faCirclePlay}/></span>
           </button>

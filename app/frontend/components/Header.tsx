@@ -5,9 +5,9 @@ import Favorite from "./Favorite"
 import Profile  from "./Profile"
 import Settings from "./Settings"
 
-import { Map as AppMain } from "maplibre-gl";
+import { Map as MapLibre } from "maplibre-gl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { type IconDefinition, faCompass as compassSolid,   faHeart as heartSolid, faPlus, faMinus, faClose, faBars, faCog } from "@fortawesome/free-solid-svg-icons";
+import { type IconDefinition, faCompass as compassSolid,   faHeart as heartSolid, faPlus, faMinus, faClose, faBars, faCog, faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 import { faCompass as compassRegular, faHeart as heartRegular } from "@fortawesome/free-regular-svg-icons";
 import { useState } from "react";
 
@@ -16,7 +16,7 @@ interface Menu {
     title:string,
     icon:[IconDefinition, IconDefinition],
     page:"map" | "favorite" | "profile"
-  }
+  };
 };
 
 export default function Header({
@@ -25,7 +25,7 @@ export default function Header({
   updateAppTheme, screenWidth
 }: {
   setPage: (page:"map" | "favorite" | "profile") => void, 
-  getPage:string, map:AppMain | null, 
+  getPage:string, map:MapLibre | null, 
   settingsVisible:boolean, getAppTheme:boolean, 
   screenWidth:number, setSettingsVisible: (state:boolean) => void,
   setAppTheme: (state:boolean) => void, updateAppTheme: () => void
@@ -92,6 +92,7 @@ export default function Header({
             <button onClick={() => setSettingsVisible(true)}><FontAwesomeIcon icon={faCog}/></button>
             <button onClick={() => mapZoom(true)}><FontAwesomeIcon icon={faPlus}/></button>
             <button onClick={() => mapZoom(false)}><FontAwesomeIcon icon={faMinus}/></button>
+            <button className="user-geolocation" onClick={() => {}}><FontAwesomeIcon icon={faLocationArrow}/></button>
           </div>
         )}
       </nav>

@@ -280,7 +280,7 @@
       display: flex;
       text-align: center;
       flex-direction: column;
-      margin-top: 75px;
+      margin-top: 50px;
       .social-media {
         gap: 6px;
         display: flex;
@@ -307,11 +307,11 @@
 }
 
 .privacy-policy-section {
-  height: calc(400px - (20px + 50px));
   display: flex;
-  flex-direction: column;
   overflow-x: hidden;
   overflow-y: scroll;
+  flex-direction: column;
+  height: calc(400px - (20px + 50px));
 
   h3 {
     padding-bottom: 25px;
@@ -320,9 +320,9 @@
   }
 
   p {
-    text-align: justify;
     padding: 0px 25px;
     color: var(--text);
+    font-weight: normal;
   }
 }
 

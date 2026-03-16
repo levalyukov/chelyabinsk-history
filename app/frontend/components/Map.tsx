@@ -4,30 +4,40 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import MapPopup from "./MapPopup";
 import maplibregl from "maplibre-gl";
 import { AppContext } from "./PlacesContext";
-import { Map as AppMain } from "maplibre-gl";
+import { Map as MapLibre } from "maplibre-gl";
 import { useContext, useEffect, useRef} from "react";
 import { createRoot } from "react-dom/client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose } from "@fortawesome/free-solid-svg-icons";
-import type { Places } from "./PlacesStore";
+import { faClose, faFaceFrown } from "@fortawesome/free-solid-svg-icons";
+import { type Places } from "./PlacesStore";
+import { type StyleSpecification } from 'maplibre-gl';
+
+import mapDarkRaw from "../styles/map-dark.json"
+import mapLightRaw from "../styles/map-light.json"
 
 export default function Map({theme, setMap}: 
-  {setMap:(map:AppMain | null) => void, theme:boolean}) {
+  {setMap:(map:MapLibre | null) => void, theme:boolean}) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const context = useContext(AppContext);
-  if (!context) return null;
+  const mapDark = mapDarkRaw as unknown as StyleSpecification;
+  const mapLight = mapLightRaw as unknown as StyleSpecification;
+  if (!context) {
+    return (
+      <section id="map-container" className="error">
+        <span><FontAwesomeIcon icon={faFaceFrown}/></span>
+        <h2>Ой-ой!</h2>
+        <p>Критическая ошибка при загрузке карты.</p>
+      </section>
+    );
+  };
+  
   const { appPlaces } = context;
-
   useEffect(() => {
     if (!mapContainer.current) return;
-    
-    let mapTheme = theme 
-    ? "https://tiles.versatiles.org/assets/styles/eclipse/style.json" 
-    : "https://tiles.versatiles.org/assets/styles/colorful/style.json";
 
-    const map:AppMain | null = new maplibregl.Map({
+    const map:MapLibre | null = new maplibregl.Map({
       container: mapContainer.current,
-      style: mapTheme,
+      style: theme ? mapDark : mapLight,
       center: [61.4025, 55.1599],
       maxZoom: 18,
       minZoom: 10,

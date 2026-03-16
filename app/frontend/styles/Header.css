@@ -213,8 +213,8 @@ header#pc {
 
     z-index: 10;
     border-radius: 25px;
-    background-color: var(--bg);
     box-shadow: var(--shadow);
+    background-color: var(--bg);
 
     .places-button {
       display: flex;
@@ -302,7 +302,8 @@ header#pc {
   }
 
   button:hover {background-color: var(--button-hover);}
-  button.user-location {color: var(--primary);}
+  button.user-geolocation {color: var(--primary);}
+
 }
 
 

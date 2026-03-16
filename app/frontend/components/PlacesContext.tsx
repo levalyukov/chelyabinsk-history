@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { type Places, placesStore } from './PlacesStore';
 
 export interface PlacesProviderContext {
@@ -22,11 +22,11 @@ export function AppProvider({children}: {children: React.ReactNode}) {
       }};
     });
   };
-  
-  const value:PlacesProviderContext = {
+
+  const value = useMemo(() => ({
     appPlaces: place,
     toggleLike: setToggleLike
-  };
+  }), [place, setToggleLike]);
 
   return (
     <AppContext.Provider value={value}>

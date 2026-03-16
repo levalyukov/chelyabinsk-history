@@ -22,15 +22,15 @@
   display: flex;
   flex-direction: column;
   article {
-    flex-shrink: 0;
     padding: 25px;
     cursor: pointer;
 
+    gap: 12px;
     display: flex;
+    flex-shrink: 0;
     align-items: start;
     justify-content: space-between;
     border-bottom: 1px solid var(--map-bg);
-    gap: 12px;
 
     button {
       display: flex;
@@ -56,7 +56,7 @@
       display: flex;
 
       img {
-        width: 125px;
+        width: 125px !important;
         height: 125px;
         border-radius: 15px;
         object-fit: cover;

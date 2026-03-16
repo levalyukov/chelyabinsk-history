@@ -1,14 +1,14 @@
 import "../styles/Reports.css"
 
 import { AppContext } from "./PlacesContext"  
-import { Map as AppMain } from "maplibre-gl";
+import { Map as MapLibre } from "maplibre-gl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as heartSolid, faMagnifyingGlassLocation } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as heartRegular } from "@fortawesome/free-regular-svg-icons";
 import { useContext } from "react";
 
 export default function Reports({map, setMobileMenu, screenWidth}: 
-  {map:AppMain | null, setMobileMenu: (state:boolean) => void, screenWidth:number}) {
+  {map:MapLibre | null, setMobileMenu: (state:boolean) => void, screenWidth:number}) {
   function setMapPosition(lat:number, lng:number):void {
     if (map) {
       map.flyTo({
@@ -21,13 +21,13 @@ export default function Reports({map, setMobileMenu, screenWidth}:
   };
 
   const context = useContext(AppContext);
-  if (!context) return null;
+  if (!context) return (<>Ошибка контекса React-Провайдера.</>);
   const { appPlaces, toggleLike } = context;
 
   if (Object.keys(appPlaces).length === 0) {
     return (
       <div className="place-container" id="empty">
-        <span><FontAwesomeIcon icon={faMagnifyingGlassLocation} /></span>
+        <span><FontAwesomeIcon icon={faMagnifyingGlassLocation}/></span>
         <p>Нету точек интереса</p>
       </div>
     );

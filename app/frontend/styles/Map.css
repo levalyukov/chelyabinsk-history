@@ -5,6 +5,34 @@ section#map-container {
   }
 }
 
+section#map-container.error {
+  gap: 6px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  span {
+    opacity: .5;
+    font-size: 48px;
+    color: var(--title);
+  }
+
+  h2 {
+    font-size: 28px;
+    color: var(--title);
+    font-weight: bold;
+  } 
+  
+  p {
+    font-size: 18px;
+    color: var(--text);
+    font-weight: normal;
+  }
+}
+
+
 .marker {
   width: 23px;
   height: 30px;
@@ -65,5 +93,34 @@ section#map-container {
     right: auto   !important;
     left: 15px    !important; 
     bottom: auto  !important;
+  }
+}
+
+@media (max-width: 500px) {
+  section#map-container.error {
+    gap: 6px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    span {
+      opacity: .5;
+      font-size: 48px;
+      color: var(--title);
+    }
+
+    h2 {
+      font-size: 24px;
+      color: var(--title);
+      font-weight: bold;
+    } 
+    
+    p {
+      font-size: 16px;
+      color: var(--text);
+      font-weight: normal;
+    }
   }
 }
