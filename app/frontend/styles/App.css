@@ -52,11 +52,10 @@
 } 
 
 body {
-  background-color: var(--bg-alt);
-}
-
-button {
-  text-wrap: nowrap;
+  background-color: var(--bg);
+  button {
+    text-wrap: nowrap;
+  }
 }
 
 .maplibregl-ctrl-bottom-right {display: none;}

@@ -1,0 +1,70 @@
+.place-schedule-background#invisible {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.place-schedule-background {
+  opacity: 1;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  transition: .1s;
+  position: fixed;
+  visibility: visible;
+  backdrop-filter: blur(1.75px);
+  background-color: rgb(0,0,0,.25);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .place-schedule-modal {
+    width: 350px;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: var(--bg);
+
+    display: flex;
+    flex-direction: column;
+
+    .place-schedule-header {
+      display: flex;
+      align-items: center;
+      justify-content: right;
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border: 0;
+        width: 30px;
+        height: 30px;
+        outline: none;
+        cursor: pointer;
+        color: var(--text);
+        border-radius: 10px;
+        background-color: transparent;
+      } button:hover {
+        color: white;
+        background-color: var(--primary);
+      }
+    }
+
+    .place-schedule-content {
+      display: flex;
+      flex-direction: column;
+      .place-schedule-time {
+        display: flex;
+        font-size: 14px;
+        color: var(--text);
+        padding: 10px 15px;
+        text-transform: capitalize;
+        justify-content: space-between;
+      } .place-schedule-time#active {
+        color: var(--title);
+        border-radius: 0 10px 10px 0;
+        background-color: var(--button);
+        border-left: 4px solid var(--primary);
+      }
+    }
+  }
+}

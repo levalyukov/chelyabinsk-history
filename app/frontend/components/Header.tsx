@@ -2,7 +2,6 @@ import "../styles/Header.css"
 
 import Reports  from        "./Reports"
 import Favorite from        "./Favorite"
-import Profile  from        "./Profile"
 import Settings from        "./modals/Settings"
 import UserGeolocation from "./modals/UserGeolocation"
 
@@ -90,8 +89,7 @@ export default function Header({
 
           <section className="pc-page">
             {getPage === "map" && reportPage}
-            {getPage === "favorite" && <Favorite map={map}/>}
-            {getPage === "profile" && <Profile setSettings={setSettingsVisible}/>}
+            {getPage === "favorite" && <Favorite map={map} screenWidth={screenWidth} setPage={setPage} appPage={getPage}/>}
           </section>
         </header>
 
@@ -138,7 +136,10 @@ export default function Header({
 
           <nav className="actions">
             {Object.entries(navmenu).map(([key,index]) => (
-              <button key={key} onClick={() => setPage(index.page)} 
+              <button key={key} onClick={() => {
+                setPage(index.page);
+                setPlacesMenu(false);
+              }} 
               className={getPage === index.page ? "active" : ""}>
                 <span><FontAwesomeIcon icon={getPage === index.page ? index.icon[0] : index.icon[1]}/></span>
                 <p>{index.title}</p>

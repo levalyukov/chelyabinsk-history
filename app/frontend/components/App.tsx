@@ -4,10 +4,9 @@ import { AppProvider } from "./PlacesContext";
 import { Map as MapLibre } from "maplibre-gl";
 import { useEffect, useState } from "react";
 
-import Header   from "./Header"
 import Map      from "./Map"
+import Header   from "./Header"
 import Favorite from "./Favorite"
-import Profile  from "./Profile"
 
 export default function App() {
   const [theme, setAppTheme] = useState<boolean>(false);
@@ -43,31 +42,22 @@ export default function App() {
     //! --------------
   }, [theme]);
 
-  if (width <= 1000) {
-    return (
-      <AppProvider>
-        <Header 
-          map={map} setPage={setMenuState} 
-          getPage={menuState} settingsVisible={settingsVisible}
-          setSettingsVisible={setSettingsVisible}
-          getAppTheme={theme} setAppTheme={setAppTheme}  
-          updateAppTheme={updateAppTheme} screenWidth={width}/>
-        {menuState === "favorite" && <Favorite map={map}/>}
-        {menuState === "profile" && <Profile setSettings={setSettingsVisible}/>}
-        {menuState === "map" && <Map setMap={setMap} theme={theme}/>}
-      </AppProvider>
-    );
-  } else {
-    return (
-      <AppProvider>
-        <Header 
-          map={map} setPage={setMenuState} 
-          getPage={menuState} settingsVisible={settingsVisible}
-          setSettingsVisible={setSettingsVisible}
-          getAppTheme={theme} setAppTheme={setAppTheme}  
-          updateAppTheme={updateAppTheme} screenWidth={width}/>
+  return (
+    <AppProvider>
+      <Header 
+        map={map} setPage={setMenuState} 
+        getPage={menuState} settingsVisible={settingsVisible}
+        setSettingsVisible={setSettingsVisible}
+        getAppTheme={theme} setAppTheme={setAppTheme}  
+        updateAppTheme={updateAppTheme} screenWidth={width}/>
+
+      <div style={{ display: (menuState === "favorite" && width <= 1000) ? "block" : "none" }}>
+        <Favorite map={map} screenWidth={width} setPage={setMenuState} appPage={menuState}/>
+      </div>
+
+      <div style={{ display: (menuState === "map" || width > 1000) ? "block" : "none" }}>
         <Map setMap={setMap} theme={theme}/>
-      </AppProvider>
-    );
-  };
+      </div>
+    </AppProvider>
+  );
 };
