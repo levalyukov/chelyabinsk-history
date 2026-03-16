@@ -37,16 +37,88 @@ section.favorite {
         }
 
         p {
-          padding-top: 5px;
           border-radius: 25px;
           font-weight: normal;
           color: var(--text);
         }
 
-        p.place-schedule {
+        .place-schedule {
           padding: 0;
           font-weight: normal;
-          color: var(--primary);
+
+          p {
+            font-weight: normal;
+            color: var(--primary);
+          }
+
+          .place-schedule-dropdown {
+            button.place-schedule-current {
+              border: 0;
+              outline: none;
+              font-size: 16px;
+              cursor: pointer;
+              color: var(--text);
+              background-color: transparent;
+
+              span {
+                color: var(--text);
+              }
+            }
+
+            .dropdown-schedule-content {
+              display: none;
+            }
+
+            .dropdown-schedule-content#visible {
+              display: flex;
+              position: absolute;
+              flex-direction: column;
+
+              gap: 6px;
+              padding: 5px;
+              margin-top: 5px;
+              border-radius: 10px;
+              box-shadow: var(--shadow);
+              background-color: var(--bg);
+              border: 1px solid var(--button-hover);
+
+              .dropdown-content {
+                gap: 16px;
+                display: flex;
+                cursor: pointer;
+                border-radius: 5px;
+                color: var(--text);
+                padding: 2.5px 10px;
+                align-items: center;
+                text-transform: uppercase;
+                justify-content: space-between;
+              } .dropdown-content#active {
+                color: white;
+                background-color: var(--primary);
+                button {
+                  color: white;
+                }
+              } .dropdown-content:hover {
+                color: var(--title);
+                background-color: var(--button);
+                button {
+                  color: var(--title);
+                }
+              }
+              
+              button {
+                border: 0;
+                width: 125px;
+                outline: none;
+                font-size: 16px;
+                cursor: pointer;
+                padding: 5px 10px;
+                color: var(--text);
+                border-radius: 10px;
+                background-color: transparent;
+              }
+            }
+          }
         }
 
         span.place-actions {
@@ -69,6 +141,15 @@ section.favorite {
             border: 1px solid var(--button-hover);
           } button:hover {
             color: var(--bg);
+            background-color: var(--title);
+          }
+
+          button.place-report-button {
+            color: var(--bg);
+            border-color: var(--text);
+            background-color: var(--text);
+          } button.place-report-button:hover {
+            border-color: var(--title);
             background-color: var(--title);
           }
         }

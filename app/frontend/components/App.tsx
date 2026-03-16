@@ -52,7 +52,7 @@ export default function App() {
           setSettingsVisible={setSettingsVisible}
           getAppTheme={theme} setAppTheme={setAppTheme}  
           updateAppTheme={updateAppTheme} screenWidth={width}/>
-        {menuState === "favorite" && <Favorite/>}
+        {menuState === "favorite" && <Favorite map={map}/>}
         {menuState === "profile" && <Profile setSettings={setSettingsVisible}/>}
         {menuState === "map" && <Map setMap={setMap} theme={theme}/>}
       </AppProvider>

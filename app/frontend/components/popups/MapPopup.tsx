@@ -1,8 +1,8 @@
-import "../styles/MapPopup.css"
+import "../../styles/MapPopup.css"
 
-import { type PlaceContent } from "./PlacesStore";
+import { type PlaceContent } from "../PlacesStore";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCirclePlay, faClock, faLocationArrow, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { faCirclePlay, faLocationArrow, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 export default function MapPopup({place}: {place:PlaceContent}) {
   const TITLE_MAX:number = 26;
@@ -19,8 +19,8 @@ export default function MapPopup({place}: {place:PlaceContent}) {
         <nav className="map-popup-info">
           <p><span><FontAwesomeIcon icon={faLocationDot}/></span> {((place.popup.address).length > PLACE_INFO) 
           ? (place.popup.address).slice(0,PLACE_INFO) : place.popup.address}</p>
-          <p><span><FontAwesomeIcon icon={faClock}/></span> {((place.popup.schedule).length > PLACE_INFO) 
-          ? (place.popup.schedule).slice(0,PLACE_INFO) : place.popup.schedule}</p>
+          {/* <p><span><FontAwesomeIcon icon={faClock}/></span> {((place.popup.schedule).length > PLACE_INFO) 
+          ? (place.popup.schedule).slice(0,PLACE_INFO) : place.popup.schedule}</p> */}
           <p><span><FontAwesomeIcon icon={faLocationArrow}/></span> {place.coords[1]} {place.coords[0]}</p>
         </nav>
         

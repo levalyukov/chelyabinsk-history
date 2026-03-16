@@ -3,20 +3,30 @@ export interface Places {
 };
 
 export interface PlaceContent {
-  image:string;
-  title:string;
-  description:string;
-  coords:[number,number];
-  popup: PlacePopup;
+  readonly image:string;
+  readonly title:string;
+  readonly description:string;
+  readonly coords:[number,number];
+  readonly popup: PlacePopup;
   liked?:boolean;
 };
 
 export interface PlacePopup {
-  image:string;
-  title:string;
-  description:string;
-  address:string;
-  schedule?:[string,string,string,string,string,string,string] | string;
+  readonly image:string;
+  readonly title:string;
+  readonly description:string;
+  readonly address:string;
+  readonly schedule?:[PlaceSchedule,PlaceSchedule,PlaceSchedule,
+    PlaceSchedule,PlaceSchedule,PlaceSchedule,PlaceSchedule
+  ];
+};
+
+export interface PlaceSchedule {
+  readonly openHours:number;
+  readonly openMinutes:number;
+  readonly closeHours:number;
+  readonly closeMinutes:number;
+  readonly dayoff?:boolean
 };
 
 export let placesStore:Places = {
@@ -29,8 +39,7 @@ export let placesStore:Places = {
       image: "https://chelyabinsk-love.ru/wp-content/uploads/2022/04/KMO_160860_00027_1_t218_182800.jpeg",
       title: "Пешеходная улица «Кировка»",
       description: "Кировка — пешеходная часть улицы Кирова в Челябинске, ставшая одной из главных достопримечательностей города.",
-      address: "Центральный район, Улица Кирова",
-      schedule: "Круглосуточно"
+      address: "Центральный район, Улица Кирова"
     }
   },
 
@@ -43,8 +52,7 @@ export let placesStore:Places = {
       image: "https://chel.dk.ru/system/images/news/000/956/432_x_large_new_origin_copyright.jpg",
       title: "Парк Гагарина",
       description: "главное место отдыха в сосновом бору в центре города. Он предлагает аттракционы (колесо обозрения, «Гулливер»), «Лесной экстрим», прокат лодок/велосипедов, фонтан «Счастье», контактный зоопарк, зимой — каток и лыжную базу",
-      address: "Центральный район, Коммуны 100",
-      schedule: "Круглосуточно"
+      address: "Центральный район, Коммуны 100"
     }
   },
 
@@ -58,7 +66,15 @@ export let placesStore:Places = {
       title: "Гастромаркет «Белый рынок»",
       description: "Атмосферное место, где можно вкусно покушать с разнообразной кухней на любой вкус!",
       address: "ул. Тернопольская, 6",
-      schedule: "11:00 – 22:00"
+      schedule: [
+        {openHours: 11, openMinutes: 0, closeHours: 22, closeMinutes: 0},
+        {openHours: 11, openMinutes: 0, closeHours: 22, closeMinutes: 0},
+        {openHours: 11, openMinutes: 0, closeHours: 22, closeMinutes: 0},
+        {openHours: 11, openMinutes: 0, closeHours: 22, closeMinutes: 0},
+        {openHours: 11, openMinutes: 0, closeHours: 23, closeMinutes: 0},
+        {openHours: 11, openMinutes: 0, closeHours: 23, closeMinutes: 0},
+        {openHours: 11, openMinutes: 0, closeHours: 22, closeMinutes: 0, dayoff: true},
+      ]
     }
   },
 };

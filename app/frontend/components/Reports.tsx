@@ -9,19 +9,9 @@ import { useContext } from "react";
 
 export default function Reports({map, setMobileMenu, screenWidth}: 
   {map:MapLibre | null, setMobileMenu: (state:boolean) => void, screenWidth:number}) {
-  function setMapPosition(lat:number, lng:number):void {
-    if (map) {
-      map.flyTo({
-        center: [lng,lat], 
-        zoom: 16,
-        pitch: 0,
-        bearing: 0
-      });
-    };
-  };
 
   const context = useContext(AppContext);
-  if (!context) return (<>Ошибка контекса React-Провайдера.</>);
+  if (!context) return null;
   const { appPlaces, toggleLike } = context;
 
   if (Object.keys(appPlaces).length === 0) {
@@ -37,7 +27,7 @@ export default function Reports({map, setMobileMenu, screenWidth}:
     <div className="place-container">
       {Object.entries(appPlaces).map(([key,item]) => (
         <article key={key} onClick={() => {
-          setMapPosition(item.coords[0], item.coords[1]); 
+          if (map) map.flyTo({center: [item.coords[1], item.coords[0]], zoom: 16, pitch: 0, bearing: 0}); 
           setMobileMenu(false);
         }}>
           <div className="place-info">

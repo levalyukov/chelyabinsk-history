@@ -1,4 +1,4 @@
-import "../styles/Settings.css"
+import "../../styles/Settings.css"
 
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

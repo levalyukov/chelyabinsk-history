@@ -69,7 +69,6 @@
           color: var(--title);
         }
         p {
-          padding-top: 5px;
           color: var(--text);
           font-weight: normal;
         }
