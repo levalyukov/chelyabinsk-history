@@ -1,10 +1,12 @@
 import "../styles/Header.css"
 
-import Reports  from "./Reports"
-import Favorite from "./Favorite"
-import Profile  from "./Profile"
-import Settings from "./Settings"
+import Reports  from        "./Reports"
+import Favorite from        "./Favorite"
+import Profile  from        "./Profile"
+import Settings from        "./modals/Settings"
+import UserGeolocation from "./modals/UserGeolocation"
 
+import { setUserMarker } from "./Map"
 import { Map as MapLibre } from "maplibre-gl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { type IconDefinition, faCompass as compassSolid,   faHeart as heartSolid, faPlus, faMinus, faClose, faBars, faCog, faLocationArrow } from "@fortawesome/free-solid-svg-icons";
@@ -33,6 +35,9 @@ export default function Header({
   const [menuVisible, setMenuVisible] = useState<boolean>(true);
   const [placesVisible, setPlacesMenu] = useState<boolean>(false);
   const reportPage = <Reports map={map} setMobileMenu={setPlacesMenu} screenWidth={screenWidth}/>
+  const [UserGeolocationModal, setUserGeolocationVisible] = useState<boolean>(false);
+  const [errorTitle, setErrorTitle] = useState<string>("");
+  const [errorText, setErrorText] = useState<string>("");
 
   const navmenu:Menu = {
     0: {title: "Исследовать", icon: [compassSolid, compassRegular], page: "map"},
@@ -49,6 +54,9 @@ export default function Header({
         setState={setSettingsVisible} getState={settingsVisible}
         setAppTheme={setAppTheme} getAppTheme={getAppTheme} 
         updateAppTheme={updateAppTheme}/>
+
+      <UserGeolocation errorTitle={errorTitle} errorText={errorText} 
+      UGvisible={UserGeolocationModal} setUG={setUserGeolocationVisible}/>
 
       <nav className="pc-container">
         <button onClick={() => setMenuVisible(true)} 
@@ -82,7 +90,7 @@ export default function Header({
 
           <section className="pc-page">
             {getPage === "map" && reportPage}
-            {getPage === "favorite" && <Favorite/>}
+            {getPage === "favorite" && <Favorite map={map}/>}
             {getPage === "profile" && <Profile setSettings={setSettingsVisible}/>}
           </section>
         </header>
@@ -92,7 +100,9 @@ export default function Header({
             <button onClick={() => setSettingsVisible(true)}><FontAwesomeIcon icon={faCog}/></button>
             <button onClick={() => mapZoom(true)}><FontAwesomeIcon icon={faPlus}/></button>
             <button onClick={() => mapZoom(false)}><FontAwesomeIcon icon={faMinus}/></button>
-            <button className="user-geolocation" onClick={() => {}}><FontAwesomeIcon icon={faLocationArrow}/></button>
+            <button className="user-geolocation" onClick={() => {
+              getGeolocation({map, setErrorTitle, setErrorText, setUserGeolocationVisible});
+            }}><FontAwesomeIcon icon={faLocationArrow}/></button>
           </div>
         )}
       </nav>
@@ -139,4 +149,60 @@ export default function Header({
       </div>
     </>
   );
+};
+
+function getGeolocation({map, setErrorTitle, setErrorText, setUserGeolocationVisible}: 
+  {map: MapLibre | null, setErrorTitle: (error:string) => void, setErrorText: (error:string) => void
+  setUserGeolocationVisible: (state: boolean) => void}) {
+  if (map) {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => (geolocationSuccess({position, map, setErrorTitle, setErrorText})), 
+        (error) => geolocationError({error, setErrorTitle, setErrorText, setUserGeolocationVisible}), 
+        {
+          enableHighAccuracy: true,
+          timeout: 16000,
+          maximumAge: Infinity
+      });
+    };
+  };
+};
+
+function geolocationSuccess({position, map, setErrorTitle, setErrorText}: {
+  map: MapLibre | null,
+  position: GeolocationPosition, 
+  setErrorTitle: (code:string) => void, 
+  setErrorText: (code:string) => void
+}) {
+  if (map) {
+    setErrorTitle("");
+    setErrorText("");
+    setUserMarker({map,position});
+    map.flyTo({
+      center: [position.coords.longitude, position.coords.latitude], 
+      zoom: 16, pitch: 0, bearing: 0
+    });
+  };
+};
+
+function geolocationError({error, setErrorTitle, setErrorText, setUserGeolocationVisible}: 
+  {error: GeolocationPositionError, setErrorTitle: (code:string) => void, setErrorText: (code:string) => void,
+  setUserGeolocationVisible: (state:boolean) => void}) {
+  setUserGeolocationVisible(true);
+  switch (error.code) {
+    case error.PERMISSION_DENIED:
+      setErrorTitle("Где вы?");
+      setErrorText("Гадать не будем — просто включите геопозицию.");
+      break;
+
+    case error.TIMEOUT:
+      setErrorTitle("Спутники не отвечают");
+      setErrorText("Они немного заняты, крутятся вокруг Земли. Пожалуйста, повторите попытку.");
+      break;
+
+    case error.POSITION_UNAVAILABLE:
+      setErrorTitle("Нет сигнала GPS");
+      setErrorText("Мы пытались, но не смогли поймать спутник. Проверьте, включена ли геолокация на устройстве, и попробуйте еще раз.");
+      break;
+  };
 };

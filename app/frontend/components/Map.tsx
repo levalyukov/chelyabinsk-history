@@ -1,7 +1,7 @@
 import "../styles/Map.css"
 import "maplibre-gl/dist/maplibre-gl.css";
 
-import MapPopup from "./MapPopup";
+import MapPopup from "./popups/MapPopup";
 import maplibregl from "maplibre-gl";
 import { AppContext } from "./PlacesContext";
 import { Map as MapLibre } from "maplibre-gl";
@@ -60,6 +60,25 @@ export default function Map({theme, setMap}:
       visualizePitch: true
     }), "top-right");
 
+
+    // User Geolocation
+    if (navigator.permissions) {
+      navigator.permissions.query({name: 'geolocation'}).then((result) => {
+        switch (result.state) {
+          case "granted":
+            navigator.geolocation.getCurrentPosition(
+              (position) => setUserMarker({map, position}),
+              (error) => console.error("Geolocation API error: ", error),
+              {
+                enableHighAccuracy: true,
+                timeout: 16000,
+                maximumAge: Infinity
+              } 
+            ); break;
+        };
+      });
+    };
+
     return () => map.remove();
   }, [theme]);
 
@@ -100,4 +119,15 @@ function initMarkersPlaces({map, appPlaces}: {map: maplibregl.Map | null, appPla
       };
     };
   };
+};
+
+export function setUserMarker({map, position}: 
+  {map: maplibregl.Map | null, position:GeolocationPosition}) {
+  if (map) {
+    const userMarker = document.createElement("div");
+    userMarker.className = "user-marker";
+    new maplibregl.Marker({ element: userMarker })
+    .setLngLat([position.coords.longitude, position.coords.latitude])
+    .addTo(map);
+  } else console.error("Map is invalid:", map);
 };

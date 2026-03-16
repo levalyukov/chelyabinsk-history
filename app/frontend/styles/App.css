@@ -12,10 +12,11 @@
   --shadow: rgba(0, 0, 0, .125) 0px 8px 24px;
   --map-marker: url("../images/map/marker.svg");
   --map-arrow: url("../images/map/map-arrow.svg");
+  --user-marker: url("../images/map/user-marker.svg");
 
   /* Default colors */
   --red:    #FF5A5A;
-  --green:  #78F58F;
+  --green:  #2ecc71;
   --blue:   #57AEFF;
   --yellow: #FFA657;
 }
@@ -33,6 +34,7 @@
   --button-hover: #58585e;
   --map-marker: url("../images/map/marker-dark.svg");
   --map-arrow: url("../images/map/map-arrow-dark.svg");
+  --user-marker: url("../images/map/user-marker-dark.svg");
 
   /* Default colors */
   --red:    #FF5A5A;

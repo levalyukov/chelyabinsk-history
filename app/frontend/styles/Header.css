@@ -66,7 +66,7 @@ header#pc {
   position: fixed;
   height: calc(100vh - 30px);
   width: 525px;
-  z-index: 1000;
+  z-index: 100;
   border-radius: 35px;
   margin: 15px;
   overflow: hidden;
@@ -278,7 +278,7 @@ header#pc {
 #map-control {
   right: 0;
   opacity: 1;
-  z-index: 1000;
+  z-index: 105;
   padding: 15px;
   position: absolute;
   visibility: visible;

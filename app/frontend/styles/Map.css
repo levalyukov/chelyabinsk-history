@@ -40,6 +40,15 @@ section#map-container.error {
   background-size: cover;
   background-image: var(--map-marker);
 }
+
+.user-marker {
+  width: 23px;
+  height: 23px;
+  cursor: pointer;
+  background-size: cover;
+  background-image: var(--user-marker);
+}
+
 .maplibregl-ctrl-top-right {
   top: auto     !important;
   right: 5px    !important;
