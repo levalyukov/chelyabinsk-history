@@ -15,13 +15,13 @@
     h1,h2,h3,h4,h5,h6 {
       color: var(--title);
       font-weight: bold;
-      font-size: 1.5rem;
-      padding: 10px 0;
+      font-size: 22px;
+      padding: 10px 0 0 0;
     }
 
     p {
-      font-size: 1rem;
-      padding: 5px 0 10px 0;
+      font-size: 16px;
+      padding: 5px 0 5px 0;
       color: var(--text);
       font-weight: normal;
     }
@@ -45,7 +45,7 @@
     nav.map-popup-actions {
       gap: 6px;
       display: flex;
-      padding: 10px 0px;
+      padding: 10px 0px 5px 0;
       flex-direction: column;
       button {
         border: 0;
@@ -75,8 +75,6 @@
     }
   }
 }
-
-
 
 .maplibregl-popup {
   max-width: 400px !important;
@@ -113,49 +111,57 @@
   }
 }
 
+@media (max-width: 1250px) {
+  .map-popup {  
+    .map-popup-image {
+      height: 200px;
+    }
+    span.map-popup-text { 
+      h1,h2,h3,h4,h5,h6 {
+        font-size: 18px;
+      } p {
+        font-size: 14px;
+      }
+
+      .map-popup-info p {
+        font-size: 14px;
+      }
+
+      nav.map-popup-actions button {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .maplibregl-popup {
+    max-width: 350px !important;
+  }
+}
+
 
 @media (max-width: 600px) {
-  section.map {
-    .maplibregl-popup {
-      min-width: 350px;
-      .maplibregl-popup-content {
-        h1,h2,h3,h4,h5,h6 {font-size: 18px;}
-        p {font-size: 14px;}
-        .map-popup-info {font-size: 14px;}
-        nav.map-popup-actions button {font-size: 14px;}
+  .map-popup {  
+    .map-popup-image {
+      height: 150px;
+    }
+    span.map-popup-text { 
+      h1,h2,h3,h4,h5,h6 {
+        font-size: 16px;
+      } p {
+        font-size: 12px;
+      }
+
+      .map-popup-info p {
+        font-size: 12px;
+      }
+
+      nav.map-popup-actions button {
+        font-size: 12px;
       }
     }
   }
-}
 
-@media (max-width: 500px) {
-  section.map {
-    .maplibregl-popup {
-      min-width: 300px;
-      .maplibregl-popup-content {
-        h1,h2,h3,h4,h5,h6 {font-size: 16px;}
-        p {font-size: 12px;}
-        .map-popup-info {font-size: 12px;}
-        nav.map-popup-actions {
-          padding: 5px 0;
-          button {
-            font-size: 12px;
-            padding: 12.5px;
-          }
-        }
-      }
-    }
-  }
-}
-
-@media (max-width: 300px) {
-  section.map {
-    .maplibregl-popup {
-      min-width: 200px;
-      .maplibregl-popup-content {
-        h1,h2,h3,h4,h5,h6 {font-size: 14px;}
-        p {font-size: 10px;}
-      }
-    }
+  .maplibregl-popup {
+    max-width: 300px !important;
   }
 }
