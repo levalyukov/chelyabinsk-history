@@ -1,57 +1,150 @@
 import "../styles/Footer.css";
 
+import { useEffect, useState } from "react";
+import { type Footer, type FooterLinks, normalizeLink } from "../interfaces/Footer.interface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faClock, faEarthAsia, faHammer, faPeopleGroup } from "@fortawesome/free-solid-svg-icons";
 
 export default function Footer() {
-  const media = {
-    0: {id: "github", icon: faGithub, href: "github.com/levalyukov/chelyabinsk-history"}
-  };
-  
-  const footer = {
-    0: {
-      title: "Продукт",
-      links: {
-        1:{subtitle: "Приложение", href: ""},
-        2:{subtitle: "Статус серверов", href: ""},
-        3:{subtitle: "Брендбук", href: ""},
-      },
-    },
-    2: {
-      title: "Важная информация",
-      links: {
-        0:{subtitle: "Конфиденциальность", href: ""},
-        1:{subtitle: "Правила использования cookie", href: ""},
-        2:{subtitle: "Предложить репортаж", href: ""},
-        3:{subtitle: "Разработчикам", href: ""},
-      },
-    }
-  };
+  const [footer, setFooter] = useState<Footer | null>(null);
 
+  useEffect(() => {
+
+    //! This misunderstanding needs to be changed in a more concise way ! //
+    const foo:Footer = {
+      authors: {
+        created: "Экскурсия с Доставкой"
+      },
+
+      content: {
+        0: {
+          links: false,
+          title: "Информация",
+          items: {
+            0: {
+              name: "Город Трудовой Доблести",
+              href: "",
+              icon: faHammer
+            },
+            1: {
+              name: "1.2 млн жителей",
+              href: "",
+              icon: faPeopleGroup
+            },
+            2: {
+              name: "Часовой пояс: МСК+2",
+              href: "",
+              icon: faClock
+            },
+            3: {
+              name: "Основан в 1736 г.",
+              href: "",
+              icon: faEarthAsia
+            },
+          }
+        },
+
+        1: {
+          links: true,
+          title: "Продукт",
+          items: {
+            0: {
+              name: "Приложение",
+              href: ""
+            },
+            1: {
+              name: "Статус серверов",
+              href: ""
+            },
+            2: {
+              name: "Брендбук",
+              href: ""
+            }
+          }
+        },
+
+        2: {
+          links: true,
+          title: "Важная информация",
+          items: {
+            0: {
+              name: "Конфиденциальность",
+              href: ""
+            },
+            1: {
+              name: "Правила использования cookie",
+              href: ""
+            },
+            2: {
+              name: "Разработчикам",
+              href: ""
+            }
+          }
+        }
+      },
+
+      media: {
+        0: {
+          id: "github",
+          icon: faGithub,
+          href: "github.com/levalyukov/chelyabinsk-history"
+        }
+      }
+    };
+    //! ---------------------------------------------------- //
+
+    setFooter(foo);
+  }, []);
+
+  if (!footer) return null;
+  if (Object.keys(footer).length === 0) return null;
+  
   return (
-    <div className="footer-container">
-      <footer>
-        <div className="info">
-          <p>© {new Date().getFullYear()} Экскурсия с Доставкой</p>
-          <ul className="media">
-            {Object.entries(media).map(([key,index]) => (
-              <a key={key} href={"https://"+index.href} id={index.id} target="_blank">
-                <FontAwesomeIcon icon={index.icon}/>
-              </a>
-            ))}
-          </ul>
+    <footer>
+      <section className="footer-container">
+        <div className="footer-app-authors">
+          <p>&copy; {new Date().getFullYear()} {footer.authors.created}</p>
+          {footer.media !== undefined && (
+            (Object.keys(footer.media).length > 0) && (
+              <ul className="footer-app-social">
+                {Object.entries(footer.media).map(([key,item]) => (
+                  <a key={key} id={item.id} href={normalizeLink(item.href)}><FontAwesomeIcon icon={item.icon}/></a>
+                ))}
+              </ul>
+            )
+          )}
         </div>
-        {Object.entries(footer).map(([key,index]) => (
-          <div key={key} className="category">
-            <h2>{index.title}</h2>
-            <div className="content">
-              {Object.entries(index.links).map(([key,index]) => (
-                <li key={key}><a href={"https://"+index.href}>{index.subtitle}</a></li>
-              ))}
+
+        {Object.entries(footer.content).map(([key,index]) => (
+          <div key={key} className="footer-block">
+            <h1>{index.title}</h1>
+            <div className="footer-block-content">
+              {index.links ? (
+              <>
+                {Object.entries(index.items as FooterLinks).map(([id,item]) => (
+                  <a key={id} href={normalizeLink(item.href)}>
+                    {item.icon !== undefined && 
+                    (<span><FontAwesomeIcon icon={item.icon}/></span>)}
+                    {item.name}
+                  </a>
+                ))}
+              </>
+              ) : (
+              <>
+                {Object.entries(index.items as FooterLinks).map(([id,item]) => (
+                  <p key={id}>
+                    {item.icon !== undefined && 
+                    (<span><FontAwesomeIcon icon={item.icon}/></span>)}
+                    {item.name}
+                  </p>
+                ))}
+              </>
+              )}
             </div>
           </div>
         ))}
-      </footer>
-    </div>
+      </section>
+    </footer>
   );
 };

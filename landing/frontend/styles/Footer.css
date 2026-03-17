@@ -1,124 +1,109 @@
-:root {
-  --footer-background: #f6faff;
-  --footer-media-background: #e6ecf2;
-  --footer-media-background-hover: #f1f6fb;
-  --footer-media-color: #4a535e;
-}
-
-:root[theme="dark"] {
-  --footer-background: #151a20;
-  --footer-media-background: #393E46;
-  --footer-media-background-hover: #f1f6fb;
-  --footer-media-color: #c7d0db;
-}
-
-
-.footer-container {
+footer {
   display: flex;
-  justify-content: center;
   align-items: center;
-  background-color: var(--footer-background);
-  footer {
-    width: 1300px;
-    margin: 50px 0;
+  justify-content: center;
+  flex-direction: column;
+  background-color: var(--bg-alt);
+  section.footer-container {
+    gap: 32px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 6px;
+    width: 100%;
+    max-width: 1300px;
+    padding: 50px 25px 100px 25px;
+    grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
 
-    .info {
-      p { color: var(--color-subtitle); }
-      .media {
+    .footer-app-authors {
+      font-size: 16px;
+      color: var(--text);
+
+      .footer-app-social {
+        gap: 6px;
         display: flex;
-        flex-wrap: wrap;
-        margin-top: 15px;
-        gap: 4px;
-
+        margin-top: 20px;
         a {
-          font-size: 20px;
-          border: 1px solid transparent;
-          background-color: var(--footer-media-background);
-          color: var(--footer-media-color);
           display: flex;
-          justify-content: center;
           align-items: center;
+          justify-content: center;
+
           width: 35px;
           height: 35px;
+          font-size: 20px;
           border-radius: 10px;
+          color: var(--text);
+          background-color: var(--button);
+          border: 1px solid var(--button-hover);
         } a:hover {
-          border-color: var(--footer-media-background);
-          background-color: var(--footer-media-background-hover);
+          color: var(--title);
+          background-color: var(--button-hover);
         }
 
-        a:hover#vk        {color: #0077FF}
-        a:hover#telegram  {color: #24A1DE}
-        a:hover#github    {color: #000000}
-        a:hover#ok        {color: #EE8208}
-        a:hover#tiktok    {color: #000000}
-        a:hover#youtube   {color: #FF0000}
-        a:hover#bluesky   {color: #228DFF}
+        a#vk:hover {color: #0077FF;}
+        a#github:hover {color: #000000;}
+        a#telegram:hover {color: #24A1DE;}
       }
+
     }
 
-    .category {
-      text-transform: capitalize;
+    .footer-block {
 
-      h2 {
-        font-size: 18px;
-        padding: 0 0 4px 0;
-        color: var(--color-title);
+      h1 {
+        font-size: 20px;
+        font-weight: bold;
+        color: var(--title);
+        text-transform: capitalize;
       }
-      
-      .content {
+
+      .footer-block-content  {
+        gap: 6px;
         display: flex;
+        margin-top: 10px;
         flex-direction: column;
-        font-size: 16px;
-        li {
-          list-style: none;
-          margin: 4px 0;
-          a {
-            transition: 0s;
-            color: var(--color-subtitle);
-            text-decoration: none;
-          } a:hover {
-            text-decoration: underline;
-            color: var(--primary-color);
+        font-weight: normal;
+
+        a {
+          gap: 6px;
+          display: flex;
+          font-size: 16px;
+          transition: none;
+          color: var(--text);
+          text-decoration: none;
+
+          span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+        a:hover {
+          color: var(--primary);
+          text-decoration: underline;
+        }
+
+        p {
+          gap: 6px;
+          display: flex;
+          color: var(--text);
+          align-items: center;
+
+          span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
         }
       }
     }
+
   }
 }
 
-@media (max-width: 1050px) {
-  .footer-container {
-    footer {
-      width: 750px;
-    }
+@media (max-width: 643px) {
+  .footer-app-authors {
+    text-align: center
   }
-}
 
-@media (max-width: 850px) {
-  .footer-container {
-    footer {
-      width: 500px;
-    }
+  .footer-app-social {
+    align-items: center;
+    justify-content: center;
   }
-}
-
-@media (max-width: 550px) {
-  .footer-container {
-    footer {
-      width: 100vw;
-      padding: 0 50px;
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
-      .info {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-      }
-    }
-  }
-}
+};
