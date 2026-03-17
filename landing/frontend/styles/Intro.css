@@ -42,7 +42,7 @@ section.intro {
         outline: 0;
         border: 0;
         margin: 0.25em 0;
-        border-radius: 15px;
+        border-radius: 50px;
         padding: 16px 35px;
         font-size: 18px;
         cursor: pointer;
@@ -62,14 +62,7 @@ section.intro {
         }
       } a:hover {
         color: #FFF;
-        background-color: var(--primary-color);
-      } a:active {
-        transform: translateZ(-10px);
-        background-color: var(--primary-color-dark);
-        border-color: var(--primary-color-dark);
-      } a.active {
-        color: #FFF;
-        background-color: var(--primary-color);
+        background-color: var(--primary);
       }
     }
 
@@ -78,9 +71,10 @@ section.intro {
       height: 400px;
       margin-bottom: 1.25em;
       img {
-        width: 400px;
-        height: 400px;
+        width: 100%;
+        height: 100%;
         object-fit: contain;
+        position: relative;
       }
     } h1 {
       font-family: 'Montserrat';
@@ -99,32 +93,90 @@ section.intro {
 }
 
 section.intro::before {
-  content: '';
-  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: 0;
+  content: '';
+  position: absolute;
+  backdrop-filter: blur(2px);
   background: rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(2.5px);
 }
 
-@media (max-width: 750px) {
-  section.intro {
-    .info {
-      z-index: 1;
-      .logotype {
-        width: 200px;
-        height: 200px;
-        img {
-          width: 200px;
-          height: 200px;
-        }
-      } 
-      
-      h1 {font-size: 2.75em;} 
-      p {font-size: 18px;}
+@media (max-width: 1500px) {
+  section.intro .info {
+    .info-container {
+      gap: 150px;
+    }
+
+    .logotype {
+      width: 300px;
+      height: 300px;
+    } h1 {
+      font-size: 3.25em;
+    } p {
+      font-size: 1.25em
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  section.intro .info {
+    .info-container {
+      gap: 100px;
+    }
+
+    .logotype {
+      width: 250px;
+      height: 250px;
+    } h1 {
+      font-size: 2.75em;
+    } p {
+      font-size: 1.15em
+    }
+  }
+}
+
+@media (max-width: 850px) {
+  section.intro .info {
+    .info-container {
+      flex-direction: column !important;
+      gap: 25px;
+    }
+
+    .logotype {
+      width: 250px;
+      height: 250px;
+    } h1 {
+      font-size: 2.75em;
+      text-align: center;
+    } p {
+      font-size: 1.15em;
+      text-align: center;
+    }
+  }
+}
+
+
+@media (max-width: 500px) {
+  section.intro .info {
+    .info-container {
+      flex-direction: column !important;
+      gap: 25px;
+    }
+
+    .logotype {
+      width: 175px;
+      height: 175px;
+    } h1 {
+      font-size: 2.5em;
+      text-align: center;
+    } p {
+      padding-left: 75px;
+      padding-right: 75px;
+      font-size: 1em;
+      text-align: center;
     }
   }
 }

@@ -66,18 +66,14 @@ export default function Footer() {
 
         2: {
           links: true,
-          title: "Важная информация",
+          title: "Юридическое",
           items: {
             0: {
               name: "Конфиденциальность",
               href: ""
             },
             1: {
-              name: "Правила использования cookie",
-              href: ""
-            },
-            2: {
-              name: "Разработчикам",
+              name: "Лицензии",
               href: ""
             }
           }

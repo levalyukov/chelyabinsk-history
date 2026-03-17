@@ -1,32 +1,42 @@
 import "../styles/Header.css";
 
+import ru from "../images/flags/RU.svg";
+// import zh from "../images/flags/CN.svg";
+// import en from "../images/flags/US.svg";
+
 import lightLogotype  from "../images/light-logo.svg";
 import darkLogotype   from "../images/dark-logo.svg";
 
-import ru from "../images/flags/RU.svg";
-import zh from "../images/flags/CN.svg";
-import en from "../images/flags/US.svg";
-
+import { useState } from "react";
+import { type LanguageKeys } from "../interfaces/App.interface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faCircleHalfStroke, faGlobe, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+
+interface Menu {
+  [index:number]: {
+    title:string;
+    href: string;
+  };
+};
 
 export default function Header({setTheme, getTheme, setLang}: {
-  setTheme: () => void, getTheme: () => boolean, setLang: (lang:string) => void}) {
+  setTheme: () => void, 
+  getTheme: () => boolean, 
+  setLang: (lang:string) => void
+}) {
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
   const [mobileMenu, setMobileMenu] = useState<boolean>(false);
 
-  const navmenu = {
+  const navmenu:Menu = {
     0: {title: "Памятка туристу", href: ""},
     1: {title: "Обратная связь", href: ""},
-    2: {title: "Блог", href: ""},
-    3: {title: "Контакты", href: ""}
+    2: {title: "Контакты", href: ""}
   };
 
-  const languages = {
+  const languages:LanguageKeys = {
     0: {language: "Русский", key: "ru", flag: ru},
-    1: {language: "中文", key: "zh", flag: zh},
-    2: {language: "English", key: "en", flag: en}
+    // 1: {language: "中文", key: "zh", flag: zh},
+    // 2: {language: "English", key: "en", flag: en}
   };
 
   return (
@@ -43,53 +53,54 @@ export default function Header({setTheme, getTheme, setLang}: {
 
           <div className="mobile-namvenu-content">
             <nav className="mobile-navmenu-links">
-
               <div className="mobile-navmenu-link" data-testid="mobile-navmenu">
                 {Object.entries(navmenu).map(([key, index]) => (
-                    <a key={key} href={"#"+index.href}>{index.title}</a>
+                  <a key={key} href={"#"+index.href}>{index.title}</a>
                 ))}
               </div>
 
               <nav className="mobile-navmenu-footer">
-                <button>Открыть приложение</button>
+                <button onClick={() => window.open("app/")}>Открыть приложение</button>
               </nav>
-
             </nav>
           </div>
         </div>
       </div>
 
       <header id="navmenu">
-        <a data-testid="logotype-pc" className="logotype" href="#app">
-          <span><img src={!getTheme() ? darkLogotype : lightLogotype} alt="logotype.svg" /></span>
-        </a>
+        <div className="navmenu-container">
+          <a data-testid="logotype-pc" className="logotype" href="#app">
+            <span><img src={!getTheme() ? darkLogotype : lightLogotype} alt="logotype.svg" /></span>
+          </a>
 
-        <nav data-testid="pc-navmenu" className="navmenu">
-          {Object.entries(navmenu).map(([key, index]) => (
+          <nav className="navmenu">
+            {Object.entries(navmenu).map(([key, index]) => (
               <a key={key} href={"#"+index.href}>{index.title}</a>
-          ))}
-        </nav>
-        <nav className="commands">
-          <button className="theme" onClick={setTheme}>
-            <span><FontAwesomeIcon icon={faCircleHalfStroke}/></span>
-          </button>
-
-          <div className="dropdown">
-            <button className="dropdown-button" onClick={() => setDropdownVisible(!dropdownVisible)}>
-              <span><FontAwesomeIcon icon={faGlobe}/></span>
+            ))}
+          </nav>
+          
+          <nav className="commands">
+            <button className="theme" onClick={setTheme}>
+              <span><FontAwesomeIcon icon={faCircleHalfStroke}/></span>
             </button>
-            <div className="dropdown-content" id={(dropdownVisible) ? "visible" : "invisible"}>
-              {Object.entries(languages).map(([key, parameter]) => (
-                <button key={key} onClick={() => {setLang(parameter.key); setDropdownVisible(false); document.location.reload();}}>
-                  <span><img src={parameter.flag} alt=""/></span> {parameter.language}
-                </button>
-              ))}
+
+            <div className="dropdown">
+              <button className="dropdown-button" onClick={() => setDropdownVisible(!dropdownVisible)}>
+                <span><FontAwesomeIcon icon={faGlobe}/></span>
+              </button>
+              <div className="dropdown-content" id={(dropdownVisible) ? "visible" : "invisible"}>
+                {Object.entries(languages).map(([key, parameter]) => (
+                  <button key={key} onClick={() => {setLang(parameter.key); setDropdownVisible(false); document.location.reload();}}>
+                    <span><img src={parameter.flag} alt=""/></span> {parameter.language}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
-          <button className="mobile-menu" onClick={() => setMobileMenu(!mobileMenu)}>
-            <span><FontAwesomeIcon icon={faBars}/></span>
-          </button>
-        </nav>
+            <button className="mobile-menu" onClick={() => setMobileMenu(!mobileMenu)}>
+              <span><FontAwesomeIcon icon={faBars}/></span>
+            </button>
+          </nav>
+        </div>
       </header>
     </>
   );
