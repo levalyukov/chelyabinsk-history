@@ -16,11 +16,12 @@ export default function Favorite({map, setPage, appPage, screenWidth}: {
   const context = useContext(AppContext);
   if (!context) return null;
   const datetime = new Date();
+  const todayIndex = datetime.getDay() === 0 ? 6 : datetime.getDay() - 1;
+  const date = ["понедельник", "вторник", "среда", "четверг", "пятница", "суббота", "воскресенье"]
   const { appPlaces } = context;
   const placesEntries = Object.entries(appPlaces).filter(([key,index]) => (key && index.liked));
 
   const [schedule, setVisibleSchedule] = useState<boolean>(false);
-  const dayIndex:number = datetime.getDay() === 0 ? 6 : datetime.getDay();
   const [scheduleModal, setScheduleModal] = useState<boolean>(false);
   const [placeSchedule, setPlaceSchedule] = useState<PlaceSchedule | null>(null);
 
@@ -55,28 +56,27 @@ export default function Favorite({map, setPage, appPage, screenWidth}: {
                                 setPlaceSchedule(item.popup.schedule);
                               };
                             }}
-                            id={datetime.getHours() >= item.popup.schedule[dayIndex].openHours ? "open" : "close"}>
-                              {datetime.getHours() >= item.popup.schedule[dayIndex].openHours 
-                              ? "Открыто до " + String(item.popup.schedule[dayIndex].closeHours).padStart(2, "0") 
-                              + ":" + String(item.popup.schedule[dayIndex].closeMinutes).padStart(2, "0")
-                              : "Закрыто до " + String(item.popup.schedule[dayIndex].openHours).padStart(2, "0") 
-                              + ":" + String(item.popup.schedule[dayIndex].openMinutes).padStart(2, "0")}
+                            id={datetime.getHours() >= item.popup.schedule[todayIndex].openHours ? "open" : "close"}>
+                              {datetime.getHours() >= item.popup.schedule[todayIndex].openHours 
+                              ? "Открыто до " + String(item.popup.schedule[todayIndex].closeHours).padStart(2, "0") 
+                              + ":" + String(item.popup.schedule[todayIndex].closeMinutes).padStart(2, "0")
+                              : "Закрыто до " + String(item.popup.schedule[todayIndex].openHours).padStart(2, "0") 
+                              + ":" + String(item.popup.schedule[todayIndex].openMinutes).padStart(2, "0")}
                               <span><FontAwesomeIcon icon={faCaretDown}/></span>
                             </button>
                             <div className="dropdown-schedule-content" id={schedule ? "visible" : ""}>
                               {Object.keys(item.popup.schedule).map(([key]) => (
                                 <p className="dropdown-content" key={key}
-                                id={(dayIndex === Number(key)+1) ? "active" : ""}>
-                                  {new Date(datetime.getFullYear(), datetime.getMonth(), 
-                                  datetime.getDate()+Number(key)).toLocaleString("ru-ru", {weekday:"short"})} 
+                                id={(todayIndex === Number(key)) ? "active" : ""}>
+                                  {date[Number(key)]}
                                   <button>
-                                    {item.popup.schedule[dayIndex+Number(key)-1]?.dayoff ? "Выходной" : (
+                                    {item.popup.schedule[Number(key)]?.dayoff ? "Выходной" : (
                                       <>
-                                        {String(item.popup.schedule[dayIndex+Number(key)-1]?.openHours).padStart(2, "0")}:
-                                        {String(item.popup.schedule[dayIndex+Number(key)-1]?.openMinutes).padStart(2, "0")} 
+                                        {String(item.popup.schedule[Number(key)]?.openHours).padStart(2, "0")}:
+                                        {String(item.popup.schedule[Number(key)]?.openMinutes).padStart(2, "0")} 
                                         &nbsp;-&nbsp;
-                                        {String(item.popup.schedule[dayIndex+Number(key)-1]?.closeHours).padStart(2, "0")}:
-                                        {String(item.popup.schedule[dayIndex+Number(key)-1]?.closeMinutes).padStart(2, "0")}
+                                        {String(item.popup.schedule[Number(key)]?.closeHours).padStart(2, "0")}:
+                                        {String(item.popup.schedule[Number(key)]?.closeMinutes).padStart(2, "0")}
                                       </>
                                     )}
                                   </button>

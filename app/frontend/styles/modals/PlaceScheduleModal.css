@@ -51,6 +51,7 @@
 
     .place-schedule-content {
       display: flex;
+      margin-top: 10px;
       flex-direction: column;
       .place-schedule-time {
         display: flex;

@@ -25,7 +25,6 @@ export default function PlaceScheduleModal(
           {Object.entries(schedule).map(([key,index]) => (
             <p key={key} className="place-schedule-time"
             id={(todayIndex === Number(key)) ? "active" : "" }>
-
               {date[Number(key)]} 
               <span>
                 {String(index.openHours).padStart(2, "0")}:

@@ -88,17 +88,19 @@ section.favorite {
                 gap: 16px;
                 display: flex;
                 cursor: pointer;
-                border-radius: 5px;
                 color: var(--text);
+                border-radius: 5px;
                 padding: 2.5px 10px;
                 align-items: center;
-                text-transform: uppercase;
+                text-transform: capitalize;
                 justify-content: space-between;
               } .dropdown-content#active {
-                color: white;
-                background-color: var(--primary);
+                color: var(--title);
+                border-radius: 0 5px 5px 0;
+                background-color: var(--button);
+                border-left: 4px solid var(--primary);
                 button {
-                  color: white;
+                  color: var(--title);
                 }
               } .dropdown-content:hover {
                 color: var(--title);
