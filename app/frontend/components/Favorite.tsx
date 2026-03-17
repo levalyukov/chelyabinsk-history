@@ -1,7 +1,7 @@
 import "../styles/Favorite.css"
 
 import { Map as MapLibre } from "maplibre-gl";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { AppContext } from "./PlacesContext";
 import PlaceScheduleModal from "./modals/PlaceScheduleModal"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,15 +21,23 @@ export default function Favorite({map, setPage, appPage, screenWidth}: {
   const { appPlaces } = context;
   const placesEntries = Object.entries(appPlaces).filter(([key,index]) => (key && index.liked));
 
+  const [hours, setHours] = useState(new Date().getHours());
   const [schedule, setVisibleSchedule] = useState<boolean>(false);
   const [scheduleModal, setScheduleModal] = useState<boolean>(false);
   const [placeSchedule, setPlaceSchedule] = useState<PlaceSchedule | null>(null);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setHours(new Date().getHours());
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [])
 
   if (placesEntries.length > 0) {
     return (
       <>
         <PlaceScheduleModal schedule={placeSchedule} visible={scheduleModal} changeVisible={setScheduleModal}/>
-
         <section className="favorite">
           <div className="favorite-container">
             {placesEntries.map(([key,item]) => (
@@ -56,8 +64,8 @@ export default function Favorite({map, setPage, appPage, screenWidth}: {
                                 setPlaceSchedule(item.popup.schedule);
                               };
                             }}
-                            id={datetime.getHours() >= item.popup.schedule[todayIndex].openHours ? "open" : "close"}>
-                              {datetime.getHours() >= item.popup.schedule[todayIndex].openHours 
+                            id={hours >= item.popup.schedule[todayIndex].openHours ? "open" : "close"}>
+                              {hours >= item.popup.schedule[todayIndex].openHours 
                               ? "Открыто до " + String(item.popup.schedule[todayIndex].closeHours).padStart(2, "0") 
                               + ":" + String(item.popup.schedule[todayIndex].closeMinutes).padStart(2, "0")
                               : "Закрыто до " + String(item.popup.schedule[todayIndex].openHours).padStart(2, "0") 
