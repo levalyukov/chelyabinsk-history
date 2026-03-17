@@ -2,13 +2,16 @@ import "../../styles/MapPopup.css"
 
 import { type PlaceContent } from "../PlacesStore";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCirclePlay, faLocationArrow, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { faCirclePlay, faLocationArrow, faClock, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 export default function MapPopup({place}: {place:PlaceContent}) {
   const TITLE_MAX:number = 26;
   const DESCRIPTION_MAX:number = 128;
   const PLACE_INFO:number = 64;
-  
+
+  const datetime = new Date();
+  const dayIndex:number = datetime.getDay() === 0 ? 6 : datetime.getDay() - 1;
+
   return (
     <div className="map-popup">
       <img className="map-popup-image" src={place.popup.image} alt="place-image.jpg" />
@@ -19,8 +22,16 @@ export default function MapPopup({place}: {place:PlaceContent}) {
         <nav className="map-popup-info">
           <p><span><FontAwesomeIcon icon={faLocationDot}/></span> {((place.popup.address).length > PLACE_INFO) 
           ? (place.popup.address).slice(0,PLACE_INFO) : place.popup.address}</p>
-          {/* <p><span><FontAwesomeIcon icon={faClock}/></span> {((place.popup.schedule).length > PLACE_INFO) 
-          ? (place.popup.schedule).slice(0,PLACE_INFO) : place.popup.schedule}</p> */}
+          <p><span><FontAwesomeIcon icon={faClock}/></span> {place.popup.schedule === undefined 
+          ? ("Круглосуточно") : (
+            <>
+              {String(place.popup.schedule[dayIndex].openHours).padStart(2, "0")}:
+              {String(place.popup.schedule[dayIndex].openMinutes).padStart(2, "0")}
+              &nbsp;-&nbsp;
+              {String(place.popup.schedule[dayIndex].closeHours).padStart(2, "0")}:
+              {String(place.popup.schedule[dayIndex].closeMinutes).padStart(2, "0")}
+            </>
+          )}</p>
           <p><span><FontAwesomeIcon icon={faLocationArrow}/></span> {place.coords[1]} {place.coords[0]}</p>
         </nav>
         
