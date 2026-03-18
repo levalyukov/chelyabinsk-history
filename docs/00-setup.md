@@ -4,14 +4,21 @@
 
 - **[Git](https://git-scm.com/install)**
 - **[Node.JS](https://nodejs.org/en) (v11+)**
+- Терминал
 
 ## Уставовка
+
+0. Откройте терминал - `cmd` в Windows, `bash` в Linux `zsh` в MacOS.
 
 1. Склонируйте репозиторий в папку:
 
 ```bash
 git clone https://github.com/levalyukov/chelyabinsk-history history
+```
 
+2. Перейдите в склонированный репозиторий для дальнейший манипуляций:
+
+```bash
 cd history
 ```
 
