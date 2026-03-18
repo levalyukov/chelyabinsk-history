@@ -1,6 +1,6 @@
 import "../styles/App.css"
 
-import { AppProvider } from "./PlacesContext";
+import { AppProvider } from "../interfaces/reports.provider";
 import { Map as MapLibre } from "maplibre-gl";
 import { useEffect, useState } from "react";
 
@@ -26,6 +26,12 @@ export default function App() {
     window.addEventListener("resize", 
       () => setWidth(window.innerWidth));
 
+    let page:string = "";
+    if (menuState === "map")      page = "Карта";
+    if (menuState === "favorite") page = "Избранное";
+    if (menuState === "profile")  page = "Профиль";
+    document.title = "Экскурсия с доставкой: " + page;
+
     // Theme
     if (localStorage.getItem("theme")) {
       setAppTheme(localStorage.getItem("theme") === "dark");
@@ -40,7 +46,7 @@ export default function App() {
       console.log(savedStore)
     };
     //! --------------
-  }, [theme]);
+  }, [theme, menuState]);
 
   return (
     <AppProvider>

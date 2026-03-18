@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <link rel="icon" type="image/svg+xml" href=""/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,19 +10,9 @@
     <title></title>
 
     <style>
-      body {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      :root {
-        --preloader-bg: #f0e4e4;
-      }
-
-      :root[theme="dark"] {
-        --preloader-bg: #35363C;
-      }
+      :root {--preloader-bg: #f0e4e4;}
+      :root[theme="dark"] {--preloader-bg: #35363C;}
+      body {margin: 0; padding: 0; box-sizing: border-box; background-color: var(--preloader-bg);}
 
       #preloader {
         display: flex;
@@ -57,19 +47,12 @@
         }
       }
 
-      #preloader.invisible {
-        visibility: hidden;
-        opacity: 0;
-      }
+      #preloader.invisible {visibility: hidden; opacity: 0;}
 
       @keyframes preloader-anim {
-        0% {
-          transform: translateY(0px);
-        } 50% {
-          transform: translateY(-10px);
-        } 100% {
-          transform: translateY(0px);
-        }
+        0%    {transform: translateY(0px);} 
+        50%   {transform: translateY(-10px);} 
+        100%  {transform: translateY(0px);}
       }
 
       @keyframes preloader-shadow-anim {
