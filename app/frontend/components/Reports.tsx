@@ -1,6 +1,6 @@
 import "../styles/Reports.css"
 
-import { AppContext } from "./PlacesContext"  
+import { AppContext } from "../interfaces/reports.provider"  
 import { Map as MapLibre } from "maplibre-gl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as heartSolid, faMagnifyingGlassLocation } from "@fortawesome/free-solid-svg-icons";

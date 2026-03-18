@@ -3,13 +3,13 @@ import "maplibre-gl/dist/maplibre-gl.css";
 
 import MapPopup from "./popups/MapPopup";
 import maplibregl from "maplibre-gl";
-import { AppContext } from "./PlacesContext";
+import { AppContext } from "../interfaces/reports.provider";
 import { Map as MapLibre } from "maplibre-gl";
 import { useContext, useEffect, useRef} from "react";
 import { createRoot } from "react-dom/client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faFaceFrown } from "@fortawesome/free-solid-svg-icons";
-import { type Places } from "./PlacesStore";
+import { type Places } from "../interfaces/reports.interface";
 import { type StyleSpecification } from 'maplibre-gl';
 
 import mapDarkRaw from "../styles/map-dark.json"

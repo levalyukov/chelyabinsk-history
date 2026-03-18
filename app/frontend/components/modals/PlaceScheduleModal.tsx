@@ -1,6 +1,6 @@
 import "../../styles/modals/PlaceScheduleModal.css"
 
-import { type PlaceSchedule } from "../PlacesStore";
+import { type PlaceSchedule } from "../../interfaces/reports.interface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark} from "@fortawesome/free-solid-svg-icons";
 

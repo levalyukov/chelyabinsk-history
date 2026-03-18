@@ -1,6 +1,6 @@
 import "../../styles/MapPopup.css"
 
-import { type PlaceContent } from "../PlacesStore";
+import { type PlaceContent } from "../../interfaces/reports.interface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlay, faLocationArrow, faClock, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 

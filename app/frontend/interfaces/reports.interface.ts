@@ -16,8 +16,10 @@ export interface PlacePopup {
   readonly title:string;
   readonly description:string;
   readonly address:string;
-  readonly schedule?:[PlaceSchedule,PlaceSchedule,PlaceSchedule,
-    PlaceSchedule,PlaceSchedule,PlaceSchedule,PlaceSchedule
+  readonly schedule?:[
+    PlaceSchedule,PlaceSchedule,PlaceSchedule,
+    PlaceSchedule,PlaceSchedule,PlaceSchedule,
+    PlaceSchedule
   ];
 };
 

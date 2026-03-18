@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { type Places, placesStore } from './PlacesStore';
+import { type Places, placesStore } from './reports.interface';
 
 export interface PlacesProviderContext {
   appPlaces: Places;

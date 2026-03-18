@@ -2,11 +2,11 @@ import "../styles/Favorite.css"
 
 import { Map as MapLibre } from "maplibre-gl";
 import { useState, useContext, useEffect } from "react";
-import { AppContext } from "./PlacesContext";
+import { AppContext } from "../interfaces/reports.provider";
 import PlaceScheduleModal from "./modals/PlaceScheduleModal"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faHeartCrack, faMapLocationDot, faCirclePlay, faCaretDown} from "@fortawesome/free-solid-svg-icons";
-import type { PlaceSchedule } from "./PlacesStore";
+import { type PlaceSchedule } from "../interfaces/reports.interface";
 
 export default function Favorite({map, setPage, appPage, screenWidth}: {
   map: MapLibre | null, screenWidth:number, 
