@@ -43,10 +43,6 @@ export default function Header({
     1: {title: "Избранное", icon: [heartSolid, heartRegular], page: "favorite"}
   };
 
-  function mapZoom(zooming:boolean):void {
-    if (map) (zooming) ? map.zoomIn() : map.zoomOut();
-  };
-
   return (
     <>
       <Settings 
@@ -96,8 +92,8 @@ export default function Header({
         {((getPage === "map" && screenWidth <= 1000 )||(screenWidth >= 1000)) && (
           <div id="map-control" className={placesVisible ? "invisible" : ""}>
             <button onClick={() => setSettingsVisible(true)}><FontAwesomeIcon icon={faCog}/></button>
-            <button onClick={() => mapZoom(true)}><FontAwesomeIcon icon={faPlus}/></button>
-            <button onClick={() => mapZoom(false)}><FontAwesomeIcon icon={faMinus}/></button>
+            <button onClick={() => {if (map) map.zoomIn();}}><FontAwesomeIcon icon={faPlus}/></button>
+            <button onClick={() => {if (map) map.zoomOut();}}><FontAwesomeIcon icon={faMinus}/></button>
             <button className="user-geolocation" onClick={() => {
               getGeolocation({map, setErrorTitle, setErrorText, setUserGeolocationVisible});
             }}><FontAwesomeIcon icon={faLocationArrow}/></button>
@@ -164,8 +160,8 @@ function getGeolocation({map, setErrorTitle, setErrorText, setUserGeolocationVis
           enableHighAccuracy: true,
           timeout: 16000,
           maximumAge: Infinity
-      });
-    };
+        }
+      );};
   };
 };
 

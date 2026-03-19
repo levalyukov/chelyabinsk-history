@@ -1,3 +1,5 @@
+import { type Marker } from "maplibre-gl";
+
 export interface Places {
   [index:number]: PlaceContent
 };
@@ -8,6 +10,7 @@ export interface PlaceContent {
   readonly description:string;
   readonly coords:[number,number];
   readonly popup: PlacePopup;
+  marker?:Marker;
   liked?:boolean;
 };
 

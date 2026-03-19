@@ -1,11 +1,11 @@
 import "../styles/Reports.css"
 
+import { useContext } from "react";
 import { AppContext } from "../interfaces/reports.provider"  
 import { Map as MapLibre } from "maplibre-gl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as heartSolid, faMagnifyingGlassLocation } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as heartRegular } from "@fortawesome/free-regular-svg-icons";
-import { useContext } from "react";
 
 export default function Reports({map, setMobileMenu, screenWidth}: 
   {map:MapLibre | null, setMobileMenu: (state:boolean) => void, screenWidth:number}) {
@@ -27,8 +27,23 @@ export default function Reports({map, setMobileMenu, screenWidth}:
     <div className="place-container">
       {Object.entries(appPlaces).map(([key,item]) => (
         <article key={key} onClick={() => {
-          if (map) map.flyTo({center: [item.coords[1], item.coords[0]], zoom: 16, pitch: 0, bearing: 0}); 
-          setMobileMenu(false);
+          if (map) {
+            map.flyTo({
+              center: [item.coords[1], item.coords[0] + 0.0015], 
+              zoom: 16, 
+              pitch: 0, 
+              bearing: 0
+            });
+          };
+
+          if (item.marker !== undefined) {
+            if (map) {
+              map.on("moveend", () => {
+                if (!item.marker.getPopup().isOpen()) 
+                  item.marker.togglePopup(true);
+              });
+            };
+          }; setMobileMenu(false);
         }}>
           <div className="place-info">
             <img src={item.image} alt="" />

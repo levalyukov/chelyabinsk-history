@@ -1,11 +1,11 @@
 import "../styles/Map.css"
 import "maplibre-gl/dist/maplibre-gl.css";
 
-import MapPopup from "./popups/MapPopup";
+import { useContext, useEffect, useRef} from "react";
 import maplibregl from "maplibre-gl";
+import MapPopup from "./modals/MapPopup";
 import { AppContext } from "../interfaces/reports.provider";
 import { Map as MapLibre } from "maplibre-gl";
-import { useContext, useEffect, useRef} from "react";
 import { createRoot } from "react-dom/client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faFaceFrown } from "@fortawesome/free-solid-svg-icons";
@@ -61,7 +61,6 @@ export default function Map({theme, setMap}:
     }), "top-right");
 
 
-    // User Geolocation
     if (navigator.permissions) {
       navigator.permissions.query({name: 'geolocation'}).then((result) => {
         switch (result.state) {
@@ -89,7 +88,10 @@ export default function Map({theme, setMap}:
   );  
 };
 
-function initMarkersPlaces({map, appPlaces}: {map: maplibregl.Map | null, appPlaces:Places}):void {
+function initMarkersPlaces({map, appPlaces}: {
+  map: maplibregl.Map | null, 
+  appPlaces:Places
+}):void {
   if (map) {
     if (appPlaces) {
       for (let i = Number(Object.keys(appPlaces)[0]); i <= Object.keys(appPlaces).length; i++) {
@@ -97,7 +99,10 @@ function initMarkersPlaces({map, appPlaces}: {map: maplibregl.Map | null, appPla
           const markerEl = document.createElement("div");
           const popupNode = document.createElement("div");
           const popupRender = createRoot(popupNode);
-          const popup = new maplibregl.Popup({ offset: 20 }).setDOMContent(popupNode);
+          const popup = new maplibregl.Popup({ 
+            offset: [0, -20], 
+            anchor: "bottom"
+          }).setDOMContent(popupNode);
 
           markerEl.className = "marker";
           popupRender.render(<MapPopup place={appPlaces[i]}/>);
@@ -111,10 +116,13 @@ function initMarkersPlaces({map, appPlaces}: {map: maplibregl.Map | null, appPla
             };
           });
 
-          new maplibregl.Marker({ element: markerEl })
+          const marker = new maplibregl.Marker({ element: markerEl })
           .setLngLat([appPlaces[i].coords[1], appPlaces[i].coords[0]])
           .setPopup(popup)
           .addTo(map);
+
+          if (appPlaces[i].marker === undefined) 
+            appPlaces[i].marker = marker;
         };
       };
     };
