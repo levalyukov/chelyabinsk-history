@@ -18,7 +18,7 @@ export default function Favorite({map, setPage, appPage, screenWidth}: {
   const datetime = new Date();
   const todayIndex = datetime.getDay() === 0 ? 6 : datetime.getDay() - 1;
   const date = ["понедельник", "вторник", "среда", "четверг", "пятница", "суббота", "воскресенье"]
-  const { appPlaces } = context;
+  const { appPlaces, closeAllPopup } = context;
   const placesEntries = Object.entries(appPlaces).filter(([key,index]) => (key && index.liked));
 
   const [hours, setHours] = useState(new Date().getHours());
@@ -105,6 +105,7 @@ export default function Favorite({map, setPage, appPage, screenWidth}: {
                           cooldown = 250;
                         } else cooldown = 0;
 
+                        closeAllPopup();
                         setTimeout(() => {
                           map.flyTo({
                             center: [item.coords[1], item.coords[0]], 

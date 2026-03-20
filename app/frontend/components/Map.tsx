@@ -4,6 +4,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import { useContext, useEffect, useRef} from "react";
 import maplibregl from "maplibre-gl";
 import MapPopup from "./modals/MapPopup";
+import UserGeoPopup from "./modals/UserGeoPopup";
 import { AppContext } from "../interfaces/reports.provider";
 import { Map as MapLibre } from "maplibre-gl";
 import { createRoot } from "react-dom/client";
@@ -132,10 +133,29 @@ function initMarkersPlaces({map, appPlaces}: {
 export function setUserMarker({map, position}: 
   {map: maplibregl.Map | null, position:GeolocationPosition}) {
   if (map) {
+    const popupNode = document.createElement("div");
+    const popupRender = createRoot(popupNode);
+    const popup = new maplibregl.Popup({
+      offset: [0, -18],
+      anchor: "bottom",
+      className: "user-geo-popup"
+    }).setDOMContent(popupNode);
+    popupRender.render(<UserGeoPopup/>);
+    popup.on("open", () => {
+      const closeBtn = popup.getElement().querySelector(".maplibregl-popup-close-button");
+      if (closeBtn) {
+        closeBtn.innerHTML = ""; 
+        const root = createRoot(closeBtn);
+        root.render(<FontAwesomeIcon icon={faClose} />);
+        popup.on("close", () => root.unmount());
+      };
+    });
+
     const userMarker = document.createElement("div");
     userMarker.className = "user-marker";
     new maplibregl.Marker({ element: userMarker })
     .setLngLat([position.coords.longitude, position.coords.latitude])
+    .setPopup(popup)
     .addTo(map);
   } else console.error("Map is invalid:", map);
 };

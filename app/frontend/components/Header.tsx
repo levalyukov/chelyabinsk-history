@@ -10,7 +10,8 @@ import { Map as MapLibre } from "maplibre-gl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { type IconDefinition, faCompass as compassSolid,   faHeart as heartSolid, faPlus, faMinus, faClose, faBars, faCog, faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 import { faCompass as compassRegular, faHeart as heartRegular } from "@fortawesome/free-regular-svg-icons";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from "../interfaces/reports.provider"
 
 interface Menu {
   [index:number]: {
@@ -31,6 +32,9 @@ export default function Header({
   screenWidth:number, setSettingsVisible: (state:boolean) => void,
   setAppTheme: (state:boolean) => void, updateAppTheme: () => void
 }) {
+  const context = useContext(AppContext);
+  if (!context) return null;
+  const { closeAllPopup } = context;
   const [menuVisible, setMenuVisible] = useState<boolean>(true);
   const [placesVisible, setPlacesMenu] = useState<boolean>(false);
   const reportPage = <Reports map={map} setMobileMenu={setPlacesMenu} screenWidth={screenWidth}/>
@@ -95,6 +99,7 @@ export default function Header({
             <button onClick={() => {if (map) map.zoomIn();}}><FontAwesomeIcon icon={faPlus}/></button>
             <button onClick={() => {if (map) map.zoomOut();}}><FontAwesomeIcon icon={faMinus}/></button>
             <button className="user-geolocation" onClick={() => {
+              closeAllPopup();
               getGeolocation({map, setErrorTitle, setErrorText, setUserGeolocationVisible});
             }}><FontAwesomeIcon icon={faLocationArrow}/></button>
           </div>
