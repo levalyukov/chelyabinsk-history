@@ -12,7 +12,6 @@ export const AppContext = React.createContext<PlacesProviderContext | undefined>
 export function AppProvider({children}: {children: React.ReactNode}) {
   const [place, setPlaces] = useState<Places>(placesStore);
 
-  
   function setToggleLike(key:string, event:React.MouseEvent):void {
     event.stopPropagation();
     const index = Number(key);
@@ -31,8 +30,14 @@ export function AppProvider({children}: {children: React.ReactNode}) {
       if (!currentPlaces) return {} as Places;
 
       Object.values(currentPlaces).forEach((item: PlaceContent) => {
-        item.marker?.getPopup()?.remove();
+        const marker = item.marker;
+        if (marker) {
+          if (marker.getPopup().isOpen()) {
+            marker.togglePopup();
+          };
+        };
       });
+      
       return { ...currentPlaces };
     });
   };

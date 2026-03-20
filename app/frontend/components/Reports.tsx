@@ -30,8 +30,13 @@ export default function Reports({map, setMobileMenu, screenWidth}:
       {Object.entries(appPlaces).map(([key,item]) => (
         <article key={key} onClick={() => {
           if (map) {
+            let value:number = 0;
+
+            if (screenWidth <= 1000) value =  0.001;
+            else value = 0.001;
+
             map.flyTo({
-              center: [item.coords[1], item.coords[0] + 0.0015], 
+              center: [item.coords[1], item.coords[0] + value], 
               zoom: 16, 
               pitch: 0, 
               bearing: 0
@@ -41,10 +46,12 @@ export default function Reports({map, setMobileMenu, screenWidth}:
           if (item.marker !== undefined) {
             if (map) {
               closeAllPopup();
-
               map.once("moveend", () => {
-                if (item.marker.getPopup()  && !item.marker.getPopup().isOpen())
+                if (!item.marker.getPopup().isOpen())
                   item.marker.togglePopup();
+                  item.marker.getPopup()
+                  .setLngLat(item.marker.getLngLat())
+                  .addTo(map);
               }); 
             };
           }; setMobileMenu(false);
