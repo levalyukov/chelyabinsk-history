@@ -16,7 +16,8 @@ export default function Profile({setSettings}:
           </span>
         </div>
 
-        <button className="profile-app-settings" onClick={() => setSettings(true)}>
+        <button className="profile-app-settings" 
+        onClick={() => setSettings(true)}>
           <FontAwesomeIcon icon={faCog}/>
         </button>
       </div>

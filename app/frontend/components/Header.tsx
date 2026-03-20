@@ -177,14 +177,19 @@ function geolocationSuccess({position, map, setErrorTitle, setErrorText}: {
     setUserMarker({map,position});
     map.flyTo({
       center: [position.coords.longitude, position.coords.latitude], 
-      zoom: 16, pitch: 0, bearing: 0
+      zoom: 16, 
+      pitch: 0, 
+      bearing: 0
     });
   };
 };
 
-function geolocationError({error, setErrorTitle, setErrorText, setUserGeolocationVisible}: 
-  {error: GeolocationPositionError, setErrorTitle: (code:string) => void, setErrorText: (code:string) => void,
-  setUserGeolocationVisible: (state:boolean) => void}) {
+function geolocationError({error, setErrorTitle, setErrorText, setUserGeolocationVisible}: {
+  error: GeolocationPositionError, 
+  setErrorTitle: (code:string) => void, 
+  setErrorText: (code:string) => void,
+  setUserGeolocationVisible: (state:boolean) => void
+}) {
   setUserGeolocationVisible(true);
   switch (error.code) {
     case error.PERMISSION_DENIED:

@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { AppContext } from "../interfaces/reports.provider"  
 import { Map as MapLibre } from "maplibre-gl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart as heartSolid, faMagnifyingGlassLocation } from "@fortawesome/free-solid-svg-icons";
+import { faHeart as heartSolid } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as heartRegular } from "@fortawesome/free-regular-svg-icons";
 
 export default function Reports({map, setMobileMenu, screenWidth}: 
@@ -12,13 +12,15 @@ export default function Reports({map, setMobileMenu, screenWidth}:
 
   const context = useContext(AppContext);
   if (!context) return null;
-  const { appPlaces, toggleLike } = context;
+  const { appPlaces, toggleLike, closeAllPopup } = context;
 
   if (Object.keys(appPlaces).length === 0) {
     return (
       <div className="place-container" id="empty">
-        <span><FontAwesomeIcon icon={faMagnifyingGlassLocation}/></span>
-        <p>Нету точек интереса</p>
+        <article id="empty"></article>
+        <article id="empty"></article>
+        <article id="empty"></article>
+        <article id="empty"></article>
       </div>
     );
   };
@@ -38,10 +40,12 @@ export default function Reports({map, setMobileMenu, screenWidth}:
 
           if (item.marker !== undefined) {
             if (map) {
-              map.on("moveend", () => {
-                if (!item.marker.getPopup().isOpen()) 
-                  item.marker.togglePopup(true);
-              });
+              closeAllPopup();
+
+              map.once("moveend", () => {
+                if (item.marker.getPopup()  && !item.marker.getPopup().isOpen())
+                  item.marker.togglePopup();
+              }); 
             };
           }; setMobileMenu(false);
         }}>

@@ -1,15 +1,17 @@
 import React, { useMemo, useState } from 'react';
-import { type Places, placesStore } from './reports.interface';
+import { type PlaceContent, type Places, placesStore } from './reports.interface';
 
 export interface PlacesProviderContext {
   appPlaces: Places;
   toggleLike: (key:string, event:React.MouseEvent) => void;
+  closeAllPopup: () => void;
 };
 
 export const AppContext = React.createContext<PlacesProviderContext | undefined>(undefined);
 
 export function AppProvider({children}: {children: React.ReactNode}) {
   const [place, setPlaces] = useState<Places>(placesStore);
+
   
   function setToggleLike(key:string, event:React.MouseEvent):void {
     event.stopPropagation();
@@ -24,9 +26,21 @@ export function AppProvider({children}: {children: React.ReactNode}) {
     });
   };
 
+  function closeAllPopup():void {
+    setPlaces((currentPlaces: Places) => {
+      if (!currentPlaces) return {} as Places;
+
+      Object.values(currentPlaces).forEach((item: PlaceContent) => {
+        item.marker?.getPopup()?.remove();
+      });
+      return { ...currentPlaces };
+    });
+  };
+
   const value = useMemo(() => ({
     appPlaces: place,
-    toggleLike: setToggleLike
+    toggleLike: setToggleLike,
+    closeAllPopup: closeAllPopup
   }), [place, setToggleLike]);
 
   return (

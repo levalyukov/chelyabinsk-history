@@ -32,20 +32,17 @@ export default function App() {
     if (menuState === "profile")  page = "Профиль";
     document.title = "Экскурсия с доставкой: " + page;
 
-    // Theme
     if (localStorage.getItem("theme")) {
       setAppTheme(localStorage.getItem("theme") === "dark");
       document.documentElement.setAttribute("theme", 
         localStorage.getItem("theme") === "dark" ? "dark" : "light");
     } else localStorage.setItem("theme", "light");
 
-    //! Favorite places
     const favoriteRaw = localStorage.getItem("favorite");
     if (favoriteRaw) {
       const savedStore = JSON.parse(favoriteRaw);
       console.log(savedStore)
     };
-    //! --------------
   }, [theme, menuState]);
 
   return (

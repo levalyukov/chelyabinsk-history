@@ -1,9 +1,31 @@
 .place-container#empty {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  flex-direction: column;
   height: 100vh;
   gap: 12px;
+  padding: 25px 0;
+
+  article#empty {
+    cursor: auto;
+    height: 150px;
+    margin: 0 25px;
+    box-shadow: none;
+    border-radius: 15px;
+    border: 1px solid var(--button-hover);
+    background: var(--bg);
+    background: linear-gradient(90deg,
+      var(--bg) 0%, 
+      var(--button) 50%, 
+      var(--bg) 100%
+    );
+
+    background-size: 200% 100%;
+    animation-duration: 1.25s;
+    animation-name: places-loading;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
 
   span {
     opacity: .5;
@@ -21,6 +43,7 @@
 .place-container {
   display: flex;
   flex-direction: column;
+
   article {
     padding: 25px;
     cursor: pointer;
@@ -78,6 +101,10 @@
 
   article:last-child {border: 0;}
   article:first-child:last-child {border: 0;}
+}
+@keyframes places-loading {
+  0% {background-position: 100% 0;}
+  100% {background-position: -100% 0;}
 }
 
 
