@@ -36,6 +36,19 @@ export interface PlaceSchedule {
 
 export let placesStore:Places = {
   0: {
+    image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/4d/b9/92/houses.jpg?w=900&h=500&s=1",
+    title: "Немецкий Квартал",
+    description: "Уникальный островок малоэтажной европейской застройки середины 1940-х годов.",
+    coords: [55.253676, 61.39424],
+    popup: {
+      image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/4d/b9/92/houses.jpg?w=900&h=500&s=1",
+      title: "Немецкий Квартал",
+      description: "Исторический ансамбль из 30 малоэтажных домов, построенных в 1944–1946 годах пленным немцами и трудармейцами для инженеров ЧМЗ.",
+      address: "Металлургический район, Улица Социалистическая"
+    }
+  },
+
+  1: {
     image: "https://chelyabinsk-love.ru/wp-content/uploads/2022/04/KMO_160860_00027_1_t218_182800.jpeg",
     title: "Кировка",
     description: "Пешеходная часть улицы Кирова в Челябинске.",
@@ -48,7 +61,7 @@ export let placesStore:Places = {
     }
   },
 
-  1: {
+  2: {
     image: "https://chel.dk.ru/system/images/news/000/956/432_x_large_new_origin_copyright.jpg",
     title: "Парк Гагарина",
     description: "Главное место отдыха в сосновом бору в центре города.",
@@ -61,7 +74,7 @@ export let placesStore:Places = {
     }
   },
 
-  2: {
+  3: {
     image: "https://n1s1.hsmedia.ru/55/c6/c1/55c6c1056736ea4a585276947bf46cb8/656x369_1_78921a5a9ea226e3bf588382840b157d@960x540_0xOhcn6zXI_8091120617152733728.jpg.webp",
     title: "Белый Рынок",
     description: "Главное место отдыха в сосновом бору в центре города.",

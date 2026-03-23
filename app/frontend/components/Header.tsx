@@ -17,7 +17,7 @@ interface Menu {
   [index:number]: {
     title:string,
     icon:[IconDefinition, IconDefinition],
-    page:"map" | "favorite" | "profile"
+    page:"map" | "favorite"
   };
 };
 
@@ -26,7 +26,7 @@ export default function Header({
   setSettingsVisible, setAppTheme, getAppTheme, 
   updateAppTheme, screenWidth
 }: {
-  setPage: (page:"map" | "favorite" | "profile") => void, 
+  setPage: (page:"map" | "favorite") => void, 
   getPage:string, map:MapLibre | null, 
   settingsVisible:boolean, getAppTheme:boolean, 
   screenWidth:number, setSettingsVisible: (state:boolean) => void,
@@ -69,7 +69,6 @@ export default function Header({
               <h1>
                 {getPage === "map" && "Точки интереса"}
                 {getPage === "favorite" && "Избранное"}
-                {getPage === "profile" && "Профиль"}
               </h1>
           
               <button onClick={() => setMenuVisible(false)}>

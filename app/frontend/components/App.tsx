@@ -11,7 +11,7 @@ import Favorite from "./Favorite"
 export default function App():React.ReactNode {
   const [theme, setAppTheme] = useState<boolean>(false);
   const [map, setMap] = useState<MapLibre | null>(null);
-  const [menuState, setMenuState] = useState<"map" | "favorite" | "profile">("map");
+  const [menuState, setMenuState] = useState<"map" | "favorite">("map");
   const [width, setWidth] = useState(window.innerWidth);
   const [settingsVisible, setSettingsVisible] = useState<boolean>(false);
 
@@ -29,7 +29,6 @@ export default function App():React.ReactNode {
     let page:string = "";
     if (menuState === "map")      page = "Карта";
     if (menuState === "favorite") page = "Избранное";
-    if (menuState === "profile")  page = "Профиль";
     document.title = "Экскурсия с доставкой: " + page;
 
     if (localStorage.getItem("theme")) {
@@ -37,12 +36,6 @@ export default function App():React.ReactNode {
       document.documentElement.setAttribute("theme", 
         localStorage.getItem("theme") === "dark" ? "dark" : "light");
     } else localStorage.setItem("theme", "light");
-
-    const favoriteRaw = localStorage.getItem("favorite");
-    if (favoriteRaw) {
-      const savedStore = JSON.parse(favoriteRaw);
-      console.log(savedStore)
-    };
   }, [theme, menuState]);
 
   return (

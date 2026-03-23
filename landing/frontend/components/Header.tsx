@@ -1,8 +1,6 @@
 import "../styles/Header.css";
 
 import ru from "../images/flags/RU.svg";
-// import zh from "../images/flags/CN.svg";
-// import en from "../images/flags/US.svg";
 
 import lightLogotype  from "../images/light-logo.svg";
 import darkLogotype   from "../images/dark-logo.svg";
@@ -34,9 +32,7 @@ export default function Header({setTheme, getTheme, setLang}: {
   };
 
   const languages:LanguageKeys = {
-    0: {language: "Русский", key: "ru", flag: ru},
-    // 1: {language: "中文", key: "zh", flag: zh},
-    // 2: {language: "English", key: "en", flag: en}
+    0: {language: "Русский", key: "ru", flag: ru}
   };
 
   return (

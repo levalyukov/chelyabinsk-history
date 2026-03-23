@@ -35,11 +35,11 @@ export default function MapPopup({place}: {place:PlaceContent}):React.ReactNode 
           <p><span><FontAwesomeIcon icon={faLocationArrow}/></span> {place.coords[1]} {place.coords[0]}</p>
         </nav>
         
-        <nav className="map-popup-actions">
-          <button className="map-popup-actions-report" onClick={() => console.log("")}>
+        {/* <nav className="map-popup-actions">
+          <button className="map-popup-actions-report" disabled onClick={() => console.log("")}>
             Смотреть репортаж <span><FontAwesomeIcon icon={faCirclePlay}/></span>
           </button>
-        </nav>
+        </nav> */}
       </span>
     </div>
   );

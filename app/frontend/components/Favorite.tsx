@@ -10,8 +10,8 @@ import { type PlaceSchedule } from "../interfaces/reports.interface";
 
 export default function Favorite({map, setPage, appPage, screenWidth}: {
   map: MapLibre | null, screenWidth:number, 
-  appPage:"map" | "favorite" | "profile",
-  setPage: (page:"map" | "favorite" | "profile") => void
+  appPage:"map" | "favorite",
+  setPage: (page:"map" | "favorite") => void
 }):React.ReactNode {
   const context = useContext(AppContext);
   if (!context) return null;

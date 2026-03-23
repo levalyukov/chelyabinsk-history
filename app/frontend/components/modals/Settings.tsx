@@ -9,7 +9,7 @@ interface SettingsSection {
   [item:number]: {
     title:string,
     icon:IconDefinition,
-    page:"app"|"profile"|"privacy-policy"|"licenses"
+    page:"app"|"privacy-policy"|"licenses"
   };
 };
 
@@ -40,12 +40,6 @@ export default function Settings({setState, getState, getAppTheme, setAppTheme, 
 
   const [settingPage, setSettingsPage] = useState<"app"|"profile"|"privacy-policy"|"licenses">("app");
   const navmenu:SettingsSection = {
-    // 0: {
-    //   title: "Профиль",
-    //   icon: faUserPen,
-    //   page: "profile"
-    // },
-    
     1: {
       title: "Приложение",
       icon: faGear,
@@ -89,50 +83,10 @@ export default function Settings({setState, getState, getAppTheme, setAppTheme, 
 
           <section className="modal-page">
             {settingPage === "app" &&  <AppSection setTheme={setAppTheme} getTheme={getAppTheme} updateTheme={updateAppTheme}/>}
-            {settingPage === "profile" && <ProfileSection/>}
             {settingPage === "privacy-policy" && <PrivacyPolicySection/>}
             {settingPage === "licenses" && <LicensesSection/>}
           </section>
         </div>
-      </div>
-    </div>
-  );
-};
-
-function ProfileSection() {
-  return (
-    <div className="profile-section">
-      <h3>Профиль</h3>
-      <div className="profile-content">
-        <span>
-          <p>Фотография профиля</p>
-          <p><button id="change-label">Обновить</button></p>
-        </span>
-
-        <span>
-          <p>Имя пользователя</p>
-          <p>Username <button id="change"><span><FontAwesomeIcon icon={faPen}/></span></button></p>
-        </span>
-
-        <span>
-          <p>Электронная почта</p>
-          <p>ex****@gmail.com <button id="change"><span><FontAwesomeIcon icon={faPen}/></span></button></p>
-        </span>
-
-        <span>
-          <p>Пароль</p>
-          <p><button id="change-label">Изменить</button></p>
-        </span>
-
-        <span>
-          <p>Выйти из профиля</p>
-          <p><button id="user-delete">Выйти</button></p>
-        </span>
-
-        <span>
-          <p>Удалить профиль</p>
-          <p><button id="user-delete">Удалить</button></p>
-        </span>
       </div>
     </div>
   );

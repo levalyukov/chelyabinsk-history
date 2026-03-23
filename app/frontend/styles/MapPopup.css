@@ -62,12 +62,20 @@
         background-color: var(--button-hover);
       }
 
+      button.map-popup-actions-report[disabled] {
+        opacity: .75;
+        cursor: not-allowed;
+      } button.map-popup-actions-report[disabled]:hover {
+        opacity: .75;
+        background-color: var(--text);
+      }
+
       button.map-popup-actions-report {
         gap: 6px;
         display: flex;
+        color: var(--bg);
         align-items: center;
         justify-content: center;
-        color: var(--bg);
         background-color: var(--text);
       } button.map-popup-actions-report:hover {
         background-color: var(--title);
