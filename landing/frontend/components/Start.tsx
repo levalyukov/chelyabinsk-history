@@ -1,6 +1,6 @@
 import "../styles/Start.css"
 
-import { places } from "../interfaces/Places.interface"
+import { places } from "../interfaces/places.interface"
 
 export default function Start() {
   return (
@@ -23,8 +23,6 @@ export default function Start() {
         </>
         ) : (
           <>
-            <article id="empty"></article>
-            <article id="empty"></article>
             <article id="empty"></article>
             <article id="empty"></article>
             <article id="empty"></article>

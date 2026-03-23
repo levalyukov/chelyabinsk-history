@@ -1,7 +1,7 @@
 import "../styles/App.css";
 
 import Header from "./Header";
-import Intro  from "./Intro";
+import Hero  from "./Hero";
 import About  from "./About";
 import Tour   from "./Tour";
 import Start  from "./Start";
@@ -64,7 +64,7 @@ export default function Landing() {
   return (
     <main id="app">
       <Header setTheme={setTheme} getTheme={getTheme} setLang={setLanguage}/>
-      <Intro/>
+      <Hero/>
       <About/>
       <Tour/>
       <Start/>

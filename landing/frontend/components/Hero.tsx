@@ -1,10 +1,10 @@
-import "../styles/Intro.css";
+import "../styles/Hero.css";
 
 import testLogotype from "../images/test-logo.svg";
 import backgroundLight from "../images/wallpapers/chelyabinsk-0.png";
 import backgroundDark from "../images/wallpapers/chelyabinsk-1.png";
 
-export default function Intro() {
+export default function Hero():React.ReactNode {
   return (
     <section className="intro">
       <img src={(String(localStorage.getItem("theme")) === "dark" ? backgroundDark : backgroundLight)} alt=""/>
