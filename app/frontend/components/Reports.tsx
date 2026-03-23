@@ -7,9 +7,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart as heartSolid } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as heartRegular } from "@fortawesome/free-regular-svg-icons";
 
-export default function Reports({map, setMobileMenu, screenWidth}: 
-  {map:MapLibre | null, setMobileMenu: (state:boolean) => void, screenWidth:number}) {
-
+export default function Reports({map, setMobileMenu, screenWidth}: {
+  map:MapLibre | null, 
+  setMobileMenu: (state:boolean) => void, 
+  screenWidth:number
+}):React.ReactNode {
   const context = useContext(AppContext);
   if (!context) return null;
   const { appPlaces, toggleLike, closeAllPopup } = context;
@@ -57,7 +59,7 @@ export default function Reports({map, setMobileMenu, screenWidth}:
           }; setMobileMenu(false);
         }}>
           <div className="place-info">
-            <img src={item.image} alt="" />
+            <img src={item.image} alt="place-img.jpg" />
             <div className="place-content">
               <h2>{item.title}</h2>
               <p>{item.description}</p>

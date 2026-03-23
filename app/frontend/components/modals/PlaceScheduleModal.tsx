@@ -7,7 +7,7 @@ import { faXmark} from "@fortawesome/free-solid-svg-icons";
 export default function PlaceScheduleModal(
   {schedule, visible, changeVisible}: 
   {schedule:PlaceSchedule | null, visible:boolean, changeVisible: (state:boolean) => void}
-) {
+):React.ReactNode {
   if (!schedule) return null;
   const datetime = new Date();
   const todayIndex = datetime.getDay() === 0 ? 6 : datetime.getDay() - 1;

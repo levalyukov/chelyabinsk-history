@@ -16,8 +16,10 @@ import { type StyleSpecification } from 'maplibre-gl';
 import mapDarkRaw from "../styles/map-dark.json"
 import mapLightRaw from "../styles/map-light.json"
 
-export default function Map({theme, setMap}: 
-  {setMap:(map:MapLibre | null) => void, theme:boolean}) {
+export default function Map({theme, setMap}: {
+  theme:boolean,
+  setMap:(map:MapLibre | null) => void
+}):React.ReactNode {
   const mapContainer = useRef<HTMLDivElement>(null);
   const context = useContext(AppContext);
   const mapDark = mapDarkRaw as unknown as StyleSpecification;

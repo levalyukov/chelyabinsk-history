@@ -12,7 +12,7 @@ export default function Favorite({map, setPage, appPage, screenWidth}: {
   map: MapLibre | null, screenWidth:number, 
   appPage:"map" | "favorite" | "profile",
   setPage: (page:"map" | "favorite" | "profile") => void
-}) {
+}):React.ReactNode {
   const context = useContext(AppContext);
   if (!context) return null;
   const datetime = new Date();
@@ -63,9 +63,8 @@ export default function Favorite({map, setPage, appPage, screenWidth}: {
                                 setScheduleModal(true);
                                 setPlaceSchedule(item.popup.schedule);
                               };
-                            }}
-                            id={hours >= item.popup.schedule[todayIndex].openHours ? "open" : "close"}>
-                              {hours >= item.popup.schedule[todayIndex].openHours 
+                            }} id={hours >= item.popup.schedule[todayIndex].openHours ? "open" : "close"}>
+                              {hours >= item.popup.schedule[todayIndex].openHours && hours < item.popup.schedule[todayIndex].closeHours
                               ? "Открыто до " + String(item.popup.schedule[todayIndex].closeHours).padStart(2, "0") 
                               + ":" + String(item.popup.schedule[todayIndex].closeMinutes).padStart(2, "0")
                               : "Закрыто до " + String(item.popup.schedule[todayIndex].openHours).padStart(2, "0") 

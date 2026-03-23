@@ -8,7 +8,7 @@ import Map      from "./Map"
 import Header   from "./Header"
 import Favorite from "./Favorite"
 
-export default function App() {
+export default function App():React.ReactNode {
   const [theme, setAppTheme] = useState<boolean>(false);
   const [map, setMap] = useState<MapLibre | null>(null);
   const [menuState, setMenuState] = useState<"map" | "favorite" | "profile">("map");

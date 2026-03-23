@@ -5,7 +5,7 @@ import { faFaceFrown } from "@fortawesome/free-solid-svg-icons";
 
 export default function UserGeolocation({errorTitle, errorText, UGvisible, setUG}: {
   errorTitle:string, errorText:string, UGvisible:boolean, setUG: (state:boolean) => void
-}) {
+}):React.ReactNode {
   return (
     <div className="user-geolocation-background" id={!UGvisible ? "visible" : ""}>
       <div className="user-geolocation">

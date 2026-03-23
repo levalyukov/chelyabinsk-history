@@ -4,7 +4,7 @@ import { type PlaceContent } from "../../interfaces/reports.interface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlay, faLocationArrow, faClock, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
-export default function MapPopup({place}: {place:PlaceContent}) {
+export default function MapPopup({place}: {place:PlaceContent}):React.ReactNode {
   const TITLE_MAX:number = 26;
   const DESCRIPTION_MAX:number = 128;
   const PLACE_INFO:number = 64;

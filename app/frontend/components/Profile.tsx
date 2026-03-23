@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 
 export default function Profile({setSettings}: 
-  {setSettings: (state:boolean) => void}) {
+  {setSettings: (state:boolean) => void}):React.ReactNode {
   return (
     <section id="user-profile">
       <div className="profile">

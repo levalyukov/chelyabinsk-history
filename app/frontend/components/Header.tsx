@@ -31,7 +31,7 @@ export default function Header({
   settingsVisible:boolean, getAppTheme:boolean, 
   screenWidth:number, setSettingsVisible: (state:boolean) => void,
   setAppTheme: (state:boolean) => void, updateAppTheme: () => void
-}) {
+}):React.ReactNode {
   const context = useContext(AppContext);
   if (!context) return null;
   const { closeAllPopup } = context;
