@@ -1,7 +1,7 @@
 import "../styles/Footer.css";
 
 import { useEffect, useState } from "react";
-import { type Footer, type FooterLinks, normalizeLink, foo } from "../interfaces/footer.interface";
+import { type Footer, type FooterLinks, normalizeLink, foo } from "../interfaces/Footer.interface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Footer() {
