@@ -1,6 +1,6 @@
 import "../styles/Start.css"
 
-import { places } from "../interfaces/places.interface"
+import { places } from "../interfaces/Places.interface"
 
 export default function Start() {
   return (
