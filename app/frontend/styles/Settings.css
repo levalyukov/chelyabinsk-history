@@ -320,9 +320,17 @@
   }
 
   p {
+    text-align: justify;
     padding: 0px 25px;
     color: var(--text);
     font-weight: normal;
+  }
+
+  a {
+    color: var(--primary);
+    text-decoration: none;
+  } a:hover {
+    text-decoration: underline;
   }
 }
 

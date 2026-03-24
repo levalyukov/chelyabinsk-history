@@ -27,22 +27,18 @@ export default function Footer({licenseVisible, policyVisible}:{
         items: {
           0: {
             name: "Город Трудовой Доблести",
-            href: "",
             icon: faHammer
           },
           1: {
             name: "1.2 млн жителей",
-            href: "",
             icon: faPeopleGroup
           },
           2: {
             name: "Часовой пояс: МСК+2",
-            href: "",
             icon: faClock
           },
           3: {
             name: "Основан в 1736 г.",
-            href: "",
             icon: faEarthAsia
           },
         }
@@ -106,7 +102,7 @@ export default function Footer({licenseVisible, policyVisible}:{
                         <a key={id} href={normalizeLink(item.href)}>
                           {item.icon !== undefined && 
                           (<span><FontAwesomeIcon icon={item.icon}/></span>)}
-                          {item.name}фыв
+                          {item.name}
                         </a>
                       ) : (
                         <p key={id}>
