@@ -7,10 +7,17 @@ import Tour   from "./Tour";
 import Start  from "./Start";
 import Footer from "./Footer";
 
+import LicenseModal from "./modals/LicenseModal";
+import PrivacyPolicyModal from "./modals/PrivacyPolicyModal";
+
 import { useEffect, useState } from "react";
 
 export default function Landing() {
   const [theme, changeTheme] = useState<boolean>(false);
+  const [licenseVisible, setLicenseVisible] = useState<boolean>(false);
+  const [policyVisible, setPrivacyPolicyVisible] = useState<boolean>(false);
+  const changeLicenseVisible = () => setLicenseVisible(true);
+  const changePolicyVisible = () => setPrivacyPolicyVisible(true);
 
   function setTheme(): void {
     changeTheme(!theme);
@@ -19,7 +26,7 @@ export default function Landing() {
     localStorage.setItem("theme", (!theme) ? "dark" : "light");
   };
 
-  function getTheme(): boolean {
+  function getTheme():boolean {
     return theme;
   };
 
@@ -29,6 +36,9 @@ export default function Landing() {
   };
 
   useEffect(() => {
+    if (licenseVisible || policyVisible) document.body.style.overflowY = "hidden";
+    else document.body.style.overflowY = "scroll";
+
     if (localStorage.getItem("theme")) {
       changeTheme((localStorage.getItem("theme") === "dark") ? true : false);
       document.documentElement.setAttribute(
@@ -59,16 +69,24 @@ export default function Landing() {
       link.href = browserTheme ? "./logotype-light.svg" : "./logotype-dark.svg";
       document.getElementsByTagName('head')[0].appendChild(link);
     };
-  }, []);
+  }, [licenseVisible, policyVisible]);
 
   return (
     <main id="app">
-      <Header setTheme={setTheme} getTheme={getTheme} setLang={setLanguage}/>
+      {licenseVisible && (<LicenseModal setModalVisible={setLicenseVisible}/>)}
+      {policyVisible && (<PrivacyPolicyModal setModalVisible={setPrivacyPolicyVisible}/>)}
+
+      <Header 
+        setTheme={setTheme} 
+        getTheme={getTheme} 
+        setLang={setLanguage}/>
       <Hero/>
       <About/>
       <Tour/>
       <Start/>
-      <Footer/>
+      <Footer
+        licenseVisible={changeLicenseVisible}
+        policyVisible={changePolicyVisible}/>
     </main>
   );
 };

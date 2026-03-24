@@ -26,9 +26,9 @@ export default function Header({setTheme, getTheme, setLang}: {
   const [mobileMenu, setMobileMenu] = useState<boolean>(false);
 
   const navmenu:Menu = {
-    0: {title: "Памятка туристу", href: ""},
-    1: {title: "Обратная связь", href: ""},
-    2: {title: "Контакты", href: ""}
+    // 0: {title: "Памятка туристу", href: ""},
+    // 1: {title: "Обратная связь", href: ""},
+    // 2: {title: "Контакты", href: ""}
   };
 
   const languages:LanguageKeys = {
@@ -37,6 +37,8 @@ export default function Header({setTheme, getTheme, setLang}: {
 
   return (
     <>
+      {(Object.keys(navmenu).length > 0) && (
+
       <div id="mobile-navmenu-container" className={!mobileMenu ? "invisible" : "visible"}>
         <div className="mobile-navmenu">
           
@@ -62,6 +64,8 @@ export default function Header({setTheme, getTheme, setLang}: {
           </div>
         </div>
       </div>
+
+      )}
 
       <header id="navmenu">
         <div className="navmenu-container">
@@ -92,9 +96,11 @@ export default function Header({setTheme, getTheme, setLang}: {
                 ))}
               </div>
             </div>
+            {Object.keys(navmenu).length > 0 && (
             <button className="mobile-menu" onClick={() => setMobileMenu(!mobileMenu)}>
               <span><FontAwesomeIcon icon={faBars}/></span>
             </button>
+            )}
           </nav>
         </div>
       </header>

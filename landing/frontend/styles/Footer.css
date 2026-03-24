@@ -90,6 +90,20 @@ footer {
             justify-content: center;
           }
         }
+
+        button {
+          border: 0;
+          outline: none;
+          cursor: pointer;
+          font-size: 16px;
+          text-align: left;
+          transition: none;
+          color: var(--text);
+          background-color: transparent;
+        } button:hover {
+          color: var(--primary);
+          text-decoration: underline;
+        }
       }
     }
 

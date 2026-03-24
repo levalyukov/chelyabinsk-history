@@ -2,7 +2,7 @@ import "../../styles/Settings.css"
 
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { type IconDefinition, faClose, faFileLines, faGear, /* faUserPen, */ faShieldHalved, faFontAwesome, faPen, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { type IconDefinition, faClose, faFileLines, faGear, faShieldHalved, faFontAwesome, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faOpenstreetmap } from "@fortawesome/free-brands-svg-icons";
 
 interface SettingsSection {
@@ -21,7 +21,7 @@ interface SocialMedia {
   };
 };
 
-interface Licence {
+interface Licences {
   [item:number]: {
     title:string,
     license:string,
@@ -152,7 +152,7 @@ function PrivacyPolicySection() {
 };
 
 function LicensesSection() {
-  const licenses:Licence = {
+  const licenses:Licences = {
     0: {
       title:    "MapLibre GL",
       license:  "BSD 3-Clause",

@@ -2,7 +2,7 @@ import "../../styles/MapPopup.css"
 
 import { type PlaceContent } from "../../interfaces/reports.interface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCirclePlay, faLocationArrow, faClock, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { faLocationArrow, faClock, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 export default function MapPopup({place}: {place:PlaceContent}):React.ReactNode {
   const TITLE_MAX:number = 26;
@@ -35,11 +35,16 @@ export default function MapPopup({place}: {place:PlaceContent}):React.ReactNode 
           <p><span><FontAwesomeIcon icon={faLocationArrow}/></span> {place.coords[1]} {place.coords[0]}</p>
         </nav>
         
-        {/* <nav className="map-popup-actions">
+
+        {/* Вынужденная мера */}
+
+        {
+        /* <nav className="map-popup-actions">
           <button className="map-popup-actions-report" disabled onClick={() => console.log("")}>
             Смотреть репортаж <span><FontAwesomeIcon icon={faCirclePlay}/></span>
           </button>
-        </nav> */}
+        </nav> */
+        }
       </span>
     </div>
   );

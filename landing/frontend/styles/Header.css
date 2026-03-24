@@ -107,7 +107,7 @@ header#navmenu {
           right: 0;
           gap: 5px;
           padding: 5px;
-          margin-top: 15px;
+          margin-top: 10px;
           margin-right: 12px;
           border-radius: 15px;
           border: 1px solid var(--button);
