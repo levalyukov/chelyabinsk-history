@@ -22,7 +22,7 @@ export default function Favorite({map, setPage, appPage, screenWidth}: {
   const placesEntries = Object.entries(appPlaces).filter(([key,index]) => (key && index.liked));
 
   const [hours, setHours] = useState(new Date().getHours());
-  const [schedule, setVisibleSchedule] = useState<boolean>(false);
+  const [openSchedules, setOpenSchedules] = useState<Record<string, boolean>>({});
   const [scheduleModal, setScheduleModal] = useState<boolean>(false);
   const [placeSchedule, setPlaceSchedule] = useState<PlaceSchedule | null>(null);
 
@@ -55,11 +55,14 @@ export default function Favorite({map, setPage, appPage, screenWidth}: {
                             <button className="place-schedule-current"
                             onClick={() => {
                               if (screenWidth > 1000) {
-                                setVisibleSchedule(!schedule);
+                                setOpenSchedules(prev => ({
+                                  ...prev,
+                                  [key]: !prev[key]
+                                }));
                                 setScheduleModal(false);
                                 setPlaceSchedule(null);
                               } else {
-                                setVisibleSchedule(false);
+                                setOpenSchedules({});
                                 setScheduleModal(true);
                                 setPlaceSchedule(item.popup.schedule);
                               };
@@ -71,7 +74,7 @@ export default function Favorite({map, setPage, appPage, screenWidth}: {
                               + ":" + String(item.popup.schedule[todayIndex].openMinutes).padStart(2, "0")}
                               <span><FontAwesomeIcon icon={faCaretDown}/></span>
                             </button>
-                            <div className="dropdown-schedule-content" id={schedule ? "visible" : ""}>
+                            <div className="dropdown-schedule-content" id={openSchedules[key] ? "visible" : ""}>
                               {Object.keys(item.popup.schedule).map(([key]) => (
                                 <p className="dropdown-content" key={key}
                                 id={(todayIndex === Number(key)) ? "active" : ""}>

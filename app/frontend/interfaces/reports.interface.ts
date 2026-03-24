@@ -55,8 +55,8 @@ export let placesStore:Places = {
     coords: [55.163917, 61.40065],
     popup: {
       image: "https://chelyabinsk-love.ru/wp-content/uploads/2022/04/KMO_160860_00027_1_t218_182800.jpeg",
-      title: "Пешеходная улица «Кировка»",
-      description: "Кировка — пешеходная часть улицы Кирова в Челябинске, ставшая одной из главных достопримечательностей города.",
+      title: "Пешеходная улица \"Кировка\"",
+      description: "Кировка - пешеходная часть улицы Кирова в Челябинске, ставшая одной из главных достопримечательностей города.",
       address: "Центральный район, Улица Кирова"
     }
   },
@@ -69,7 +69,7 @@ export let placesStore:Places = {
     popup: {
       image: "https://chel.dk.ru/system/images/news/000/956/432_x_large_new_origin_copyright.jpg",
       title: "Парк Гагарина",
-      description: "главное место отдыха в сосновом бору в центре города. Он предлагает аттракционы (колесо обозрения, «Гулливер»), «Лесной экстрим», прокат лодок/велосипедов, фонтан «Счастье», контактный зоопарк, зимой — каток и лыжную базу",
+      description: "Центр отдыха в сосновом бору. Аттракционы: колесо обозрения, «Гулливер», «Лесной экстрим». Прокат лодок и велосипедов. Фонтан «Счастье», контактный зоопарк. Зимой — каток и лыжная база.",
       address: "Центральный район, Коммуны 100"
     }
   },
@@ -92,6 +92,28 @@ export let placesStore:Places = {
         {openHours: 11, openMinutes: 0, closeHours: 23, closeMinutes: 0},
         {openHours: 11, openMinutes: 0, closeHours: 23, closeMinutes: 0},
         {openHours: 11, openMinutes: 0, closeHours: 22, closeMinutes: 0, dayoff: true},
+      ]
+    }
+  },
+
+  4: {
+    image: "https://fs.tonkosti.ru/c0/9i/c09i5mz1crw4004osw0wosgs8.jpg",
+    title: "Театр oперы и балета",
+    description: "Ведущая оперная сцена Южного Урала. Классический и современный репертуар.",
+    coords: [55.166625, 61.40195],
+    popup: {
+      image: "https://cdn.culture.ru/images/63b28e2f-58c4-58d2-8441-87e388ce49e1",
+      title: "Театр oперы и балета",
+      description: "главное место отдыха в сосновом бору в центре города. Он предлагает аттракционы (колесо обозрения, «Гулливер»), «Лесной экстрим», прокат лодок/велосипедов, фонтан «Счастье», контактный зоопарк, зимой — каток и лыжную базу",
+      address: "Центральный район, пл. Ярославского 1",
+      schedule: [
+        {openHours: 10, openMinutes: 0, closeHours: 20, closeMinutes: 0},
+        {openHours: 10, openMinutes: 0, closeHours: 20, closeMinutes: 0},
+        {openHours: 10, openMinutes: 0, closeHours: 20, closeMinutes: 0},
+        {openHours: 10, openMinutes: 0, closeHours: 20, closeMinutes: 0},
+        {openHours: 10, openMinutes: 0, closeHours: 20, closeMinutes: 0},
+        {openHours: 10, openMinutes: 0, closeHours: 20, closeMinutes: 0},
+        {openHours: 10, openMinutes: 0, closeHours: 20, closeMinutes: 0, dayoff: true},
       ]
     }
   },
