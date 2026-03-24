@@ -6,7 +6,7 @@ import lightLogotype  from "../images/light-logo.svg";
 import darkLogotype   from "../images/dark-logo.svg";
 
 import { useState } from "react";
-import { type LanguageKeys } from "../interfaces/app.interface";
+import { type LanguageKeys } from "../interfaces/App.interface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faCircleHalfStroke, faGlobe, faXmark } from "@fortawesome/free-solid-svg-icons";
 
