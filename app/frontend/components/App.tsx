@@ -47,11 +47,16 @@ export default function App():React.ReactNode {
         getAppTheme={theme} setAppTheme={setAppTheme}  
         updateAppTheme={updateAppTheme} screenWidth={width}/>
 
-      <div style={{ display: (menuState === "favorite" && width <= 1000) ? "block" : "none" }}>
+      <div style={{ 
+        display: (menuState === "favorite" && width <= 1000) ? "block" : "none",
+        position: "absolute",
+        width: "100%",
+        height: "100vh"
+      }}>
         <Favorite map={map} screenWidth={width} setPage={setMenuState} appPage={menuState}/>
       </div>
 
-      <div style={{ display: (menuState === "map" || width > 1000) ? "block" : "none" }}>
+      <div style={{ visibility: (menuState === "map" || width > 1000) ? "visible" : "hidden", zIndex: -10 }}>
         <Map setMap={setMap} theme={theme}/>
       </div>
     </AppProvider>

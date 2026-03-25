@@ -140,7 +140,7 @@ section.favorite {
             width: 100%;
             padding: 10px 0;
             cursor: pointer;
-            transition: .15s;
+            transition: .25s;
             color: var(--text);
             border-radius: 25px;
             background-color: transparent;

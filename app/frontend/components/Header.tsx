@@ -92,7 +92,7 @@ export default function Header({
           </section>
         </header>
 
-        {((getPage === "map" && screenWidth <= 1000 )||(screenWidth >= 1000)) && (
+        {((getPage === "map" && screenWidth <= 1000 )||(screenWidth > 1000)) && (
           <div id="map-control" className={placesVisible ? "invisible" : ""}>
             <button onClick={() => setSettingsVisible(true)}><FontAwesomeIcon icon={faCog}/></button>
             <button onClick={() => {if (map) map.zoomIn();}}><FontAwesomeIcon icon={faPlus}/></button>
@@ -137,6 +137,7 @@ export default function Header({
           <nav className="actions">
             {Object.entries(navmenu).map(([key,index]) => (
               <button key={key} onClick={() => {
+                closeAllPopup();
                 setPage(index.page);
                 setPlacesMenu(false);
               }} 

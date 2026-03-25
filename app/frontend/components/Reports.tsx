@@ -35,7 +35,7 @@ export default function Reports({map, setMobileMenu, screenWidth}: {
             let value:number = 0;
 
             if (screenWidth <= 1000) value =  0.001;
-            else value = 0.001;
+            else value = 0.0015;
 
             map.flyTo({
               center: [item.coords[1], item.coords[0] + value], 
