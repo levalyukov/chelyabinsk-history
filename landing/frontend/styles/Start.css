@@ -43,6 +43,7 @@ section#start {
   .places-container::-webkit-scrollbar {
     display: none;
   }
+
   .places-container {
     width: 100%;
     margin: .75cm 0;
@@ -132,12 +133,6 @@ article#empty {
   section#start {
     .places-container {
       article {
-        height: 300px;
-        width: 300px;
-        img {
-          height: 300px;
-          width: 300px;
-        }
         .info {
           h2 {font-size: 20px;}
           p {font-size: 16px;} 
@@ -161,10 +156,8 @@ article#empty {
       } 
 
       article {
-        height: 250px;
-        width: 200px;
         img {
-          height: 250px;
+          height: 125px;
           width: 200px;
         }
         .info {
