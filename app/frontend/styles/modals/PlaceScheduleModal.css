@@ -27,13 +27,26 @@
     flex-direction: column;
 
     .place-schedule-header {
+      width: 100%;
       display: flex;
+      padding-top: 5px;
       align-items: center;
-      justify-content: right;
+      justify-content: space-between;
+
+      span.place-schedule-name {
+        display: flex;
+        padding: 0 15px;
+        font-size: 16px;
+        color: var(--title);
+        font-weight: bold;
+      }
+
       button {
         display: flex;
         align-items: center;
         justify-content: center;
+
+        margin-right: 5px;
 
         border: 0;
         width: 30px;

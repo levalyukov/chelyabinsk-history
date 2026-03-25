@@ -104,7 +104,7 @@ export let placesStore:Places = {
     popup: {
       image: "https://cdn.culture.ru/images/63b28e2f-58c4-58d2-8441-87e388ce49e1",
       title: "Театр oперы и балета",
-      description: "Одна из главных музыкальных сцен Урала. Открыт в 1956 году. В репертуаре - русская и зарубежная классика, современные постановки. Здание - яркий пример сталинского неоклассицизма, памятник архитектуры.",
+      description: "Одна из главных музыкальных сцен Урала. Открыт в 1956 году. В репертуаре - русская и зарубежная классика, современные постановки.",
       address: "Центральный район, пл. Ярославского 1",
       schedule: [
         {openHours: 10, openMinutes: 0, closeHours: 20, closeMinutes: 0},
@@ -115,6 +115,19 @@ export let placesStore:Places = {
         {openHours: 10, openMinutes: 0, closeHours: 20, closeMinutes: 0},
         {openHours: 10, openMinutes: 0, closeHours: 20, closeMinutes: 0, dayoff: true},
       ]
+    }
+  },
+
+  5: {
+    image: "https://lh3.googleusercontent.com/gps-cs-s/AHVAweqTeTjWP2NUMRIueeE7-advL2vLHB3s-J4uRvxRwSIeGw8FToil3DyNTpx2fnw_hZ1LLcIjXH1bQILjJGRtYnp6yFkUJNh3iie7vmOSXoyrQ3nN8vBlhu2iI8x-RziW5qEcS12RTA=s680-w680-h510-rw",
+    title: "Памятник И.В. Курчатову",
+    description: "Выдающийся физик, основоположник советской атомной программы.",
+    coords: [55.15934, 61.36286],
+    popup: {
+      image: "https://chel.guide/sites/default/files/styles/hd_1280x720/public/pubs-images/2023/05/dd113b135460ee654f908aad63bca0ba.jpg.webp?h=12a1b64b&itok=IscjtG8c",
+      title: "Памятник Игорю Васильевичу Курчатову",
+      description: "Выдающемуся физику, \"отцу\" советского атомного проекта. Монумент в виде стилизованного атома на высоком постаменте - один из символов Челябинска.",
+      address: "Центральный район, пр. Ленина 1"
     }
   },
 };

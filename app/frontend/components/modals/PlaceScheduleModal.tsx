@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark} from "@fortawesome/free-solid-svg-icons";
 
 export default function PlaceScheduleModal(
-  {schedule, visible, changeVisible}: 
-  {schedule:PlaceSchedule | null, visible:boolean, changeVisible: (state:boolean) => void}
+  {placeName, schedule, visible, changeVisible}: 
+  {placeName:string, schedule:PlaceSchedule | null, visible:boolean, changeVisible: (state:boolean) => void}
 ):React.ReactNode {
   if (!schedule) return null;
   const datetime = new Date();
@@ -17,6 +17,7 @@ export default function PlaceScheduleModal(
     <div className="place-schedule-background" id={!visible ? "invisible" : ""}>
       <div className="place-schedule-modal">
         <nav className="place-schedule-header">
+          <span className="place-schedule-name"><p>{placeName}</p></span>
           <button onClick={() => changeVisible(false)}>
             <FontAwesomeIcon icon={faXmark}/>
           </button>
