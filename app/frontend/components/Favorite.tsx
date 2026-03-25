@@ -25,6 +25,7 @@ export default function Favorite({map, setPage, appPage, screenWidth}: {
   const [openSchedules, setOpenSchedules] = useState<Record<string, boolean>>({});
   const [scheduleModal, setScheduleModal] = useState<boolean>(false);
   const [placeSchedule, setPlaceSchedule] = useState<PlaceSchedule | null>(null);
+  const [placeTitle, setPlaceTitle] = useState<string>("");
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -37,7 +38,7 @@ export default function Favorite({map, setPage, appPage, screenWidth}: {
   if (placesEntries.length > 0) {
     return (
       <>
-        <PlaceScheduleModal schedule={placeSchedule} visible={scheduleModal} changeVisible={setScheduleModal}/>
+        <PlaceScheduleModal placeName={placeTitle} schedule={placeSchedule} visible={scheduleModal} changeVisible={setScheduleModal}/>
         <section className="favorite">
           <div className="favorite-container">
             {placesEntries.map(([key,item]) => (
@@ -55,14 +56,13 @@ export default function Favorite({map, setPage, appPage, screenWidth}: {
                             <button className="place-schedule-current"
                             onClick={() => {
                               if (screenWidth > 1000) {
-                                setOpenSchedules(prev => ({
-                                  ...prev,
-                                  [key]: !prev[key]
-                                }));
+                                setOpenSchedules(element => ({...element, [key]: !element[key]}));
+                                setPlaceTitle("");
                                 setScheduleModal(false);
                                 setPlaceSchedule(null);
                               } else {
                                 setOpenSchedules({});
+                                setPlaceTitle(item.title);
                                 setScheduleModal(true);
                                 setPlaceSchedule(item.popup.schedule);
                               };

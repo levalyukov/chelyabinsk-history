@@ -18,6 +18,7 @@ section.favorite {
         height: 125px;
         object-fit: cover;
         border-radius: 15px;
+        flex-shrink: 0;
       }
 
       .favorite-place-info {
@@ -28,7 +29,7 @@ section.favorite {
           display: flex;
           align-items: center;
 
-          font-size: 24px;
+          font-size: 22px;
           font-weight: bold;
           color: var(--title);
           span.place-favorite-icon {
@@ -38,9 +39,10 @@ section.favorite {
         }
 
         p {
+          font-size: 16px;
+          color: var(--text);
           border-radius: 25px;
           font-weight: normal;
-          color: var(--text);
         }
 
         .place-schedule {
@@ -202,7 +204,7 @@ section.favorite#empty {
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 525px) {
   section.favorite .favorite-container {
     width: 100%;
     article.favorite-place {

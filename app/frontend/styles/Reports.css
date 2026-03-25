@@ -79,19 +79,21 @@
       display: flex;
 
       img {
-        width: 125px !important;
+        width: 125px;
         height: 125px;
         border-radius: 15px;
         object-fit: cover;
+        flex-shrink: 0;
       }
 
       .place-content {
         h2 {
-          font-size: 24px;
+          font-size: 22px;
           font-weight: bold;
           color: var(--title);
         }
         p {
+          font-size: 16px;
           color: var(--text);
           font-weight: normal;
         }
@@ -162,7 +164,7 @@
 
       .place-info {
         img {
-          width: 100px !important;
+          width: 100px;
           height: 100px;
         }
 
