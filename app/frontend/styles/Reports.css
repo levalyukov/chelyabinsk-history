@@ -161,6 +161,11 @@
       }
 
       .place-info {
+        img {
+          width: 100px !important;
+          height: 100px;
+        }
+
         .place-content {
           h2 {
             font-size: 18px;
