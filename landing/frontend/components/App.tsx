@@ -36,9 +36,6 @@ export default function Landing() {
   };
 
   useEffect(() => {
-    if (licenseVisible || policyVisible) document.body.style.overflowY = "hidden";
-    else document.body.style.overflowY = "scroll";
-
     if (localStorage.getItem("theme")) {
       changeTheme((localStorage.getItem("theme") === "dark") ? true : false);
       document.documentElement.setAttribute(
@@ -69,7 +66,7 @@ export default function Landing() {
       link.href = browserTheme ? "./logotype-light.svg" : "./logotype-dark.svg";
       document.getElementsByTagName('head')[0].appendChild(link);
     };
-  }, [licenseVisible, policyVisible]);
+  }, []);
 
   return (
     <main id="app">

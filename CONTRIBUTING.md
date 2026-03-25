@@ -19,4 +19,4 @@
 
 ## Вопросы?
 
-Спокойно пишите их в [issues](https://github.com/levalyukov/chelyabinsk-history/issues) проекта. 
+Спокойно задавайте их в [issues](https://github.com/levalyukov/chelyabinsk-history/issues) проекта. 
