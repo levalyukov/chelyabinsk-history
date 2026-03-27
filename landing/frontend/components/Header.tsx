@@ -10,10 +10,11 @@ import { type LanguageKeys } from "../interfaces/App.interface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faCircleHalfStroke, faGlobe, faXmark } from "@fortawesome/free-solid-svg-icons";
 
-interface Menu {
+interface Navmenu {
   [index:number]: {
     title:string;
-    href: string;
+    href?: string;
+    state?: (state:boolean) => void;
   };
 };
 
@@ -25,14 +26,26 @@ export default function Header({setTheme, getTheme, setLang}: {
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
   const [mobileMenu, setMobileMenu] = useState<boolean>(false);
 
-  const navmenu:Menu = {
-    // 0: {title: "Памятка туристу", href: ""},
-    // 1: {title: "Обратная связь", href: ""},
-    // 2: {title: "Контакты", href: ""}
+  const navmenu:Navmenu = {
+    0: {
+      title: "Памятка туристу",
+    },
+
+    1: {
+      title: "Обратная связь", 
+    },
+
+    2: {
+      title: "Контакты", 
+    }
   };
 
   const languages:LanguageKeys = {
-    0: {language: "Русский", key: "ru", flag: ru}
+    0: {
+      language: "Русский", 
+      key: "ru", 
+      flag: ru
+    }
   };
 
   return (
@@ -52,9 +65,15 @@ export default function Header({setTheme, getTheme, setLang}: {
           <div className="mobile-namvenu-content">
             <nav className="mobile-navmenu-links">
               <div className="mobile-navmenu-link" data-testid="mobile-navmenu">
-                {Object.entries(navmenu).map(([key, index]) => (
-                  <a key={key} href={"#"+index.href}>{index.title}</a>
-                ))}
+                {Object.entries(navmenu).map(([key, index]) => (<>
+                  {index.href !== undefined ? (
+                    <a key={key} href={"#"+index.href}>{index.title}</a>
+                  ) : (<>
+                      {index.state !== undefined && (
+                        <button key={key} onClick={index.state}>{index.title}</button>
+                      )}
+                  </>)}
+                </>))}
               </div>
 
               <nav className="mobile-navmenu-footer">
@@ -62,6 +81,7 @@ export default function Header({setTheme, getTheme, setLang}: {
               </nav>
             </nav>
           </div>
+          
         </div>
       </div>
 
@@ -74,9 +94,15 @@ export default function Header({setTheme, getTheme, setLang}: {
           </a>
 
           <nav className="navmenu">
-            {Object.entries(navmenu).map(([key, index]) => (
-              <a key={key} href={"#"+index.href}>{index.title}</a>
-            ))}
+            {Object.entries(navmenu).map(([key, index]) => (<>
+              {index.href !== undefined ? (
+                <a key={key} href={"#"+index.href}>{index.title}</a>
+              ) : (<>
+                  {index.state !== undefined && (
+                    <button key={key} onClick={index.state}>{index.title}</button>
+                  )}
+              </>)}
+            </>))}
           </nav>
           
           <nav className="commands">
@@ -96,10 +122,13 @@ export default function Header({setTheme, getTheme, setLang}: {
                 ))}
               </div>
             </div>
-            {Object.keys(navmenu).length > 0 && (
-            <button className="mobile-menu" onClick={() => setMobileMenu(!mobileMenu)}>
-              <span><FontAwesomeIcon icon={faBars}/></span>
-            </button>
+
+            {Object.entries(navmenu as Navmenu).filter(([key,index]) => (
+              (key && index.href !== undefined)||(key && index.state !== undefined)
+            )).length > 0 && (
+              <button className="mobile-menu" onClick={() => setMobileMenu(!mobileMenu)}>
+                <span><FontAwesomeIcon icon={faBars}/></span>
+              </button>
             )}
           </nav>
         </div>

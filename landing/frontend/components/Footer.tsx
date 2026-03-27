@@ -6,7 +6,7 @@ import {
   type FooterSocialMedia, 
   type FooterContent, 
   normalizeLink 
-} from "../interfaces/Footer.interface";
+} from "../interfaces/footer.interface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faClock, faEarthAsia, faHammer, faPeopleGroup } from "@fortawesome/free-solid-svg-icons";
