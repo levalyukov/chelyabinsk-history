@@ -16,10 +16,10 @@ import { type StyleSpecification } from 'maplibre-gl';
 import mapDarkRaw from "../styles/map-dark.json"
 import mapLightRaw from "../styles/map-light.json"
 
-export default function Map({theme, setMap}: {
+export default function Map ({theme, setMap}: {
   theme:boolean,
   setMap:(map:MapLibre | null) => void
-}):React.ReactNode {
+}) : React.ReactNode {
   const mapContainer = useRef<HTMLDivElement>(null);
   const context = useContext(AppContext);
   const mapDark = mapDarkRaw as unknown as StyleSpecification;
@@ -91,10 +91,10 @@ export default function Map({theme, setMap}: {
   );  
 };
 
-function initMarkersPlaces({map, appPlaces}: {
+function initMarkersPlaces ({map, appPlaces}: {
   map: maplibregl.Map | null, 
   appPlaces:Places
-}):void {
+}) : void {
   if (map) {
     if (appPlaces) {
       for (let i = Number(Object.keys(appPlaces)[0]); i <= Object.keys(appPlaces).length; i++) {
@@ -143,6 +143,7 @@ export function setUserMarker({map, position}:
       className: "user-geo-popup"
     }).setDOMContent(popupNode);
     popupRender.render(<UserGeoPopup/>);
+
     popup.on("open", () => {
       const closeBtn = popup.getElement().querySelector(".maplibregl-popup-close-button");
       if (closeBtn) {

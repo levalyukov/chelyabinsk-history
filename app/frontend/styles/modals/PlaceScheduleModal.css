@@ -18,7 +18,7 @@
   align-items: center;
   justify-content: center;
   .place-schedule-modal {
-    width: 350px;
+    width: 400px;
     padding: 10px;
     border-radius: 15px;
     background-color: var(--bg);
@@ -36,7 +36,7 @@
       span.place-schedule-name {
         display: flex;
         padding: 0 15px;
-        font-size: 16px;
+        font-size: 18px;
         color: var(--title);
         font-weight: bold;
       }
@@ -68,7 +68,7 @@
       flex-direction: column;
       .place-schedule-time {
         display: flex;
-        font-size: 14px;
+        font-size: 16px;
         color: var(--text);
         padding: 10px 15px;
         text-transform: capitalize;
@@ -78,6 +78,23 @@
         border-radius: 0 10px 10px 0;
         background-color: var(--button);
         border-left: 4px solid var(--primary);
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .place-schedule-background {
+    .place-schedule-modal {
+      width: 350px;
+      .place-schedule-header 
+      span.place-schedule-name {
+        font-size: 16px;
+      }
+
+      .place-schedule-content
+      .place-schedule-time {
+        font-size: 14px;
       }
     }
   }

@@ -113,7 +113,7 @@ export let placesStore:Places = {
         {openHours: 10, openMinutes: 0, closeHours: 20, closeMinutes: 0},
         {openHours: 10, openMinutes: 0, closeHours: 20, closeMinutes: 0},
         {openHours: 10, openMinutes: 0, closeHours: 20, closeMinutes: 0},
-        {openHours: 10, openMinutes: 0, closeHours: 20, closeMinutes: 0, dayoff: true},
+        {openHours: 10, openMinutes: 0, closeHours: 20, closeMinutes: 0},
       ]
     }
   },

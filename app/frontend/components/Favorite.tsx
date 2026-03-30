@@ -32,8 +32,13 @@ export default function Favorite({map, setPage, appPage, screenWidth}: {
       setHours(new Date().getHours());
     }, 1000);
 
-    return () => clearInterval(intervalId);
-  }, [])
+    if (scheduleModal) document.body.style.overflowY = "hidden";
+    else document.body.style.overflowY = "scroll";
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [scheduleModal])
 
   if (placesEntries.length > 0) {
     return (

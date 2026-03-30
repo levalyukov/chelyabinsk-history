@@ -95,12 +95,14 @@ export default function Header({
         {((getPage === "map" && screenWidth <= 1000 )||(screenWidth > 1000)) && (
           <div id="map-control" className={placesVisible ? "invisible" : ""}>
             <button onClick={() => setSettingsVisible(true)}><FontAwesomeIcon icon={faCog}/></button>
-            <button onClick={() => {if (map) map.zoomIn();}}><FontAwesomeIcon icon={faPlus}/></button>
-            <button onClick={() => {if (map) map.zoomOut();}}><FontAwesomeIcon icon={faMinus}/></button>
-            <button className="user-geolocation" onClick={() => {
-              closeAllPopup();
-              getGeolocation({map, setErrorTitle, setErrorText, setUserGeolocationVisible});
-            }}><FontAwesomeIcon icon={faLocationArrow}/></button>
+            <nav className="map-control-main">
+              <button onClick={() => {if (map) map.zoomIn();}}><FontAwesomeIcon icon={faPlus}/></button>
+              <button onClick={() => {if (map) map.zoomOut();}}><FontAwesomeIcon icon={faMinus}/></button>
+              <button className="user-geolocation" onClick={() => {
+                closeAllPopup();
+                getGeolocation({map, setErrorTitle, setErrorText, setUserGeolocationVisible});
+              }}><FontAwesomeIcon icon={faLocationArrow}/></button>
+            </nav>
           </div>
         )}
       </nav>
@@ -166,7 +168,8 @@ function getGeolocation({map, setErrorTitle, setErrorText, setUserGeolocationVis
           timeout: 16000,
           maximumAge: Infinity
         }
-      );};
+      );
+    };
   };
 };
 
