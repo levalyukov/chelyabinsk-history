@@ -44,6 +44,7 @@ header#navmenu {
         border-radius: 25px;
         padding: 10px 25px;
         font-size: 16px;
+        transition: .15s;
         color: var(--text);
       } a:hover {
         color: var(--title);

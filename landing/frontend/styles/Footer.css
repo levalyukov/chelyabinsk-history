@@ -36,10 +36,6 @@ footer {
           color: var(--title);
           background-color: var(--button-hover);
         }
-
-        a#vk:hover {color: #0077FF;}
-        a#github:hover {color: #000000;}
-        a#telegram:hover {color: #24A1DE;}
       }
 
     }

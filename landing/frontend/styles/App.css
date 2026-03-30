@@ -39,7 +39,7 @@
 * {
   margin: 0;
   padding: 0;
-  transition: .15s;
+  /* transition: .15s; */
   scroll-behavior: smooth;
   box-sizing: border-box;
   

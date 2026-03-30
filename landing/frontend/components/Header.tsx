@@ -6,9 +6,9 @@ import lightLogotype  from "../images/light-logo.svg";
 import darkLogotype   from "../images/dark-logo.svg";
 
 import { useState } from "react";
-import { type LanguageKeys } from "../interfaces/App.interface";
+import { type LanguageKeys } from "../interfaces/app.interface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faCircleHalfStroke, faGlobe, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faMoon, faSun, faGlobe, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 interface Navmenu {
   [index:number]: {
@@ -51,40 +51,40 @@ export default function Header({setTheme, getTheme, setLang}: {
   return (
     <>
       {(Object.keys(navmenu).length > 0) && (
+        <div id="mobile-navmenu-container" className={!mobileMenu ? "invisible" : "visible"}>
+          <div className="mobile-navmenu">
+            
+            <nav className="mobile-header">
+              <img data-testid="logotype-mobile" className="mobile-logotype" 
+              src={!getTheme() ? darkLogotype : lightLogotype} alt="logotype.svg"/>
+              <button onClick={() => setMobileMenu(!mobileMenu)}>
+                <span><FontAwesomeIcon icon={faXmark}/></span>
+              </button>
+            </nav>
 
-      <div id="mobile-navmenu-container" className={!mobileMenu ? "invisible" : "visible"}>
-        <div className="mobile-navmenu">
-          
-          <nav className="mobile-header">
-            <img data-testid="logotype-mobile" className="mobile-logotype" src={!getTheme() ? darkLogotype : lightLogotype} alt="logotype.svg" />
-            <button onClick={() => setMobileMenu(!mobileMenu)}>
-              <span><FontAwesomeIcon icon={faXmark}/></span>
-            </button>
-          </nav>
-
-          <div className="mobile-namvenu-content">
-            <nav className="mobile-navmenu-links">
-              <div className="mobile-navmenu-link" data-testid="mobile-navmenu">
-                {Object.entries(navmenu).map(([key, index]) => (<>
-                  {index.href !== undefined ? (
-                    <a key={key} href={"#"+index.href}>{index.title}</a>
-                  ) : (<>
+            <div className="mobile-namvenu-content">
+              <nav className="mobile-navmenu-links">
+                <div className="mobile-navmenu-link" data-testid="mobile-navmenu">
+                  {Object.entries(navmenu).map(([key, index]) => (<>
+                    {index.href !== undefined ? (
+                      <a key={key} href={"#"+index.href}>{index.title}</a>
+                    ) : (
+                    <>
                       {index.state !== undefined && (
                         <button key={key} onClick={index.state}>{index.title}</button>
                       )}
-                  </>)}
-                </>))}
-              </div>
+                    </>)}
+                  </>))}
+                </div>
 
-              <nav className="mobile-navmenu-footer">
-                <button onClick={() => window.open("app/")}>Открыть приложение</button>
+                <nav className="mobile-navmenu-footer">
+                  <button onClick={() => window.open("app/")}>Открыть приложение</button>
+                </nav>
               </nav>
-            </nav>
+            </div>
+            
           </div>
-          
         </div>
-      </div>
-
       )}
 
       <header id="navmenu">
@@ -107,7 +107,7 @@ export default function Header({setTheme, getTheme, setLang}: {
           
           <nav className="commands">
             <button className="theme" onClick={setTheme}>
-              <span><FontAwesomeIcon icon={faCircleHalfStroke}/></span>
+              <span><FontAwesomeIcon icon={!getTheme() ? faMoon : faSun}/></span>
             </button>
 
             <div className="dropdown">
