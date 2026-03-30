@@ -16,11 +16,14 @@
 
 Репозиторий представляет собой [лендинговую страницу](./landing/) и [основное приложение](./app/) проекта.
 
-### Используемые библиотеки
+### Используемые технологии
 
-- **[MapLibre GL](https://github.com/maplibre/maplibre-gl-js)**: Движок для визуализации векторных тайлов
-- **[OpenStreetMap](https://github.com/openstreetmap)**: Глобальный источник открытых геоданных
-- **[FontAwesome](https://github.com/FortAwesome/Font-Awesome)**: Векторные иконки для интерфейса
+| Стек     | Инструменты |
+| -------- | ----------- |
+| Frontend | [React](https://github.com/facebook/react), [TypeScript](https://github.com/microsoft/typescript), [Vite](https://github.com/vitejs/vite) |
+| Backend  | [Express.js](https://github.com/expressjs/express), [TypeScript](https://github.com/microsoft/typescript), [PostgreSQL](https://github.com/postgres/postgres) |
+| Tests    | [Jest](https://github.com/jestjs/jest), [Playwright](https://github.com/microsoft/playwright), [React Testing Library](https://github.com/testing-library/react-testing-library) |
+
 
 ## Задачи
 
