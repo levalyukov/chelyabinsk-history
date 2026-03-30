@@ -6,7 +6,7 @@
 - **[Node.JS](https://nodejs.org/en) (v11+)**
 - Терминал
 
-## Уставовка
+## Установка
 
 0. Откройте терминал - `cmd` в Windows, `bash` в Linux `zsh` в MacOS.
 
