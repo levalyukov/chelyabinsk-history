@@ -21,7 +21,7 @@
 | Стек     | Инструменты |
 | -------- | ----------- |
 | Frontend | [React](https://github.com/facebook/react), [TypeScript](https://github.com/microsoft/typescript), [Vite](https://github.com/vitejs/vite) |
-| Backend  | [Express.js](https://github.com/expressjs/express), [TypeScript](https://github.com/microsoft/typescript), [PostgreSQL](https://github.com/postgres/postgres) |
+| Backend  | [Express.js](https://github.com/expressjs/express), [TypeScript](https://github.com/microsoft/typescript), [PostgreSQL](https://github.com/postgres/postgres), [Prisma](https://github.com/prisma/prisma) |
 | Tests    | [Jest](https://github.com/jestjs/jest), [Playwright](https://github.com/microsoft/playwright), [React Testing Library](https://github.com/testing-library/react-testing-library) |
 
 
