@@ -8,11 +8,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faHeartCrack, faMapLocationDot, faCirclePlay, faCaretDown} from "@fortawesome/free-solid-svg-icons";
 import { type PlaceSchedule } from "../interfaces/reports.interface";
 
-export default function Favorite({map, setPage, appPage, screenWidth}: {
+export default function Favorite ({map, setPage, appPage, screenWidth}: {
   map: MapLibre | null, screenWidth:number, 
   appPage:"map" | "favorite",
   setPage: (page:"map" | "favorite") => void
-}):React.ReactNode {
+}) : React.ReactNode {
   const context = useContext(AppContext);
   if (!context) return null;
   const datetime = new Date();
@@ -35,9 +35,7 @@ export default function Favorite({map, setPage, appPage, screenWidth}: {
     if (scheduleModal) document.body.style.overflowY = "hidden";
     else document.body.style.overflowY = "scroll";
 
-    return () => {
-      clearInterval(intervalId);
-    };
+    return () => clearInterval(intervalId);
   }, [scheduleModal])
 
   if (placesEntries.length > 0) {

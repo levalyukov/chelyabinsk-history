@@ -1,28 +1,58 @@
 import "../styles/Reports.css"
 
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../interfaces/reports.provider"  
 import { Map as MapLibre } from "maplibre-gl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart as heartSolid } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlassLocation, faHeart as heartSolid } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as heartRegular } from "@fortawesome/free-regular-svg-icons";
 
-export default function Reports({map, setMobileMenu, screenWidth}: {
+export default function Reports ({map, setMobileMenu, screenWidth}: {
   map:MapLibre | null, 
   setMobileMenu: (state:boolean) => void, 
   screenWidth:number
-}):React.ReactNode {
+}) : React.ReactNode {
   const context = useContext(AppContext);
   if (!context) return null;
-  const { appPlaces, toggleLike, closeAllPopup } = context;
+  const { appPlaces, toggleLike, closeAllPopup, setAppPlaces } = context;
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
 
-  if (Object.keys(appPlaces).length === 0) {
+  useEffect(() => {
+    async function getReports () {
+      try {
+        const request = await fetch(`/api/reports`, {signal: AbortSignal.timeout(10000)});
+        const result = await request.json();
+        console.log(JSON.stringify(result));
+        setAppPlaces(result);
+        setLoading(false);
+      } catch (e) {
+        setError(true);
+        setLoading(false);
+        console.error("Backend error: ", e);
+      };
+    }; 
+    
+    getReports();
+  }, []);
+
+  if (loading) {
     return (
       <div className="place-container" id="empty">
         <article id="empty"></article>
         <article id="empty"></article>
         <article id="empty"></article>
         <article id="empty"></article>
+      </div>
+    );
+  };
+
+  if (Object.keys(appPlaces).length === 0 || error) {
+    return (
+      <div className="place-container" id="error">
+        <span><FontAwesomeIcon icon={faMagnifyingGlassLocation}/></span>
+        <h1>Ой, а тут ничего нету!</h1>
+        <p>Произошла ошибка при загрузке репортажей.</p>
       </div>
     );
   };

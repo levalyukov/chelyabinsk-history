@@ -21,7 +21,7 @@ interface Menu {
   };
 };
 
-export default function Header({
+export default function Header ({
   map, setPage, getPage, settingsVisible, 
   setSettingsVisible, setAppTheme, getAppTheme, 
   updateAppTheme, screenWidth
@@ -31,7 +31,7 @@ export default function Header({
   settingsVisible:boolean, getAppTheme:boolean, 
   screenWidth:number, setSettingsVisible: (state:boolean) => void,
   setAppTheme: (state:boolean) => void, updateAppTheme: () => void
-}):React.ReactNode {
+}) : React.ReactNode {
   const context = useContext(AppContext);
   if (!context) return null;
   const { closeAllPopup } = context;
@@ -58,39 +58,41 @@ export default function Header({
       UGvisible={UserGeolocationModal} setUG={setUserGeolocationVisible}/>
 
       <nav className="pc-container">
-        <button onClick={() => setMenuVisible(true)} 
-        className={!menuVisible ? "visible" : "invisible"} id="ui-open-menu">
-          <FontAwesomeIcon icon={faBars}/>
-        </button>
+        {screenWidth > 1000 && (<>
+          <button onClick={() => setMenuVisible(true)} 
+          className={!menuVisible ? "visible" : "invisible"} id="ui-open-menu">
+            <FontAwesomeIcon icon={faBars}/>
+          </button>
 
-        <header data-testid="pc-navmenu" id="pc" className={menuVisible ? "" : "invisible"}>
-          <div className="header">
-            <span className="header-content">
-              <h1>
-                {getPage === "map" && "Точки интереса"}
-                {getPage === "favorite" && "Избранное"}
-              </h1>
-          
-              <button onClick={() => setMenuVisible(false)}>
-                <FontAwesomeIcon icon={faClose}/>
-              </button>
-            </span>
-
-            <div className="navmenu-container">
-              {Object.entries(navmenu).map(([key,index]) => (
-                <button key={key} onClick={() => setPage(index.page)} 
-                className={getPage === index.page ? "active" : ""} >
-                  {index.title}
+          <header data-testid="pc-navmenu" id="pc" className={menuVisible ? "" : "invisible"}>
+            <div className="header">
+              <span className="header-content">
+                <h1>
+                  {getPage === "map" && "Точки интереса"}
+                  {getPage === "favorite" && "Избранное"}
+                </h1>
+            
+                <button onClick={() => setMenuVisible(false)}>
+                  <FontAwesomeIcon icon={faClose}/>
                 </button>
-              ))}
-            </div>
-          </div>
+              </span>
 
-          <section className="pc-page">
-            {getPage === "map" && reportPage}
-            {getPage === "favorite" && <Favorite map={map} screenWidth={screenWidth} setPage={setPage} appPage={getPage}/>}
-          </section>
-        </header>
+              <div className="navmenu-container">
+                {Object.entries(navmenu).map(([key,index]) => (
+                  <button key={key} onClick={() => setPage(index.page)} 
+                  className={getPage === index.page ? "active" : ""} >
+                    {index.title}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <section className="pc-page">
+              {getPage === "map" && reportPage}
+              {getPage === "favorite" && <Favorite map={map} screenWidth={screenWidth} setPage={setPage} appPage={getPage}/>}
+            </section>
+          </header>
+        </>)}
 
         {((getPage === "map" && screenWidth <= 1000 )||(screenWidth > 1000)) && (
           <div id="map-control" className={placesVisible ? "invisible" : ""}>

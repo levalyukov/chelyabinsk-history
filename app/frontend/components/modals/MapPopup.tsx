@@ -1,4 +1,4 @@
-import "../../styles/MapPopup.css"
+import "../../styles/modals/MapPopup.css"
 
 import { type PlaceContent } from "../../interfaces/reports.interface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
