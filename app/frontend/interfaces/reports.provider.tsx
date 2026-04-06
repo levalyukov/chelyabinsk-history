@@ -1,8 +1,9 @@
 import React, { useMemo, useState } from 'react';
-import { type PlaceContent, type Places, placesStore } from './reports.interface';
+import { type PlaceContent, type Places } from './reports.interface';
 
 export interface PlacesProviderContext {
   appPlaces: Places;
+  setAppPlaces: (places:Places) => void;
   toggleLike: (key:string, event:React.MouseEvent) => void;
   closeAllPopup: () => void;
 };
@@ -11,7 +12,7 @@ export const AppContext = React.createContext<PlacesProviderContext | undefined>
 
 export function AppProvider({children}: 
   {children: React.ReactNode}):React.ReactNode {
-  const [place, setPlaces] = useState<Places>(placesStore);
+  const [place, setPlaces] = useState<Places>({});
 
   function setToggleLike(key:string, event:React.MouseEvent):void {
     event.stopPropagation();
@@ -44,6 +45,7 @@ export function AppProvider({children}:
 
   const value = useMemo(() => ({
     appPlaces: place,
+    setAppPlaces: setPlaces,
     toggleLike: setToggleLike,
     closeAllPopup: closeAllPopup
   }), [place, setToggleLike]);
