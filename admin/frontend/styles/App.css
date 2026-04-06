@@ -1,0 +1,65 @@
+:root {
+  --primary:#EB775E;
+  --bg:     #FFFFFF;
+  --bg-alt: #fbfcff;
+  --map-bg: #f5f7fc;
+  --title:  #1F2937;
+  --text:   #4B5563;
+
+  --button:       #F3F4F6;
+  --button-hover: #e1e4e9;
+  --shadow: rgba(0, 0, 0, .15) 0px 10px 24px;
+
+  /* Default colors */
+  --red:    #FF5A5A;
+  --green:  #78F58F;
+  --blue:   #57AEFF;
+  --yellow: #FFA657;
+}
+
+:root[theme="dark"] {
+  --primary:#FF9E89;
+
+  --bg:     #35363C;
+  --bg-alt: #46464C;
+  --map-bg: #51535e;
+  --title:  #FFFFFF;
+  --text:   #d6d6dc;
+
+  --button:       #44444b;
+  --button-hover: #58585e;
+
+  /* Default colors */
+  --red:    #FF5A5A;
+  --green:  #78F58F;
+  --blue:   #57AEFF;
+  --yellow: #FFA657;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  /* transition: .15s; */
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  
+  /* Font */
+  line-height: 1.5;
+  font-variant: normal;
+  font-family: "Inter", sans-serif;
+} body {
+  border-top: 2px solid var(--primary);
+  background-color: var(--bg);
+}
+
+h1,h2,h3,h4 {
+  font-weight: 800;
+}
+
+main.admin-panel {
+  gap: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .app-container { width: 1000px; }
+}
