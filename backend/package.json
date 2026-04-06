@@ -4,7 +4,10 @@
   "description": "",
   "main": "./index.ts",
   "scripts": {
-    "server": "ts-node src/index.ts"
+    "server": "ts-node src/index.ts",
+    "setup:db": "psql -U postgres -d postgres -c \"CREATE DATABASE app\"",
+    "db:migrate-dev": "npx prisma migrate dev",
+    "db:migrate-reset": "npx prisma migrate reset"
   },
   "keywords": [],
   "author": "",
@@ -12,11 +15,14 @@
   "type": "commonjs",
   "dependencies": {
     "@prisma/client": "^7.6.0",
+    "cors": "^2.8.6",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
+    "pg": "^8.20.0",
     "prisma": "^7.6.0"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^25.5.0",
     "@types/pg": "^8.20.0",
