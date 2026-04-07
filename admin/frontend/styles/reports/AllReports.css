@@ -1,0 +1,71 @@
+.place-container#empty {
+  display: flex;
+  padding: 25px 0;
+  gap: 6px;
+
+  article#empty {
+    cursor: auto;
+    width: 100%;
+    height: 300px;
+    box-shadow: none;
+    border-radius: 15px;
+    background: var(--bg);
+    background: linear-gradient(90deg,
+      var(--bg) 0%, 
+      var(--button) 50%, 
+      var(--bg) 100%
+    );
+
+    background-size: 200% 100%;
+    animation-duration: 1.25s;
+    animation-name: places-loading;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  span {
+    opacity: .5;
+    font-size: 48px;
+    color: var(--title);
+  }
+
+  p {
+    font-size: 18px;
+    color: var(--text);
+    font-weight: normal;
+  }
+}
+
+.place-container#error {
+  gap: 6px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 100px;
+
+  span {
+    opacity: .5;
+    font-size: 48px;
+    color: var(--title);
+  }
+
+  h1 {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--title);
+  }
+
+  p {
+    font-size: 18px;
+    color: var(--text);
+    text-align: center;
+    font-weight: normal;
+  }
+}
+
+@keyframes places-loading {
+  0% {background-position: 100% 0;}
+  100% {background-position: -100% 0;}
+}

@@ -59,6 +59,7 @@ h1,h2,h3,h4 {
 main.admin-panel {
   gap: 12px;
   display: flex;
+  padding: 25px;
   align-items: center;
   justify-content: center;
   .app-container { width: 1000px; }
