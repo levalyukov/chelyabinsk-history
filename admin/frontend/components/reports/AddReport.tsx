@@ -2,6 +2,7 @@ import "../../styles/reports/AddReport.css"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
+import TextEditor from "../TextEditor";
 
 export default function AddReport () : React.ReactNode {
   return (
@@ -21,9 +22,13 @@ export default function AddReport () : React.ReactNode {
 
       <div className="report-form">
         <input type="text" className="title" placeholder="Название репортажа..."/>
-
+        <TextEditor/>
+        <textarea name="" id="" maxLength={10000} placeholder="Творить здесь!"></textarea>
         <div className="video-report">
-          {/* <input type="file" accept="video/*"/> */}
+          <span>
+            <h1>Загрузите видео-репортаж</h1>
+          </span>
+          <input type="file" accept="video/*"/>
         </div>
       </div>
     </div>

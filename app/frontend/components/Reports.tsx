@@ -21,7 +21,7 @@ export default function Reports ({map, setMobileMenu, screenWidth}: {
   useEffect(() => {
     async function getReports () {
       try {
-        const request = await fetch(`/api/reports`, {signal: AbortSignal.timeout(10000)});
+        const request = await fetch(`http://localhost:3000/api/reports`, {signal: AbortSignal.timeout(5000)});
         const result = await request.json();
         console.log(JSON.stringify(result));
         setAppPlaces(result);

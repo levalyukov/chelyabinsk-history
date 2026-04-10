@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import Map      from "./Map"
 import Header   from "./Header"
 import Favorite from "./Favorite"
+import ReportView from "./ReportView";
 
 export default function App():React.ReactNode {
   const [theme, setAppTheme] = useState<boolean>(false);
@@ -14,6 +15,7 @@ export default function App():React.ReactNode {
   const [menuState, setMenuState] = useState<"map" | "favorite">("map");
   const [width, setWidth] = useState(window.innerWidth);
   const [settingsVisible, setSettingsVisible] = useState<boolean>(false);
+  const [reportID, setReportID] = useState<number>(1);
 
   function updateAppTheme():void {
     if (localStorage.getItem("theme")) {
@@ -40,6 +42,8 @@ export default function App():React.ReactNode {
 
   return (
     <AppProvider>
+      <ReportView setReport={setReportID} id={reportID}/>
+
       <Header 
         map={map} setPage={setMenuState} 
         getPage={menuState} settingsVisible={settingsVisible}

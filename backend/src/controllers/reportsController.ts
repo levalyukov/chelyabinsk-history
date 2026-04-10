@@ -7,6 +7,6 @@ export async function getReports (req:Request, res:Response): Promise<void> {
     const result = await pool.query<Reports>('SELECT * FROM Report');
     res.status(200).send(result.rows);
   } catch (err) {
-    res.status(500).send({});
+    res.status(200).send({});
   };
 };
