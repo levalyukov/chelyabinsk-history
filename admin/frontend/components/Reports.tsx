@@ -20,7 +20,7 @@ export default function Reports ({setPage, getPage}:
   useEffect(() => {
     async function getReports () {
       try {
-        const request = await fetch("http://localhost:3000/api/reports");
+        const request = await fetch("http://localhost:3000/api/all_reports");
         const result = await request.json();
         setReports(result);
         setLoading(false);

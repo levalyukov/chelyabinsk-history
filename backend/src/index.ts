@@ -9,7 +9,7 @@ const server = express();
 server.use(cors({
   origin: ["http://localhost:5173", "http://192.168.31.143:5173"],
   optionsSuccessStatus: 200
-}));
+}), express.json());
 
 dotenv.config();
 server.use('/api', router);

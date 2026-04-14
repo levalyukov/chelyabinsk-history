@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../interfaces/reports.provider"  
 import { Map as MapLibre } from "maplibre-gl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlassLocation, faHeart as heartSolid } from "@fortawesome/free-solid-svg-icons";
+import { faGhost, faMagnifyingGlassLocation, faHeart as heartSolid } from "@fortawesome/free-solid-svg-icons";
 import { faHeart as heartRegular } from "@fortawesome/free-regular-svg-icons";
 
 export default function Reports ({map, setMobileMenu, screenWidth}: {
@@ -21,7 +21,7 @@ export default function Reports ({map, setMobileMenu, screenWidth}: {
   useEffect(() => {
     async function getReports () {
       try {
-        const request = await fetch(`http://localhost:3000/api/reports`, {signal: AbortSignal.timeout(5000)});
+        const request = await fetch(`http://localhost:3000/api/all_reports`, {signal: AbortSignal.timeout(5000)});
         const result = await request.json();
         console.log(JSON.stringify(result));
         setAppPlaces(result);
@@ -47,12 +47,22 @@ export default function Reports ({map, setMobileMenu, screenWidth}: {
     );
   };
 
-  if (Object.keys(appPlaces).length === 0 || error) {
+  if (error) {
     return (
       <div className="place-container" id="error">
         <span><FontAwesomeIcon icon={faMagnifyingGlassLocation}/></span>
         <h1>Ой, а тут ничего нету!</h1>
         <p>Произошла ошибка при загрузке репортажей.</p>
+      </div>
+    );
+  };
+
+  if (Object.keys(appPlaces).length === 0) {
+    return (
+      <div className="place-container" id="error">
+        <span><FontAwesomeIcon icon={faGhost}/></span>
+        <h1>Ой, а тут ничего нету!</h1>
+        <p>Мы растеряли все репортажи.</p>
       </div>
     );
   };

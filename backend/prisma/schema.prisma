@@ -18,6 +18,7 @@ model Report {
   title String
   description String
   coords Json
+  video Bytes?
   popup ReportPopup[]
 }
 
