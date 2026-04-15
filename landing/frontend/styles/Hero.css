@@ -13,6 +13,14 @@ section.intro {
     object-fit: cover;
   }
 
+  video {
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   .info {
     display: flex;
     align-items: center;
@@ -100,8 +108,8 @@ section.intro::before {
   z-index: 0;
   content: '';
   position: absolute;
-  backdrop-filter: blur(2px);
-  background: rgba(0, 0, 0, 0.25);
+  /* backdrop-filter: blur(5.75px); */
+  /* background: rgba(0, 0, 0, 0); */
 }
 
 @media (max-width: 1500px) {

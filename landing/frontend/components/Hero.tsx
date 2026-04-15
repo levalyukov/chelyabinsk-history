@@ -1,13 +1,17 @@
 import "../styles/Hero.css";
 
 import testLogotype from "../images/test-logo.svg";
-import backgroundLight from "../images/wallpapers/chelyabinsk-0.png";
-import backgroundDark from "../images/wallpapers/chelyabinsk-1.png";
+import video from "../images/video.mp4"
+// import backgroundLight from "../images/wallpapers/chelyabinsk-0.png";
+// import backgroundDark from "../images/wallpapers/chelyabinsk-1.png";
 
 export default function Hero():React.ReactNode {
   return (
     <section className="intro">
-      <img src={(String(localStorage.getItem("theme")) === "dark" ? backgroundDark : backgroundLight)} alt=""/>
+      {/* <img src={(String(localStorage.getItem("theme")) === "dark" ? backgroundDark : backgroundLight)} alt=""/> */}
+      <video className="video-bg" autoPlay muted loop playsInline>
+        <source src={video} type="video/mp4"/>
+      </video>
       <div className="info">
         <div className="info-container">
           <span className="logotype" ><img src={testLogotype} alt="logotype.svg"/></span>
