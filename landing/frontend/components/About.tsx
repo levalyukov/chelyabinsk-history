@@ -1,5 +1,7 @@
 import "../styles/About.css";
 
+import about from "../images/about.jpg"
+
 export default function About() {
   return (
     <section id="about">
@@ -18,7 +20,7 @@ export default function About() {
             до бетонных цехов ЧТЗ, где ковалась Победа, и современного стрит-арта на стенах бывших заводов.
           </p>
         </div>
-        <img src="https://www.mk.ru/upload/entities/2019/07/05/10/photoreportsImages/detailPicture/a7/68/d7/e5/1027408_8408583.jpg" alt="" id="anim-element" className="img-right"/>
+        <img src={about} alt="" id="anim-element" className="img-right"/>
       </div>
     </section>
   );
