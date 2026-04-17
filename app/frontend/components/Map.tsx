@@ -102,10 +102,8 @@ function initMarkersPlaces ({map, appPlaces}: {
           const markerEl = document.createElement("div");
           const popupNode = document.createElement("div");
           const popupRender = createRoot(popupNode);
-          const popup = new maplibregl.Popup({ 
-            offset: [0, -20], 
-            anchor: "bottom"
-          }).setDOMContent(popupNode);
+          const popup = new maplibregl.Popup()
+          .setDOMContent(popupNode);
 
           markerEl.className = "marker";
           popupRender.render(<MapPopup place={appPlaces[i]}/>);

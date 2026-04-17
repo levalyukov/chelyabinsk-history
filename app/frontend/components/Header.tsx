@@ -97,6 +97,7 @@ export default function Header ({
         {((getPage === "map" && screenWidth <= 1000 )||(screenWidth > 1000)) && (
           <div id="map-control" className={placesVisible ? "invisible" : ""}>
             <button onClick={() => setSettingsVisible(true)}><FontAwesomeIcon icon={faCog}/></button>
+            {screenWidth > 1000 && (
             <nav className="map-control-main">
               <button onClick={() => {if (map) map.zoomIn();}}><FontAwesomeIcon icon={faPlus}/></button>
               <button onClick={() => {if (map) map.zoomOut();}}><FontAwesomeIcon icon={faMinus}/></button>
@@ -105,7 +106,19 @@ export default function Header ({
                 getGeolocation({map, setErrorTitle, setErrorText, setUserGeolocationVisible});
               }}><FontAwesomeIcon icon={faLocationArrow}/></button>
             </nav>
+            )}
           </div>
+        )}
+
+        {screenWidth <= 1000 && (
+          <nav id="map-control-mobile" className={placesVisible ? "invisible" : ""}>
+            <button onClick={() => {if (map) map.zoomIn();}}><FontAwesomeIcon icon={faPlus}/></button>
+            <button onClick={() => {if (map) map.zoomOut();}}><FontAwesomeIcon icon={faMinus}/></button>
+            <button className="user-geolocation" onClick={() => {
+              closeAllPopup();
+              getGeolocation({map, setErrorTitle, setErrorText, setUserGeolocationVisible});
+            }}><FontAwesomeIcon icon={faLocationArrow}/></button>
+          </nav>
         )}
       </nav>
 
@@ -204,7 +217,7 @@ function geolocationError({error, setErrorTitle, setErrorText, setUserGeolocatio
   switch (error.code) {
     case error.PERMISSION_DENIED:
       setErrorTitle("Где вы?");
-      setErrorText("Гадать не будем — просто включите геопозицию.");
+      setErrorText("Гадать не будем - просто включите геопозицию.");
       break;
 
     case error.TIMEOUT:
