@@ -269,12 +269,16 @@ header#pc {
     }
   }
 }
-#map-control.invisible {
+#map-control.invisible, #map-control-mobile.invisible {
   opacity: 0;
   visibility: hidden;
 }
 
-#map-control {
+#map-control-mobile {
+  bottom: 50%;
+}
+
+#map-control, #map-control-mobile {
   right: 0;
   opacity: 1;
   z-index: 105;
@@ -326,13 +330,7 @@ header#pc {
 }
 
 @media (max-width: 1000px) {
-  #map-control {
-    height: 100vh;
-    .map-control-main {
-      bottom: calc((100vh / 2) - 15px);
-      position: absolute;
-    }
-
+  #map-control, #map-control-mobile {
     button, button:hover {background-color: var(--bg);}
   }
 
@@ -423,7 +421,7 @@ header#pc {
 }
 
 @media (max-width: 400px) {
-  #map-control {
+  #map-control, #map-control-mobile {
     button {
       width: 45px;
       height: 45px;
@@ -434,7 +432,7 @@ header#pc {
 }
 
 @media (max-width: 375px) {
-  #map-control {
+  #map-control, #map-control-mobile{
     button {
       width: 40px;
       height: 40px;
