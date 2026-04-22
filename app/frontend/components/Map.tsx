@@ -1,7 +1,7 @@
 import "../styles/Map.css"
 import "maplibre-gl/dist/maplibre-gl.css";
 
-import { useContext, useEffect, useRef} from "react";
+import { useContext, useEffect, useRef, useState} from "react";
 import maplibregl from "maplibre-gl";
 import MapPopup from "./modals/MapPopup";
 import UserGeoPopup from "./modals/UserGeoPopup";
@@ -12,18 +12,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faFaceFrown } from "@fortawesome/free-solid-svg-icons";
 import { type Places } from "../interfaces/reports.interface";
 import { type StyleSpecification } from 'maplibre-gl';
+import MapLibreGLDirection from "@maplibre/maplibre-gl-directions"
 
 import mapDarkRaw from "../styles/map-dark.json"
 import mapLightRaw from "../styles/map-light.json"
 
-export default function Map ({theme, setMap}: {
+export default function Map ({theme, setMap, setReportView}: {
   theme:boolean,
-  setMap:(map:MapLibre | null) => void
+  setMap:(map:MapLibre | null) => void,
+  setReportView: (id:number) => void
 }) : React.ReactNode {
   const mapContainer = useRef<HTMLDivElement>(null);
   const context = useContext(AppContext);
   const mapDark = mapDarkRaw as unknown as StyleSpecification;
   const mapLight = mapLightRaw as unknown as StyleSpecification;
+  const [userLocation, setUserLocation] = useState<[number,number]>([0,0]);
+
   if (!context) {
     return (
       <section id="map-container" className="error">
@@ -54,32 +58,38 @@ export default function Map ({theme, setMap}: {
       doubleClickZoom: true,
     });
 
-    setMap(map);
-    initMarkersPlaces({map, appPlaces});
+    map.on("load", () => {
+      setMap(map);
+      initMarkersPlaces({map, appPlaces, setReportView});
 
-    map.addControl(new maplibregl.NavigationControl({
-      showCompass: true,
-      showZoom: false,
-      visualizePitch: true
-    }), "top-right");
+      map.addControl(new maplibregl.NavigationControl({
+        showCompass: true,
+        showZoom: false,
+        visualizePitch: true
+      }), "top-right");
 
 
-    if (navigator.permissions) {
-      navigator.permissions.query({name: 'geolocation'}).then((result) => {
-        switch (result.state) {
-          case "granted":
-            navigator.geolocation.getCurrentPosition(
-              (position) => setUserMarker({map, position}),
-              (error) => console.error("Geolocation API error: ", error),
-              {
-                enableHighAccuracy: true,
-                timeout: 16000,
-                maximumAge: Infinity
-              } 
-            ); break;
-        };
-      });
-    };
+      if (navigator.permissions) {
+        navigator.permissions.query({name: 'geolocation'}).then((result) => {
+          switch (result.state) {
+            case "granted":
+              navigator.geolocation.getCurrentPosition(
+                (position) => {
+                  setUserMarker({map, position});
+                  setUserLocation([position.coords.longitude, position.coords.latitude]);
+                },
+
+                (error) => console.error("Geolocation API error: ", error),
+                {
+                  enableHighAccuracy: true,
+                  timeout: 10000,
+                  maximumAge: Infinity
+                } 
+              ); break;
+          };
+        });
+      };
+    });
 
     return () => map.remove();
   }, [theme]);
@@ -91,9 +101,10 @@ export default function Map ({theme, setMap}: {
   );  
 };
 
-function initMarkersPlaces ({map, appPlaces}: {
+function initMarkersPlaces ({map, appPlaces, setReportView}: {
   map: maplibregl.Map | null, 
-  appPlaces:Places
+  appPlaces:Places,
+  setReportView: (id:number) => void
 }) : void {
   if (map) {
     if (appPlaces) {
@@ -106,7 +117,7 @@ function initMarkersPlaces ({map, appPlaces}: {
           .setDOMContent(popupNode);
 
           markerEl.className = "marker";
-          popupRender.render(<MapPopup place={appPlaces[i]}/>);
+          popupRender.render(<MapPopup  place={appPlaces[i]} placeID={i} setReportView={setReportView}/>);
           popup.on("open", () => {
             const closeBtn = popup.getElement().querySelector(".maplibregl-popup-close-button");
             if (closeBtn) {
@@ -130,7 +141,7 @@ function initMarkersPlaces ({map, appPlaces}: {
   };
 };
 
-export function setUserMarker({map, position}: 
+export function setUserMarker ({map, position}: 
   {map: maplibregl.Map | null, position:GeolocationPosition}) {
   if (map) {
     const popupNode = document.createElement("div");
@@ -159,4 +170,36 @@ export function setUserMarker({map, position}:
     .setPopup(popup)
     .addTo(map);
   } else console.error("Map is invalid:", map);
+};
+
+function MapRouter ({map, userLocation, theme}:
+  {map:maplibregl.Map|null, userLocation:[number,number], theme:boolean}) : void {
+  if (!map) {
+    console.error("map error: ", map);
+    return;
+  }
+
+  const direction = new MapLibreGLDirection(map, {
+    layers: [
+        {
+            id: "routeline",
+            type: "line",
+            source: "maplibre-gl-directions",
+            layout: {
+                "line-cap": "round",
+                "line-join": "round",
+                "visibility": "visible",
+            },
+            paint: {
+                "line-color": !theme ? "#FF9E89" : "#EB775E",
+                "line-width": 6,
+                "line-opacity": 1,
+            },
+            filter: ["==", "route", "SELECTED"],
+        }
+    ],
+  });
+
+  direction.interactive = false;
+  direction.setWaypoints([userLocation, [61.40195,55.166625]]);
 };
