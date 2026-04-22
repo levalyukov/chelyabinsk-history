@@ -53,12 +53,11 @@ section#start {
     
     display: flex;
     align-items: stretch;
-    justify-content: center;
+    justify-content: start;
 
     .places {
       gap: 25px;
-      display: grid;
-      grid-template-columns: repeat(3, 300px);
+      display: flex;
       padding: 0 100px;
       justify-content: center;
     }

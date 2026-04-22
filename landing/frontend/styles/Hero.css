@@ -84,18 +84,22 @@ section.intro {
         object-fit: contain;
         position: relative;
       }
-    } h1 {
-      font-family: 'Montserrat';
-      font-size: 3.75em;
-      color: #fff;
-      text-align: left;
-    } p {
-      font-size: 1.35em;
-      color: #fff;
-      width: 475px;
-      padding: 1.25em 0;
-      text-align: left;
-      font-weight: 600;
+    } 
+
+    nav {
+      h1 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 3.75em;
+        color: #fff;
+        text-align: left;
+      } p {
+        font-size: 1.35em;
+        color: #fff;
+        width: 475px;
+        padding: 1.25em 0;
+        text-align: left;
+        font-weight: 600;
+      }
     }
   }
 }
