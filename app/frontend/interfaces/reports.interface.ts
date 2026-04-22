@@ -12,6 +12,7 @@ export interface PlaceContent {
   readonly popup: PlacePopup;
   marker?:Marker;
   liked?:boolean;
+  readonly hasReport?:boolean;
 };
 
 export interface PlacePopup {

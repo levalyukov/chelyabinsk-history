@@ -5,13 +5,14 @@ import { useState, useContext, useEffect } from "react";
 import { AppContext } from "../interfaces/reports.provider";
 import PlaceScheduleModal from "./modals/PlaceScheduleModal"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faHeartCrack, faMapLocationDot, faCirclePlay, faCaretDown} from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faHeartCrack, faMapLocationDot, faNewspaper, faCaretDown} from "@fortawesome/free-solid-svg-icons";
 import { type PlaceSchedule } from "../interfaces/reports.interface";
 
-export default function Favorite ({map, setPage, appPage, screenWidth}: {
+export default function Favorite ({map, setPage, setReportView, appPage, screenWidth}: {
   map: MapLibre | null, screenWidth:number, 
   appPage:"map" | "favorite",
-  setPage: (page:"map" | "favorite") => void
+  setPage: (page:"map" | "favorite") => void,
+  setReportView: (id:number) => void
 }) : React.ReactNode {
   const context = useContext(AppContext);
   if (!context) return null;
@@ -123,9 +124,11 @@ export default function Favorite ({map, setPage, appPage, screenWidth}: {
                     }}>
                       <FontAwesomeIcon icon={faMapLocationDot}/> На карте
                     </button>
-                    <button className="place-report-button" onClick={() => {}}>
-                      Репортаж <FontAwesomeIcon icon={faCirclePlay}/>
-                    </button>
+                    {item.hasReport !== undefined && (
+                      <button className="place-report-button" onClick={() => setReportView(Number(key)+1)}>
+                        Репортаж <FontAwesomeIcon icon={faNewspaper}/>
+                      </button>
+                    )}
                   </span>
                 </div>
               </article>

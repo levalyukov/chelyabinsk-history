@@ -24,13 +24,14 @@ interface Menu {
 export default function Header ({
   map, setPage, getPage, settingsVisible, 
   setSettingsVisible, setAppTheme, getAppTheme, 
-  updateAppTheme, screenWidth
+  updateAppTheme, screenWidth, setReportView
 }: {
   setPage: (page:"map" | "favorite") => void, 
   getPage:string, map:MapLibre | null, 
   settingsVisible:boolean, getAppTheme:boolean, 
   screenWidth:number, setSettingsVisible: (state:boolean) => void,
-  setAppTheme: (state:boolean) => void, updateAppTheme: () => void
+  setAppTheme: (state:boolean) => void, updateAppTheme: () => void,
+  setReportView: (id:number) => void
 }) : React.ReactNode {
   const context = useContext(AppContext);
   if (!context) return null;
@@ -89,7 +90,7 @@ export default function Header ({
 
             <section className="pc-page">
               {getPage === "map" && reportPage}
-              {getPage === "favorite" && <Favorite map={map} screenWidth={screenWidth} setPage={setPage} appPage={getPage}/>}
+              {getPage === "favorite" && <Favorite map={map} screenWidth={screenWidth} setPage={setPage} appPage={getPage} setReportView={setReportView}/>}
             </section>
           </header>
         </>)}

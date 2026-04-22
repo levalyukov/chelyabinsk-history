@@ -2,9 +2,10 @@ import "../../styles/modals/MapPopup.css"
 
 import { type PlaceContent } from "../../interfaces/reports.interface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationArrow, faClock, faLocationDot, faCirclePlay } from "@fortawesome/free-solid-svg-icons";
+import { faLocationArrow, faClock, faLocationDot, faNewspaper } from "@fortawesome/free-solid-svg-icons";
 
-export default function MapPopup({place}: {place:PlaceContent}):React.ReactNode {
+export default function MapPopup ({place, placeID, setReportView}: 
+  {place:PlaceContent, placeID:number, setReportView: (id:number) => void}) : React.ReactNode {
   const datetime = new Date();
   const dayIndex:number = datetime.getDay() === 0 ? 6 : datetime.getDay() - 1;
 
@@ -29,11 +30,13 @@ export default function MapPopup({place}: {place:PlaceContent}):React.ReactNode 
           <p><span><FontAwesomeIcon icon={faLocationArrow}/></span> {place.coords[1]} {place.coords[0]}</p>
         </nav>
 
-        <nav className="map-popup-actions">
-          <button className="map-popup-actions-report" onClick={() => console.log("")}>
-            Смотреть репортаж <span><FontAwesomeIcon icon={faCirclePlay}/></span>
-          </button>
-        </nav>
+        {place.hasReport !== undefined && (
+          <nav className="map-popup-actions">
+            <button className="map-popup-actions-report" onClick={() => setReportView(placeID+1)}>
+              Прочитать репортаж <span><FontAwesomeIcon icon={faNewspaper}/></span>
+            </button>
+          </nav>
+        )}
       </span>
     </div>
   );
