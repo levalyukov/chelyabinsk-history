@@ -1,4 +1,4 @@
-section.intro {
+section.hero {
   height: 100vh;
   display: flex;
   align-items: center;
@@ -29,6 +29,7 @@ section.intro {
     position: relative;
     width: 100%;
     gap: 50px;
+
     .info-container {
       display: flex;
       align-items: center;
@@ -61,7 +62,9 @@ section.intro {
         display: flex;
         justify-content: center;
         align-items: center;
+        transition: .1s;
         gap: 10px;
+
         span {
           display: flex;
           justify-content: center;
@@ -92,6 +95,7 @@ section.intro {
         font-size: 3.75em;
         color: #fff;
         text-align: left;
+        line-height: 1.0;
       } p {
         font-size: 1.35em;
         color: #fff;
@@ -104,7 +108,7 @@ section.intro {
   }
 }
 
-section.intro::before {
+section.hero::before {
   top: 0;
   left: 0;
   right: 0;
@@ -117,7 +121,7 @@ section.intro::before {
 }
 
 @media (max-width: 1500px) {
-  section.intro .info {
+  section.hero .info {
     .info-container {
       gap: 150px;
     }
@@ -125,16 +129,20 @@ section.intro::before {
     .logotype {
       width: 300px;
       height: 300px;
-    } h1 {
-      font-size: 3.25em;
-    } p {
-      font-size: 1.25em
+    } 
+
+    nav {
+      h1 {
+          font-size: 3.25em;
+      } p {
+        font-size: 1.25em
+      }
     }
   }
 }
 
 @media (max-width: 1000px) {
-  section.intro .info {
+  section.hero .info {
     .info-container {
       gap: 100px;
     }
@@ -142,16 +150,20 @@ section.intro::before {
     .logotype {
       width: 250px;
       height: 250px;
-    } h1 {
-      font-size: 2.75em;
-    } p {
-      font-size: 1.15em
+    } 
+
+    nav {
+      h1 {
+        font-size: 2.75em;
+      } p {
+        font-size: 1.15em
+      }
     }
   }
 }
 
 @media (max-width: 850px) {
-  section.intro .info {
+  section.hero .info {
     .info-container {
       flex-direction: column !important;
       gap: 25px;
@@ -160,35 +172,44 @@ section.intro::before {
     .logotype {
       width: 250px;
       height: 250px;
-    } h1 {
-      font-size: 2.75em;
-      text-align: center;
-    } p {
-      font-size: 1.15em;
-      text-align: center;
+    } 
+
+    nav {
+      h1 {
+        font-size: 2.75em;
+        text-align: center;
+      } p {
+        font-size: 1.15em;
+        text-align: center;
+      }
     }
   }
 }
 
 
 @media (max-width: 500px) {
-  section.intro .info {
+  section.hero .info {
     .info-container {
       flex-direction: column !important;
       gap: 25px;
     }
 
     .logotype {
-      width: 175px;
-      height: 175px;
-    } h1 {
-      font-size: 2.5em;
-      text-align: center;
-    } p {
-      padding-left: 75px;
-      padding-right: 75px;
-      font-size: 1em;
-      text-align: center;
+      width: 150px;
+      height: 150px;
+      margin-bottom: .25em;
+    } 
+
+    nav {
+      h1 {
+        font-size: 2.5em;
+        text-align: center;
+      } p {
+        padding-left: 75px;
+        padding-right: 75px;
+        font-size: 1em;
+        text-align: center;
+      }
     }
   }
 }

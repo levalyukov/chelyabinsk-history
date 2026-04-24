@@ -104,3 +104,7 @@ img#anim-element.img-left {
   transform: translateZ(0px);
   opacity: 1;
 }
+
+button,article,a,select {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
