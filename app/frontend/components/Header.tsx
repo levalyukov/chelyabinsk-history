@@ -111,7 +111,7 @@ export default function Header ({
           </div>
         )}
 
-        {screenWidth <= 1000 && (
+        {(getPage === "map" && screenWidth <= 1000) && (
           <nav id="map-control-mobile" className={placesVisible ? "invisible" : ""}>
             <button onClick={() => {if (map) map.zoomIn();}}><FontAwesomeIcon icon={faPlus}/></button>
             <button onClick={() => {if (map) map.zoomOut();}}><FontAwesomeIcon icon={faMinus}/></button>
