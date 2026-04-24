@@ -100,10 +100,11 @@ header#pc {
         background-color: var(--button);
 
         font-size: 16px;
-        color: var(--title);
+        color: var(--text);
         cursor: pointer;
         transition: .25s;
       } button:hover {
+        color: var(--title);
         background-color: var(--button-hover);
       }
     }
